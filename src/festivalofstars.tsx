@@ -36,18 +36,6 @@ type TimeLeft = {
 const EVENT_SLUG = "festival-of-stars";
 const EVENT_DATE = "2026-12-12T16:00:00+08:00";
 
-const peoplePhotos = {
-  singer: "/festival-assets/singer.png",
-  femaleWorship: "/festival-assets/female-worship.png",
-  youth: "/festival-assets/smiling-youth.png",
-  guitarist: "/festival-assets/guitarist.png",
-  crowd: "/festival-assets/worship-crowd.png",
-  stage: "/festival-assets/stage-star.png",
-  community: "/festival-assets/youth-community.png",
-  city: "/festival-assets/city-buildings.png",
-  neonStar: "/festival-assets/neon-star.png",
-};
-
 function getTimeLeft(target: string): TimeLeft {
   const diff = Math.max(0, new Date(target).getTime() - Date.now());
 
@@ -216,8 +204,7 @@ export default function FestivalOfStars() {
           <span>✦</span>
         </div>
 
-        <div className="hero-human hero-human-left">
-          <img src={peoplePhotos.singer} alt="Festival singer artwork" />
+        <div className="hero-human hero-human-left mood-singer" role="img" aria-label="Singer artwork from the uploaded Festival of Stars mood board">
           <span>WORSHIP ✦</span>
         </div>
 

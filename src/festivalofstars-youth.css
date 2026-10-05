@@ -97,3 +97,94 @@ button,input,select,textarea{font:inherit}a{color:inherit}img{max-width:100%}
 .gallery-card>img{z-index:0}
 .gallery-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.34));pointer-events:none}
 .gallery-card b,.gallery-card span{z-index:2}
+
+
+/* Reliable image framing: every picture is rendered as a real image filling its frame. */
+.hero-image-side,
+.hero-image-bottom,
+.group-photo,
+.experience-photo,
+.talent-photo,
+.gallery-card,
+.event-photo,
+.final-backdrop{
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-image-side>img,
+.hero-image-bottom>img,
+.group-photo>img,
+.experience-photo>img,
+.talent-photo>img,
+.gallery-card>img,
+.event-photo>img,
+.final-backdrop>img{
+  position:absolute;
+  inset:0;
+  width:100% !important;
+  height:100% !important;
+  max-width:none;
+  display:block;
+  object-fit:cover;
+  transform:none !important;
+  filter:none;
+}
+
+.hero-image-side>img{object-position:52% 45%}
+.hero-image-bottom>img{object-position:66% 45%}
+.group-photo>img{object-position:33% 60%}
+
+.exp-worship>img{object-position:48% 37%}
+.exp-community>img{object-position:34% 59%}
+.exp-purpose>img{object-position:67% 48%}
+.exp-fun>img{object-position:55% 57%}
+
+.singing-crop>img{object-position:48% 35%}
+.rap-crop>img{object-position:60% 57%}
+.acting-crop>img{object-position:29% 57%}
+
+.stage-crop-large>img{object-position:67% 48%}
+.crowd-bottom>img{object-position:60% 37%}
+
+.gallery-crowd>img{object-position:60% 37%}
+.gallery-community>img{object-position:34% 59%}
+.gallery-stage>img{object-position:67% 48%}
+.gallery-youth>img{object-position:52% 45%}
+.gallery-singer>img{object-position:48% 35%}
+
+.experience-photo,
+.talent-photo{
+  background:#123640;
+}
+
+.experience-photo::before,
+.talent-photo::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,19,29,.02),rgba(6,19,29,.12));
+}
+
+.experience-photo>img,
+.talent-photo>img,
+.gallery-card>img,
+.hero-image-side>img,
+.hero-image-bottom>img,
+.group-photo>img,
+.event-photo>img{
+  z-index:0;
+}
+
+.experience-photo::before,
+.talent-photo::before{z-index:2}
+
+.talent-overlay{z-index:3}
+.talent-number,.talent-icon,.talent-label,.talent-arrow{z-index:4}
+
+@media(max-width:560px){
+  .experience-photo{height:102px}
+  .talent-photo>img{object-position:center 45%}
+}

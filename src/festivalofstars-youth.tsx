@@ -315,8 +315,8 @@ export default function FestivalOfStarsYouth() {
           <img src="/images/ai-festival-singer.webp" alt="AI-generated young singer performing at a festival" loading="eager" />
           <span className="image-badge">AI HUMAN / SINGING</span>
         </div>
-        <div className="hero-image-side mood-image youth-crop" role="img" aria-label="Youth from supplied Festival of Stars artwork" />
-        <div className="hero-image-bottom mood-image stage-crop" role="img" aria-label="Festival stage from supplied Festival of Stars artwork" />
+        <div className="hero-image-side mood-image youth-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="Youth from Festival of Stars artwork" /></div>
+        <div className="hero-image-bottom mood-image stage-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="Festival stage from Festival of Stars artwork" /></div>
         <div className="floating-note note-shine">SHINE<br /><em>YOUR WAY</em></div>
         <div className="floating-note note-create">CREATE<br /><em>TOGETHER</em></div>
       </div>
@@ -351,7 +351,7 @@ export default function FestivalOfStarsYouth() {
         </div>
       </div>
       <div className="about-art">
-        <div className="group-photo mood-image group-crop" role="img" aria-label="Friends together from supplied Festival of Stars artwork" />
+        <div className="group-photo mood-image group-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="Friends together from Festival of Stars artwork" /></div>
         <div className="hand-note"><Plus /><b>YOU ARE<br /><em>A STAR</em></b><small>Shine where God placed you.</small></div>
         <div className="about-doodle doodle-heart">♡</div><div className="about-doodle doodle-star">✦</div>
       </div>
@@ -364,10 +364,10 @@ export default function FestivalOfStarsYouth() {
         <p>Worship. Community. Creativity. Purpose. All in one night.</p>
       </div>
       <div className="experience-grid">
-        <article className="experience-card card-pink"><div className="experience-photo mood-image exp-worship" role="img" aria-label="Young worshipper performing from Festival of Stars artwork" /><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
-        <article className="experience-card card-yellow"><div className="experience-photo mood-image exp-community" role="img" aria-label="Friends together from Festival of Stars artwork" /><Users /><span>02</span><h3>COMMUNITY</h3><p>Meet new friends, laugh together, and find people who get you.</p></article>
-        <article className="experience-card card-cyan"><div className="experience-photo mood-image exp-purpose" role="img" aria-label="Festival stage from Festival of Stars artwork" /><BookOpen /><span>03</span><h3>PURPOSE</h3><p>Hear practical truth and discover what God has put in you.</p></article>
-        <article className="experience-card card-violet"><div className="experience-photo mood-image exp-fun" role="img" aria-label="Young people enjoying the festival from Festival of Stars artwork" /><Sparkles /><span>04</span><h3>FUN</h3><p>Games, creative activities, performances, and surprises.</p></article>
+        <article className="experience-card card-pink"><div className="experience-photo mood-image exp-worship"><img src="/festival-assets/festival-moodboard.jpg" alt="Young worshipper performing at Festival of Stars" loading="lazy" /></div><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
+        <article className="experience-card card-yellow"><div className="experience-photo mood-image exp-community"><img src="/festival-assets/festival-moodboard.jpg" alt="Friends together at Festival of Stars" loading="lazy" /></div><Users /><span>02</span><h3>COMMUNITY</h3><p>Meet new friends, laugh together, and find people who get you.</p></article>
+        <article className="experience-card card-cyan"><div className="experience-photo mood-image exp-purpose"><img src="/festival-assets/festival-moodboard.jpg" alt="Festival stage lights" loading="lazy" /></div><BookOpen /><span>03</span><h3>PURPOSE</h3><p>Hear practical truth and discover what God has put in you.</p></article>
+        <article className="experience-card card-violet"><div className="experience-photo mood-image exp-fun"><img src="/festival-assets/festival-moodboard.jpg" alt="Young people enjoying Festival of Stars" loading="lazy" /></div><Sparkles /><span>04</span><h3>FUN</h3><p>Games, creative activities, performances, and surprises.</p></article>
       </div>
     </section>
 
@@ -413,7 +413,7 @@ export default function FestivalOfStarsYouth() {
       </div>
       <div className="gallery-track">
         {currentGallery.map((item, index) =>
-          <div className={`gallery-card mood-image ${item.cls}`} key={item.cls}>
+          <div className={`gallery-card mood-image ${item.cls}`} key={item.cls}><img src="/festival-assets/festival-moodboard.jpg" alt="" aria-hidden="true" loading="lazy" />
             {index === 1 && <span>PEOPLE &gt; PERFECT</span>}
             {index === 2 && <span>MAKE MEMORIES</span>}
             <b>{item.label}</b>
@@ -423,7 +423,7 @@ export default function FestivalOfStarsYouth() {
     </section>
 
     <section className="fy-event">
-      <div className="event-photo mood-image stage-crop-large" />
+      <div className="event-photo mood-image stage-crop-large"><img src="/festival-assets/festival-moodboard.jpg" alt="Festival stage and crowd" loading="lazy" /></div>
       <div className="event-details">
         <p className="fy-eyebrow pink-text">SAVE THE DATE</p>
         <h2>{eventDate}</h2>
@@ -468,7 +468,7 @@ export default function FestivalOfStarsYouth() {
     </section>}
 
     <section className="fy-final">
-      <div className="final-backdrop mood-image crowd-bottom" />
+      <div className="final-backdrop mood-image crowd-bottom"><img src="/festival-assets/festival-moodboard.jpg" alt="" aria-hidden="true" /></div>
       <div className="final-copy"><p className="fy-eyebrow">YOUR STAR MOMENT STARTS HERE</p><h2>YOU ARE A<br /><em>STAR.</em></h2><p>Shine. Belong. Make a difference.</p></div>
       {festival.announcement.registration_enabled &&
         <a className="fy-register final-button" href="/festivalofstars/register" onClick={() => track(festival.event.id, "register_click")}>REGISTER NOW <ArrowRight size={20} /></a>}

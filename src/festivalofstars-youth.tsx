@@ -386,7 +386,6 @@ export default function FestivalOfStarsYouth() {
             aria-pressed={activeTalent === talent.slug}
           >
             <div className={`talent-photo mood-image ${talent.slug}-crop`} />
-            {talent.slug === "singing" && <img className="talent-ai-overlay" src="/images/ai-festival-singer.webp" alt="" aria-hidden="true" />}
             <div className="talent-overlay" />
             <span className="talent-number">0{index + 1}</span>
             <span className="talent-icon"><Icon /></span>

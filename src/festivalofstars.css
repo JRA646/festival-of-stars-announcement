@@ -197,7 +197,7 @@ img{max-width:100%}
 footer{padding:35px clamp(20px,7vw,90px);display:flex;justify-content:space-between;align-items:center;gap:20px;background:#04131c;color:#9db1b5}
 footer strong{color:#fff;font-size:12px;letter-spacing:.08em}footer small{display:block;margin-top:5px}footer button{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;background:transparent;border:1px solid #6f888f;color:#fff;cursor:pointer}
 
-.reveal{opacity:.15;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.reveal-visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.reveal-visible{opacity:1;transform:none}
 
 .mobile-register{display:none}
 
@@ -300,3 +300,7 @@ footer{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,ca
 .feature-grid article,.talent-card,.schedule-card,.poster-note{border-radius:3px}
 @media(min-width:1160px){.fos-hero{grid-template-columns:minmax(520px,.9fr) minmax(560px,1.1fr)}}
 @media(max-width:1150px){.hero-collage{justify-self:center}.fos-section>*,.talent-stage>*,.schedule-section>*,.visit-strip>*,.faq-section>*{width:min(100%,920px)}}
+
+
+/* Accessibility and presentation: sections must never appear washed out while the observer is settling. */
+[data-reveal]{opacity:1}

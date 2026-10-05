@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<defs>
+  <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#30e5df"/><stop offset=".42" stop-color="#7c62ff"/><stop offset="1" stop-color="#ff5aa5"/></linearGradient>
+  <linearGradient id="skin3"><stop stop-color="#e0aa86"/><stop offset="1" stop-color="#a06151"/></linearGradient>
+  <linearGradient id="shirt3"><stop stop-color="#fefcf7"/><stop offset="1" stop-color="#a8c8d4"/></linearGradient>
+</defs>
+<rect width="600" height="800" rx="32" fill="url(#bg3)"/>
+<circle cx="95" cy="150" r="100" fill="#ffd11f" opacity=".25"/><circle cx="500" cy="105" r="130" fill="#fff" opacity=".12"/>
+<path d="M0 620 Q160 540 300 610 T600 600 V800 H0Z" fill="#07131d" opacity=".78"/>
+<ellipse cx="310" cy="198" rx="106" ry="134" fill="url(#skin3)"/>
+<path d="M196 198 Q205 62 318 62 Q428 67 431 192 Q392 120 320 120 Q244 120 196 198Z" fill="#2a1622"/>
+<path d="M205 173 Q236 72 347 92 Q407 103 430 159 Q372 128 315 142 Q258 147 205 173Z" fill="#4c2338"/>
+<circle cx="268" cy="224" r="5" fill="#07131d"/><circle cx="346" cy="224" r="5" fill="#07131d"/>
+<path d="M272 262 Q310 282 346 261" fill="none" stroke="#632a36" stroke-width="7" stroke-linecap="round"/>
+<path d="M185 350 Q305 305 425 350 L510 800 H100Z" fill="url(#shirt3)"/>
+<path d="M160 365 Q102 470 82 640" fill="none" stroke="#ffd11f" stroke-width="40" stroke-linecap="round"/>
+<path d="M441 362 Q510 460 528 620" fill="none" stroke="#ff5aa5" stroke-width="40" stroke-linecap="round"/>
+<path d="M205 380 Q300 430 400 380" fill="none" stroke="#30e5df" stroke-width="8"/>
+<text x="36" y="742" fill="#07131d" font-family="Arial, sans-serif" font-size="23" font-weight="900" letter-spacing="4">AI HUMAN • CREATE</text>
+</svg>

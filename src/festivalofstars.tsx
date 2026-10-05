@@ -229,8 +229,8 @@ export default function FestivalOfStars() {
           <span>✦</span>
         </div>
 
-        <div className="hero-human hero-human-left mood-singer" role="img" aria-label="Singer artwork from the uploaded Festival of Stars mood board">
-          <span>WORSHIP ✦</span>
+        <div className="hero-human hero-human-left ai-hero-human" role="img" aria-label="AI-generated Festival of Stars singer">
+          <span>AI TALENT ✦</span>
         </div>
 
         <div className="hero-human hero-human-right">

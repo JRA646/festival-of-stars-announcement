@@ -219,6 +219,47 @@ export default function FestivalOfStars() {
           </div>
         </div>
 
+
+        <div className="hero-collage" aria-label="Festival of Stars visual collage">
+          <div className="collage-texture collage-texture-dark" />
+          <div className="collage-brush brush-one" />
+          <div className="collage-brush brush-two" />
+          <div className="collage-star star-big">★</div>
+
+          <div className="collage-person collage-singer" data-depth="1">
+            <img src="/images/ai-festival-singer.webp" alt="AI-generated Festival of Stars singer" />
+            <span>SINGING</span>
+          </div>
+
+          <div className="collage-person collage-rap" data-depth="2">
+            <img src="/images/festival-rapper.svg" alt="Festival rapper illustration" />
+            <span>RAP</span>
+          </div>
+
+          <div className="collage-person collage-actor" data-depth="3">
+            <img src="/images/festival-actor.svg" alt="Festival actor illustration" />
+            <span>ACTING</span>
+          </div>
+
+          <div className="collage-stage-photo" data-depth="1">
+            <div className="mood-image mood-stage" role="img" aria-label="Stage with star from the uploaded Festival of Stars mood board" />
+          </div>
+
+          <div className="collage-word collage-word-one">SHINE</div>
+          <div className="collage-word collage-word-two">BELONG</div>
+          <div className="collage-word collage-word-three">CREATE</div>
+
+          <div className="collage-ticket ticket-date">
+            <strong>DEC 12</strong>
+            <small>2026 · 4:00 PM</small>
+          </div>
+
+          <div className="collage-ticket ticket-place">
+            <strong>LAS PIÑAS</strong>
+            <small>FIRST LOVE CHURCH</small>
+          </div>
+        </div>
+
         <div className="hero-side hero-side-left">
           <b>WORSHIP<br />TOGETHER</b>
           <Star size={30} />

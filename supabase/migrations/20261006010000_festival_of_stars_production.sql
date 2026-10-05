@@ -136,6 +136,7 @@ on conflict (event_id) do update set
 
 alter table public.festival_announcements enable row level security;
 alter table public.festival_talent_categories enable row level security;
+alter table public.festival_registrations drop constraint if exists festival_registrations_service_ck;
 alter table public.festival_registrations enable row level security;
 alter table public.festival_talent_submissions enable row level security;
 alter table public.festival_analytics_events enable row level security;

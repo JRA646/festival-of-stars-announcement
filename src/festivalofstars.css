@@ -265,3 +265,14 @@ footer strong{color:#fff;font-size:12px;letter-spacing:.08em}footer small{displa
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}
 }
+
+/* Supplied Festival of Stars mood-board image crops */
+.mood-image{width:100%;height:100%;background-image:url("/festival-assets/festival-moodboard.jpg");background-repeat:no-repeat;background-color:#123640;background-size:1229px 819px}
+.collage-rap .mood-image{background-position:-392px -295px}
+.collage-stage-photo .mood-image{background-position:-822px -4px}
+.human-photo .mood-image{display:block}
+.human-photo .mood-crowd{background-position:-702px -4px}
+.human-photo .mood-guitar{background-position:-588px -4px}
+.human-photo .mood-community{background-position:-198px -295px}
+@media(max-width:850px){.mood-image{background-size:1100px 733px}.collage-rap .mood-image{background-position:-350px -265px}.collage-stage-photo .mood-image{background-position:-736px -4px}.human-photo .mood-crowd{background-position:-628px -4px}.human-photo .mood-guitar{background-position:-528px -4px}.human-photo .mood-community{background-position:-178px -265px}}
+@media(max-width:560px){.mood-image{background-size:930px 620px}.collage-rap .mood-image{background-position:-339px -238px}.collage-stage-photo .mood-image{background-position:-621px -3px}.human-photo .mood-crowd{background-position:-532px -3px}.human-photo .mood-guitar{background-position:-444px -3px}.human-photo .mood-community{background-position:-179px -238px}}

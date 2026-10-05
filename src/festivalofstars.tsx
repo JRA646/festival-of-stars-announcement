@@ -37,13 +37,10 @@ const EVENT_SLUG = "festival-of-stars";
 const EVENT_DATE = "2026-12-12T16:00:00+08:00";
 
 const peoplePhotos = {
-  worship:
-    "https://images.unsplash.com/photo-1770097043369-4ee5a231ecc0?auto=format&fit=crop&fm=jpg&q=90&w=1400",
-  friends:
-    "https://images.unsplash.com/photo-1771605609561-c853e748397d?auto=format&fit=crop&fm=jpg&q=90&w=1400",
-  crowd:
-    "https://images.unsplash.com/photo-1739888826320-784a10e880ea?auto=format&fit=crop&fm=jpg&q=90&w=1400",
-};
+    singer: "/images/festival-singer.svg",
+    rapper: "/images/festival-rapper.svg",
+    actor: "/images/festival-actor.svg",
+  };
 
 const talentContent: Record<
   TalentType,
@@ -238,12 +235,12 @@ export default function FestivalOfStars() {
         </div>
 
         <div className="hero-human hero-human-left">
-          <img src={peoplePhotos.worship} alt="Young people worshipping together" />
+          <img src={peoplePhotos.singer} alt="AI-inspired festival singer" />
           <span>WORSHIP ✦</span>
         </div>
 
         <div className="hero-human hero-human-right">
-          <img src={peoplePhotos.friends} alt="Friends celebrating together" />
+          <img src={peoplePhotos.rapper} alt="AI-inspired festival rapper" />
           <span>YOU BELONG HERE</span>
         </div>
 
@@ -292,15 +289,15 @@ export default function FestivalOfStars() {
 
       <section className="human-strip" aria-label="Festival people">
         <div className="human-photo human-photo-wide">
-          <img src={peoplePhotos.crowd} alt="Crowd celebrating at a live event" />
+          <img src={peoplePhotos.actor} alt="AI-inspired festival performer" />
           <span>WE CELEBRATE TOGETHER</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.worship} alt="Worship experience" />
+          <img src={peoplePhotos.singer} alt="AI-inspired worship scene" />
           <span>POWERFUL WORSHIP</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.friends} alt="Young friends enjoying an event" />
+          <img src={peoplePhotos.rapper} alt="AI-inspired youth community scene" />
           <span>REAL COMMUNITY</span>
         </div>
       </section>

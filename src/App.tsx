@@ -1,4 +1,4 @@
-import FestivalOfStars from "./festivalofstars";
+import FestivalOfStars from "./festivalofstars-youth";
 import FestivalOfStarsRegister from "./festivalofstars-register";
 
 const path = window.location.pathname;

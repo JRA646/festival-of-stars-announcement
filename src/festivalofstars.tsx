@@ -209,7 +209,7 @@ export default function FestivalOfStars() {
         </div>
 
         <div className="hero-human hero-human-right">
-          <img src={peoplePhotos.femaleWorship} alt="Festival worship artwork" />
+          <div className="mood-image mood-female" role="img" aria-label="Female worship artwork from the uploaded Festival of Stars mood board" />
           <span>YOU BELONG HERE</span>
         </div>
 
@@ -258,15 +258,15 @@ export default function FestivalOfStars() {
 
       <section className="human-strip" aria-label="Festival people">
         <div className="human-photo human-photo-wide">
-          <img src={peoplePhotos.crowd} alt="Festival crowd artwork" />
+          <div className="mood-image mood-crowd" role="img" aria-label="Worship crowd from the uploaded Festival of Stars mood board" />
           <span>WE CELEBRATE TOGETHER</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.guitarist} alt="Festival guitarist artwork" />
+          <div className="mood-image mood-guitar" role="img" aria-label="Guitarist from the uploaded Festival of Stars mood board" />
           <span>POWERFUL WORSHIP</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.community} alt="Festival youth community artwork" />
+          <div className="mood-image mood-community" role="img" aria-label="Youth community from the uploaded Festival of Stars mood board" />
           <span>REAL COMMUNITY</span>
         </div>
       </section>

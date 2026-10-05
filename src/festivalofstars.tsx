@@ -130,7 +130,7 @@ export default function FestivalOfStars() {
     window.setTimeout(() => setRegistered(false), 3200);
   };
 
-  const handleHeroPointer = (eventPointer: React.PointerEvent<HTMLElement>) => {
+  const handleHeroPointer = (eventPointer: PointerEvent & { currentTarget: HTMLElement }) => {
     const bounds = eventPointer.currentTarget.getBoundingClientRect();
     const x = ((eventPointer.clientX - bounds.left) / bounds.width) * 100;
     const y = ((eventPointer.clientY - bounds.top) / bounds.height) * 100;
@@ -217,12 +217,12 @@ export default function FestivalOfStars() {
         </div>
 
         <div className="hero-human hero-human-left">
-          <img src={peoplePhotos.singer} alt="AI-inspired festival singer" />
+          <img src={peoplePhotos.singer} alt="Festival singer artwork" />
           <span>WORSHIP ✦</span>
         </div>
 
         <div className="hero-human hero-human-right">
-          <img src={peoplePhotos.singer} alt="AI-inspired festival rapper" />
+          <img src={peoplePhotos.femaleWorship} alt="Festival worship artwork" />
           <span>YOU BELONG HERE</span>
         </div>
 
@@ -271,15 +271,15 @@ export default function FestivalOfStars() {
 
       <section className="human-strip" aria-label="Festival people">
         <div className="human-photo human-photo-wide">
-          <img src={peoplePhotos.youth} alt="AI-inspired festival performer" />
+          <img src={peoplePhotos.crowd} alt="Festival crowd artwork" />
           <span>WE CELEBRATE TOGETHER</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.singer} alt="AI-inspired worship scene" />
+          <img src={peoplePhotos.guitarist} alt="Festival guitarist artwork" />
           <span>POWERFUL WORSHIP</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.singer} alt="AI-inspired youth community scene" />
+          <img src={peoplePhotos.community} alt="Festival youth community artwork" />
           <span>REAL COMMUNITY</span>
         </div>
       </section>

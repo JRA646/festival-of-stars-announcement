@@ -37,33 +37,15 @@ const EVENT_SLUG = "festival-of-stars";
 const EVENT_DATE = "2026-12-12T16:00:00+08:00";
 
 const peoplePhotos = {
-    singer: "/images/festival-singer.svg",
-    rapper: "/images/festival-rapper.svg",
-    actor: "/images/festival-actor.svg",
-  };
-
-const talentContent: Record<
-  TalentType,
-  { label: string; title: string; copy: string; accent: string }
-> = {
-  singing: {
-    label: "SINGING",
-    title: "Raise your voice.",
-    copy: "Lead worship, perform a song, or bring a sound that gets the whole room singing.",
-    accent: "#19ddd1",
-  },
-  rap: {
-    label: "RAP",
-    title: "Bring your bars.",
-    copy: "Tell your story through rhythm, flow, poetry, and a message that makes people think.",
-    accent: "#ffc526",
-  },
-  acting: {
-    label: "ACTING",
-    title: "Own the stage.",
-    copy: "Perform a scene, monologue, skit, spoken word piece, or creative act that brings the story to life.",
-    accent: "#ff6148",
-  },
+  singer: "/festival-assets/singer.png",
+  femaleWorship: "/festival-assets/female-worship.png",
+  youth: "/festival-assets/smiling-youth.png",
+  guitarist: "/festival-assets/guitarist.png",
+  crowd: "/festival-assets/worship-crowd.png",
+  stage: "/festival-assets/stage-star.png",
+  community: "/festival-assets/youth-community.png",
+  city: "/festival-assets/city-buildings.png",
+  neonStar: "/festival-assets/neon-star.png",
 };
 
 function getTimeLeft(target: string): TimeLeft {
@@ -240,7 +222,7 @@ export default function FestivalOfStars() {
         </div>
 
         <div className="hero-human hero-human-right">
-          <img src={peoplePhotos.rapper} alt="AI-inspired festival rapper" />
+          <img src={peoplePhotos.singer} alt="AI-inspired festival rapper" />
           <span>YOU BELONG HERE</span>
         </div>
 
@@ -289,7 +271,7 @@ export default function FestivalOfStars() {
 
       <section className="human-strip" aria-label="Festival people">
         <div className="human-photo human-photo-wide">
-          <img src={peoplePhotos.actor} alt="AI-inspired festival performer" />
+          <img src={peoplePhotos.youth} alt="AI-inspired festival performer" />
           <span>WE CELEBRATE TOGETHER</span>
         </div>
         <div className="human-photo">
@@ -297,7 +279,7 @@ export default function FestivalOfStars() {
           <span>POWERFUL WORSHIP</span>
         </div>
         <div className="human-photo">
-          <img src={peoplePhotos.rapper} alt="AI-inspired youth community scene" />
+          <img src={peoplePhotos.singer} alt="AI-inspired youth community scene" />
           <span>REAL COMMUNITY</span>
         </div>
       </section>

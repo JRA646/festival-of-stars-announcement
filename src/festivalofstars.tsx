@@ -101,6 +101,39 @@ export default function FestivalOfStars() {
       setMeta("name","description",description);
       setMeta("property","og:title",typed.event.name); setMeta("property","og:description",description); setMeta("property","og:image",image);
       setMeta("name","twitter:card","summary_large_image"); setMeta("name","twitter:title",typed.event.name); setMeta("name","twitter:description",description); setMeta("name","twitter:image",image);
+
+      let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = window.location.href.split("#")[0];
+
+      let structured = document.head.querySelector<HTMLScriptElement>('script[data-festival-schema="true"]');
+      if (!structured) {
+        structured = document.createElement("script");
+        structured.type = "application/ld+json";
+        structured.dataset.festivalSchema = "true";
+        document.head.appendChild(structured);
+      }
+      structured.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: typed.event.name,
+        description,
+        startDate: typed.event.start_at,
+        endDate: typed.event.end_at || undefined,
+        image: [image],
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        location: {
+          "@type": "Place",
+          name: typed.event.location || "First Love Church",
+          address: typed.event.location || "Las Piñas City, Philippines",
+        },
+      });
+
       track(typed.event.id,"page_view");
     };
     void load();

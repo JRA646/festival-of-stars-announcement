@@ -188,3 +188,6 @@ button,input,select,textarea{font:inherit}a{color:inherit}img{max-width:100%}
   .experience-photo{height:102px}
   .talent-photo>img{object-position:center 45%}
 }
+
+.hero-image-main>img{object-position:27% 28% !important}
+.faq-human>img{object-position:36% 42% !important}

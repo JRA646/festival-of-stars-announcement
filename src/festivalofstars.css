@@ -304,3 +304,360 @@ footer{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,ca
 
 /* Accessibility and presentation: sections must never appear washed out while the observer is settling. */
 [data-reveal]{opacity:1}
+
+
+/* Professional visual refinement v2 */
+:root{
+  --section-max:1180px;
+  --section-pad:88px;
+  --soft-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+
+/* Keep the expressive poster language, but let the page breathe like a real event site. */
+.fos-section,
+.talent-stage,
+.schedule-section,
+.visit-strip,
+.faq-section,
+.fos-cta{
+  padding-top:var(--section-pad);
+  padding-bottom:var(--section-pad);
+}
+
+.fos-section h2,
+.talent-stage>h2,
+.schedule-section>h2,
+.faq-section>h2,
+.fos-cta h2,
+.visit-strip h2{
+  font-size:clamp(48px,6.2vw,88px);
+  line-height:.92;
+  margin-top:12px;
+  margin-bottom:34px;
+}
+
+.fos-section>p.section-kicker,
+.talent-stage>.section-kicker,
+.schedule-section>.section-kicker,
+.visit-strip>.section-kicker,
+.faq-section>.section-kicker,
+.fos-cta .section-kicker{
+  margin-bottom:8px;
+}
+
+.about-grid{
+  grid-template-columns:minmax(240px,280px) minmax(0,1fr);
+  gap:56px;
+}
+
+.poster-note{
+  min-height:285px;
+  padding:25px;
+  box-shadow:8px 10px 0 var(--ink);
+}
+
+.poster-note strong{
+  font-size:60px;
+}
+
+.big-copy{
+  font-size:25px;
+  line-height:1.48;
+  max-width:720px;
+}
+
+.body-copy{
+  font-size:16px;
+  line-height:1.75;
+  max-width:720px;
+}
+
+.feature-grid{
+  gap:0;
+  box-shadow:0 0 0 1px var(--ink);
+}
+
+.feature-grid article{
+  min-height:270px;
+  padding:26px;
+}
+
+.feature-grid h3{
+  font-size:24px;
+}
+
+.feature-grid p{
+  max-width:270px;
+}
+
+.talent-intro{
+  max-width:700px;
+  margin-bottom:30px;
+  font-size:16px;
+}
+
+.talent-grid{
+  gap:12px;
+}
+
+.talent-card{
+  min-height:270px;
+  padding:23px;
+}
+
+.talent-card strong{
+  font-size:46px;
+  line-height:.95;
+}
+
+.talent-card small{
+  font-size:19px;
+}
+
+.talent-preview{
+  margin-top:16px;
+  padding:20px 22px;
+}
+
+.talent-preview h3{
+  font-size:34px;
+}
+
+.schedule-card{
+  max-width:1080px;
+  padding:24px;
+  gap:24px;
+  box-shadow:8px 9px 0 var(--ink);
+}
+
+.schedule-date{
+  min-height:132px;
+}
+
+.schedule-date strong{
+  font-size:68px;
+}
+
+.schedule-content h3{
+  font-size:28px;
+}
+
+.visit-strip h2{
+  margin-bottom:38px;
+}
+
+.visit-item{
+  padding:22px 0;
+}
+
+.visit-item h3{
+  font-size:36px;
+}
+
+.visit-item p{
+  max-width:760px;
+  font-size:16px;
+}
+
+.faq-section{
+  padding-top:82px;
+  padding-bottom:82px;
+}
+
+.faq-list{
+  max-width:920px;
+}
+
+.faq-item button{
+  padding:18px 0;
+}
+
+.fos-cta{
+  padding-top:76px;
+  padding-bottom:76px;
+}
+
+.fos-cta h2{
+  margin-bottom:14px;
+}
+
+.fos-cta p{
+  font-size:16px;
+}
+
+/* Keep motion mostly in the hero; content sections stay visually stable. */
+.human-photo,
+.feature-grid article,
+.talent-card,
+.schedule-card,
+.poster-note,
+.faq-item,
+.direction-button,
+.talent-preview a{
+  transition:transform .22s ease, box-shadow .22s ease, filter .22s ease, background-color .22s ease;
+}
+
+.human-photo:hover{
+  transform:translateY(-4px);
+}
+
+.feature-grid article:hover{
+  transform:translateY(-4px);
+  box-shadow:6px 8px 0 #000;
+}
+
+.talent-card:hover{
+  transform:translateY(-6px) rotate(-.5deg);
+  box-shadow:9px 11px 0 #000;
+}
+
+.schedule-card:hover{
+  box-shadow:10px 11px 0 var(--ink);
+}
+
+.poster-note:hover{
+  transform:rotate(-1deg) translateY(-3px);
+}
+
+/* Remove the old dimmed reveal state entirely. */
+.reveal,
+.reveal.reveal-visible,
+[data-reveal]{
+  opacity:1 !important;
+  transform:none;
+}
+
+/* Prevent giant empty feeling around the main announcement banner. */
+.color-band{
+  min-height:120px;
+  padding-top:30px;
+  padding-bottom:30px;
+  gap:22px;
+}
+
+.color-band h2{
+  font-size:clamp(38px,5vw,62px);
+  line-height:1;
+}
+
+.color-band b{
+  font-size:16px;
+  line-height:1.4;
+}
+
+/* Tighter desktop hero while keeping the collage as the primary visual. */
+@media(min-width:1160px){
+  .fos-hero{
+    min-height:820px;
+    padding-top:74px;
+    padding-bottom:58px;
+    gap:42px;
+  }
+
+  .hero-collage{
+    height:590px;
+  }
+
+  .info-strip{
+    bottom:128px;
+  }
+
+  .countdown-wrap{
+    bottom:38px;
+  }
+}
+
+@media(max-width:850px){
+  :root{--section-pad:72px}
+
+  .fos-section h2,
+  .talent-stage>h2,
+  .schedule-section>h2,
+  .faq-section>h2,
+  .fos-cta h2,
+  .visit-strip h2{
+    font-size:clamp(44px,10vw,68px);
+    margin-bottom:28px;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .poster-note{
+    max-width:290px;
+  }
+
+  .feature-grid article{
+    min-height:230px;
+  }
+
+  .talent-card{
+    min-height:235px;
+  }
+
+  .schedule-card{
+    gap:18px;
+  }
+
+  .visit-item h3{
+    font-size:32px;
+  }
+
+  .color-band{
+    min-height:0;
+  }
+}
+
+@media(max-width:560px){
+  :root{--section-pad:64px}
+
+  .fos-section h2,
+  .talent-stage>h2,
+  .schedule-section>h2,
+  .faq-section>h2,
+  .fos-cta h2,
+  .visit-strip h2{
+    font-size:clamp(42px,13vw,60px);
+    line-height:.94;
+  }
+
+  .big-copy{
+    font-size:22px;
+  }
+
+  .poster-note{
+    min-height:265px;
+  }
+
+  .poster-note strong{
+    font-size:54px;
+  }
+
+  .feature-grid article{
+    min-height:220px;
+  }
+
+  .feature-grid h3{
+    font-size:22px;
+  }
+
+  .talent-card strong{
+    font-size:42px;
+  }
+
+  .talent-preview{
+    align-items:flex-start;
+  }
+
+  .direction-button{
+    width:100%;
+    justify-content:center;
+  }
+
+  .color-band{
+    padding-top:26px;
+    padding-bottom:26px;
+  }
+}

@@ -78,3 +78,34 @@ footer{background:#05141d;color:#9ab0b4;padding:38px clamp(22px,7vw,90px);displa
 .fos-hero .hero-human span{transition:transform .25s ease}
 .fos-hero .hero-human:hover span{transform:translateY(-4px) rotate(-2deg)}
 @media(max-width:540px){.ai-hero-human{background-size:cover!important}}
+
+/* AI-powered festival hero collage */
+.hero-collage{position:absolute;z-index:3;right:2.5%;top:8%;width:min(54vw,820px);height:720px;pointer-events:none;perspective:900px}
+.collage-texture{position:absolute;inset:7% 1% 2%;border-radius:42% 58% 48% 52%;opacity:.45}
+.collage-texture-dark{background:radial-gradient(circle at 60% 40%,#1c6170 0,transparent 34%),linear-gradient(145deg,#07131b,#123d49 45%,#071b25)}
+.collage-brush{position:absolute;filter:drop-shadow(8px 10px 0 #0008);mix-blend-mode:screen}
+.brush-one{width:62%;height:24%;right:6%;top:20%;background:linear-gradient(155deg,var(--cyan),transparent);clip-path:polygon(1% 25%,10% 10%,24% 22%,39% 4%,55% 20%,70% 7%,91% 21%,100% 42%,88% 62%,72% 52%,59% 72%,40% 57%,25% 75%,11% 58%,0 68%)}
+.brush-two{width:55%;height:22%;left:15%;bottom:20%;background:linear-gradient(150deg,var(--coral),var(--yellow),transparent);clip-path:polygon(0 55%,12% 19%,30% 42%,45% 5%,58% 31%,76% 11%,100% 49%,86% 78%,68% 59%,52% 92%,31% 70%,18% 87%)}
+.collage-star{position:absolute;color:var(--yellow);font-size:130px;right:39%;top:5%;filter:drop-shadow(9px 10px 0 #000);animation:starSpin 9s linear infinite}
+.collage-person{position:absolute;overflow:hidden;border:7px solid var(--paper);box-shadow:15px 18px 0 #000;transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.collage-person img{width:100%;height:100%;object-fit:cover;display:block}
+.collage-person span{position:absolute;left:12px;bottom:12px;padding:7px 14px;background:var(--yellow);color:#071d2a;font:400 20px "Permanent Marker",cursive;box-shadow:5px 6px 0 #000}
+.collage-singer{width:290px;height:430px;left:3%;top:17%;transform:rotate(-8deg);animation:collageSinger 5.5s ease-in-out infinite}
+.collage-singer img{object-position:center top}
+.collage-rap{width:230px;height:310px;right:2%;top:33%;transform:rotate(8deg);animation:collageRap 6s ease-in-out infinite}
+.collage-rap span{background:var(--cyan)}
+.collage-actor{width:210px;height:285px;left:34%;bottom:1%;transform:rotate(3deg);animation:collageActor 5.2s ease-in-out infinite}
+.collage-actor span{background:var(--coral)}
+.collage-stage-photo{position:absolute;width:330px;height:210px;right:24%;bottom:7%;overflow:hidden;border:6px solid var(--paper);box-shadow:12px 14px 0 #000;transform:rotate(-4deg);animation:stageFloat 5s ease-in-out infinite}
+.collage-stage-photo .mood-image{width:100%;height:100%;background-size:1229px 819px;background-position:-822px -4px}
+.collage-word{position:absolute;font:400 46px "Permanent Marker",cursive;color:var(--white);text-shadow:5px 6px 0 #000;animation:wordFloat 4.2s ease-in-out infinite}
+.collage-word-one{left:42%;top:25%;transform:rotate(-9deg)}
+.collage-word-two{right:26%;top:12%;color:var(--yellow);animation-delay:.6s}
+.collage-word-three{left:23%;bottom:17%;color:var(--cyan);animation-delay:1.2s}
+.collage-ticket{position:absolute;background:var(--paper);color:#071d2a;padding:10px 14px;box-shadow:7px 8px 0 #000;display:grid;gap:2px;font-family:"DM Sans",sans-serif;transform:rotate(-2deg);animation:ticketBob 4s ease-in-out infinite}
+.collage-ticket strong{font-size:17px;font-weight:900}.collage-ticket small{font-size:10px;font-weight:700;letter-spacing:.08em}.ticket-date{right:34%;top:56%}.ticket-place{right:4%;bottom:19%;transform:rotate(4deg);animation-delay:.8s}
+.ai-hero-human{display:none!important}
+@keyframes collageSinger{0%,100%{translate:0 0 rotate(-8deg)}50%{translate:0 -12px rotate(-5deg)}}@keyframes collageRap{0%,100%{translate:0 0 rotate(8deg)}50%{translate:0 -13px rotate(5deg)}}@keyframes collageActor{0%,100%{translate:0 0 rotate(3deg)}50%{translate:0 -9px rotate(0deg)}}@keyframes stageFloat{0%,100%{translate:0 0 rotate(-4deg)}50%{translate:0 -7px rotate(-2deg)}}@keyframes wordFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes ticketBob{0%,100%{translate:0 0}50%{translate:0 -6px}}@keyframes starSpin{0%{rotate:-8deg;scale:.95}50%{rotate:8deg;scale:1.08}100%{rotate:-8deg;scale:.95}}
+@media(max-width:1150px){.hero-collage{opacity:.85;right:-3%;width:60vw;transform:scale(.9);transform-origin:top right}.hero-copy{max-width:660px}.hero h1{font-size:clamp(90px,13vw,170px)}}
+@media(max-width:850px){.hero-collage{width:72vw;height:610px;right:-8%;top:20%;opacity:.72;transform:scale(.83);transform-origin:top right}.collage-singer{width:250px;height:360px}.collage-rap{width:190px;height:270px}.collage-actor{width:175px;height:240px}.collage-stage-photo{width:270px;height:175px}.collage-word{font-size:38px}}
+@media(max-width:540px){.hero-collage{position:relative;right:auto;top:auto;width:100%;height:500px;margin:38px 0 0;opacity:1;transform:none}.collage-singer{left:2%;top:6%;width:200px;height:285px}.collage-rap{right:1%;top:14%;width:165px;height:235px}.collage-actor{left:27%;bottom:2%;width:150px;height:205px}.collage-stage-photo{right:4%;bottom:2%;width:205px;height:135px}.collage-word{font-size:31px}.collage-word-one{left:39%;top:3%}.collage-word-two{right:18%;top:58%}.collage-word-three{left:4%;bottom:14%}.collage-star{font-size:90px;right:40%;top:-3%}.ticket-date{right:42%;top:57%}.ticket-place{right:2%;bottom:29%;font-size:10px}}

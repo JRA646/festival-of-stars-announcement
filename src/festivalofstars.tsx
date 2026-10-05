@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   ArrowDown, ArrowRight, CalendarDays, ChevronDown, Clock3, MapPin, Share2,
   Star, Users, BookOpen, Music2, Mic2, Drama, Sparkles, Volume2, VolumeX
@@ -75,6 +75,7 @@ function useFestivalSound() {
 
 export default function FestivalOfStars() {
   const [festival, setFestival] = useState<PublicFestival | null>(null);
+  const trackedPageView = useRef(false);
   const [error, setError] = useState("");
   const [activeTalent, setActiveTalent] = useState<TalentType>("singing");
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
@@ -134,7 +135,10 @@ export default function FestivalOfStars() {
         },
       });
 
-      track(typed.event.id,"page_view");
+      if (!trackedPageView.current) {
+        trackedPageView.current = true;
+        track(typed.event.id,"page_view");
+      }
     };
     void load();
     return () => { alive = false; };

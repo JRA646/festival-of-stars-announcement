@@ -415,7 +415,7 @@ export default function FestivalOfStarsYouth() {
       <div className="gallery-track">
         {currentGallery.map((item, index) =>
           <div className={`gallery-card mood-image ${item.cls}`} key={item.cls}>
-            {index === 1 && <span>PEOPLE > PERFECT</span>}
+            {index === 1 && <span>PEOPLE &gt; PERFECT</span>}
             {index === 2 && <span>MAKE MEMORIES</span>}
             <b>{item.label}</b>
           </div>

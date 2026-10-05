@@ -443,7 +443,7 @@ export default function FestivalOfStarsYouth() {
 
     <section id="faq" className={`fy-section fy-faq ${reveal("faq")}`} data-reveal="faq">
       <div className="faq-visual">
-        <div className="faq-human"><img src="/images/ai-festival-singer.webp" alt="Young people celebrating at Festival of Stars" /></div>
+        <div className="faq-human"><img src="/images/ai-youth-creator.svg" alt="AI-style young creator at Festival of Stars" /></div>
         <div className="faq-bubbles">✦<br />GOOD<br />QUESTIONS?</div>
       </div>
       <div className="faq-copy">

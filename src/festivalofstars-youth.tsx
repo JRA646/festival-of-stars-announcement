@@ -385,7 +385,7 @@ export default function FestivalOfStarsYouth() {
             onClick={() => { setActiveTalent(talent.slug); track(festival.event.id, "talent_select", { talent: talent.slug }); }}
             aria-pressed={activeTalent === talent.slug}
           >
-            <div className={`talent-photo mood-image ${talent.slug}-crop`} />
+            <div className={`talent-photo mood-image ${talent.slug}-crop`}><img src="/festival-assets/festival-moodboard.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
             <div className="talent-overlay" />
             <span className="talent-number">0{index + 1}</span>
             <span className="talent-icon"><Icon /></span>

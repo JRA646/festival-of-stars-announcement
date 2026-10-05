@@ -364,10 +364,10 @@ export default function FestivalOfStarsYouth() {
         <p>Worship. Community. Creativity. Purpose. All in one night.</p>
       </div>
       <div className="experience-grid">
-        <article className="experience-card card-pink"><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
-        <article className="experience-card card-yellow"><Users /><span>02</span><h3>COMMUNITY</h3><p>Meet new friends, laugh together, and find people who get you.</p></article>
-        <article className="experience-card card-cyan"><BookOpen /><span>03</span><h3>PURPOSE</h3><p>Hear practical truth and discover what God has put in you.</p></article>
-        <article className="experience-card card-violet"><Sparkles /><span>04</span><h3>FUN</h3><p>Games, creative activities, performances, and surprises.</p></article>
+        <article className="experience-card card-pink"><div className="experience-photo mood-image exp-worship" role="img" aria-label="Young worshipper performing from Festival of Stars artwork" /><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
+        <article className="experience-card card-yellow"><div className="experience-photo mood-image exp-community" role="img" aria-label="Friends together from Festival of Stars artwork" /><Users /><span>02</span><h3>COMMUNITY</h3><p>Meet new friends, laugh together, and find people who get you.</p></article>
+        <article className="experience-card card-cyan"><div className="experience-photo mood-image exp-purpose" role="img" aria-label="Festival stage from Festival of Stars artwork" /><BookOpen /><span>03</span><h3>PURPOSE</h3><p>Hear practical truth and discover what God has put in you.</p></article>
+        <article className="experience-card card-violet"><div className="experience-photo mood-image exp-fun" role="img" aria-label="Young people enjoying the festival from Festival of Stars artwork" /><Sparkles /><span>04</span><h3>FUN</h3><p>Games, creative activities, performances, and surprises.</p></article>
       </div>
     </section>
 

@@ -69,3 +69,12 @@ footer{background:#05141d;color:#9ab0b4;padding:38px clamp(22px,7vw,90px);displa
   .mood-singer,.mood-female,.mood-crowd,.mood-guitar,.mood-community,.mood-youth,.mood-stage{background-size:930px 620px}
   .mood-singer{background-position:-3px -3px}.mood-female{background-position:-294px -3px}.mood-guitar{background-position:-444px -3px}.mood-crowd{background-position:-532px -3px}.mood-stage{background-position:-621px -3px}.mood-youth{background-position:-339px -238px}.mood-community{background-position:-179px -238px}
 }
+
+.ai-hero-human{background:url("/images/ai-festival-singer.webp") center top/cover no-repeat!important}
+.ai-hero-human img{display:none!important}
+.ai-hero-human:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,29,42,.28) 100%);pointer-events:none}
+.fos-hero .hero-human{will-change:transform}
+.fos-hero .hero-human:hover{transform:scale(1.03) rotate(0deg)!important;box-shadow:18px 22px 0 #000}
+.fos-hero .hero-human span{transition:transform .25s ease}
+.fos-hero .hero-human:hover span{transform:translateY(-4px) rotate(-2deg)}
+@media(max-width:540px){.ai-hero-human{background-size:cover!important}}

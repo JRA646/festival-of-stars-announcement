@@ -36,6 +36,31 @@ type TimeLeft = {
 const EVENT_SLUG = "festival-of-stars";
 const EVENT_DATE = "2026-12-12T16:00:00+08:00";
 
+const talentContent: Record<
+  TalentType,
+  { label: string; title: string; copy: string; accent: string }
+> = {
+  singing: {
+    label: "SINGING",
+    title: "Raise your voice.",
+    copy: "Lead worship, perform a song, or bring a sound that gets the whole room singing.",
+    accent: "#19ddd1",
+  },
+  rap: {
+    label: "RAP",
+    title: "Bring your bars.",
+    copy: "Tell your story through rhythm, flow, poetry, and a message that makes people think.",
+    accent: "#ffc526",
+  },
+  acting: {
+    label: "ACTING",
+    title: "Own the stage.",
+    copy: "Perform a scene, monologue, skit, spoken word piece, or creative act that brings the story to life.",
+    accent: "#ff6148",
+  },
+};
+
+
 function getTimeLeft(target: string): TimeLeft {
   const diff = Math.max(0, new Date(target).getTime() - Date.now());
 

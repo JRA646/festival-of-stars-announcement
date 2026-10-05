@@ -312,7 +312,7 @@ export default function FestivalOfStarsYouth() {
 
       <div className="fy-hero-visual">
         <div className="hero-image-main">
-          <img src="/images/ai-festival-singer.webp" alt="AI-generated young singer performing at a festival" loading="eager" />
+          <img src="/festival-assets/festival-moodboard.jpg" alt="Young singer performing at Festival of Stars" loading="eager" />
           <span className="image-badge">AI HUMAN / SINGING</span>
         </div>
         <div className="hero-image-side mood-image youth-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="Youth from Festival of Stars artwork" /></div>
@@ -443,7 +443,7 @@ export default function FestivalOfStarsYouth() {
 
     <section id="faq" className={`fy-section fy-faq ${reveal("faq")}`} data-reveal="faq">
       <div className="faq-visual">
-        <div className="faq-human"><img src="/images/ai-festival-singer.webp" alt="AI-generated young woman at a music event" /></div>
+        <div className="faq-human"><img src="/images/ai-festival-singer.webp" alt="Young people celebrating at Festival of Stars" /></div>
         <div className="faq-bubbles">✦<br />GOOD<br />QUESTIONS?</div>
       </div>
       <div className="faq-copy">

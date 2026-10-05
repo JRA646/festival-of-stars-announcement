@@ -276,3 +276,27 @@ footer strong{color:#fff;font-size:12px;letter-spacing:.08em}footer small{displa
 .human-photo .mood-community{background-position:-198px -295px}
 @media(max-width:850px){.mood-image{background-size:1100px 733px}.collage-rap .mood-image{background-position:-350px -265px}.collage-stage-photo .mood-image{background-position:-736px -4px}.human-photo .mood-crowd{background-position:-628px -4px}.human-photo .mood-guitar{background-position:-528px -4px}.human-photo .mood-community{background-position:-178px -265px}}
 @media(max-width:560px){.mood-image{background-size:930px 620px}.collage-rap .mood-image{background-position:-339px -238px}.collage-stage-photo .mood-image{background-position:-621px -3px}.human-photo .mood-crowd{background-position:-532px -3px}.human-photo .mood-guitar{background-position:-444px -3px}.human-photo .mood-community{background-position:-179px -238px}}
+
+/* Final professional layout pass */
+.hero-copy,.hero-collage{max-width:760px}
+.fos-section>*,.talent-stage>*,.schedule-section>*,.visit-strip>*,.faq-section>*{width:min(100%,1180px);margin-left:auto;margin-right:auto}
+.fos-section>h2,.talent-stage>h2,.schedule-section>h2,.faq-section>h2{max-width:1180px}
+.hero-copy h1{font-weight:400;letter-spacing:.015em}
+.hero-description{max-width:600px}
+.hero-collage{justify-self:end;width:min(100%,760px)}
+.human-strip{padding-left:max(18px,calc((100vw - 1360px)/2));padding-right:max(18px,calc((100vw - 1360px)/2))}
+.human-photo{min-width:0}
+.info-strip{left:max(20px,calc((100vw - 1320px)/2));right:max(20px,calc((100vw - 1320px)/2));max-width:1320px;margin:auto}
+.color-band{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,calc((100vw - 1180px)/2))}
+.color-band h2,.color-band b{max-width:1180px}
+.feature-grid,.talent-grid{max-width:1180px;margin-left:auto;margin-right:auto}
+.schedule-card{margin-left:auto;margin-right:auto}
+.fos-cta>div:first-child{max-width:760px}
+.fos-cta{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,calc((100vw - 1180px)/2))}
+footer{padding-left:max(20px,calc((100vw - 1180px)/2));padding-right:max(20px,calc((100vw - 1180px)/2))}
+.hero-register,.register-pill,.direction-button,.talent-preview a,.mobile-register a{font-family:"DM Sans",sans-serif;font-weight:900;letter-spacing:.02em}
+.hero-tag,.collage-person span,.color-band h2,.poster-note strong,.talent-card small,.visit-item h3{font-family:"Permanent Marker",cursive}
+.collage-ticket{border:1px solid rgba(7,29,42,.08)}
+.feature-grid article,.talent-card,.schedule-card,.poster-note{border-radius:3px}
+@media(min-width:1160px){.fos-hero{grid-template-columns:minmax(520px,.9fr) minmax(560px,1.1fr)}}
+@media(max-width:1150px){.hero-collage{justify-self:center}.fos-section>*,.talent-stage>*,.schedule-section>*,.visit-strip>*,.faq-section>*{width:min(100%,920px)}}

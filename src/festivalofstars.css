@@ -42,3 +42,30 @@ footer{background:#05141d;color:#9ab0b4;padding:38px clamp(22px,7vw,90px);displa
 @media(max-width:850px){.hero-human{opacity:.72}.hero-human-left{left:-35px}.hero-human-right{right:-40px}.fos-hero{min-height:1150px}.talent-grid{grid-template-columns:1fr}.talent-preview{align-items:flex-start;flex-direction:column}.schedule-card{grid-template-columns:1fr}.schedule-date{max-width:145px}.schedule-section:after{font-size:90px}.info-strip{bottom:220px}.countdown-wrap{bottom:85px}}
 @media(max-width:540px){.fos-hero{min-height:1420px;padding-top:78px}.hero-human{position:relative;left:auto!important;right:auto!important;top:auto!important;width:min(82vw,320px);height:380px;margin:35px auto 0;opacity:1}.hero-copy{position:relative;z-index:8}.hero-side{display:none}.hero h1{font-size:75px}.hero-tag{font-size:15px}.hero-description{font-size:16px}.info-strip{position:relative;left:auto;right:auto;bottom:auto;margin:35px 0 0;clip-path:polygon(1% 2%,99% 0,100% 97%,2% 100%);grid-template-columns:1fr}.info-strip i{display:none}.countdown-wrap{position:relative;left:auto;bottom:auto;transform:none;margin:28px auto 0}.count{min-width:69px;padding:10px 5px}.count strong{font-size:28px}.count span{font-size:8px}.hero-register{position:relative;left:auto;bottom:auto;transform:rotate(-2deg);margin:30px auto 0}.hero-bottom{position:relative;left:auto;bottom:auto;transform:none;text-align:center;margin:12px auto 0}.scroll-cue{position:relative;left:auto;bottom:auto;transform:none;margin:18px auto 0}.human-strip{grid-template-columns:1fr}.human-photo-wide{grid-column:span 1}.human-photo{height:280px}.talent-stage>h2{font-size:70px}.talent-card{min-height:280px}.talent-preview h3{font-size:42px}.register-toast{left:15px;right:15px;bottom:15px;flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* Use the uploaded Festival of Stars mood board directly */
+.mood-singer,.mood-female,.mood-crowd,.mood-guitar,.mood-community,.mood-youth,.mood-stage{background-image:url("/festival-assets/festival-moodboard.jpg");background-repeat:no-repeat;background-size:1229px 819px;background-color:#0b2d39;background-blend-mode:normal}
+.mood-singer{background-position:-4px -4px}
+.mood-female{background-position:-380px -4px}
+.mood-guitar{background-position:-588px -4px}
+.mood-crowd{background-position:-702px -4px}
+.mood-stage{background-position:-822px -4px}
+.mood-youth{background-position:-392px -295px}
+.mood-community{background-position:-198px -295px}
+.hero-human{padding:0}
+.hero-human span{z-index:2}
+.human-photo .mood-image,.memory-card .mood-image{width:100%;height:100%;min-height:100%;background-size:1229px 819px}
+.human-photo .mood-crowd{background-position:-702px -4px}
+.human-photo .mood-guitar{background-position:-588px -4px}
+.human-photo .mood-community{background-position:-198px -295px}
+.memory-card .mood-stage{background-position:-822px -4px}
+.memory-card .mood-youth{background-position:-392px -295px}
+.memory-card .mood-female{background-position:-380px -4px}
+@media(max-width:850px){
+  .mood-singer,.mood-female,.mood-crowd,.mood-guitar,.mood-community,.mood-youth,.mood-stage{background-size:1100px 733px}
+  .mood-singer{background-position:-4px -4px}.mood-female{background-position:-340px -4px}.mood-guitar{background-position:-528px -4px}.mood-crowd{background-position:-628px -4px}.mood-stage{background-position:-736px -4px}.mood-youth{background-position:-350px -265px}.mood-community{background-position:-178px -265px}
+}
+@media(max-width:540px){
+  .mood-singer,.mood-female,.mood-crowd,.mood-guitar,.mood-community,.mood-youth,.mood-stage{background-size:930px 620px}
+  .mood-singer{background-position:-3px -3px}.mood-female{background-position:-294px -3px}.mood-guitar{background-position:-444px -3px}.mood-crowd{background-position:-532px -3px}.mood-stage{background-position:-621px -3px}.mood-youth{background-position:-339px -238px}.mood-community{background-position:-179px -238px}
+}

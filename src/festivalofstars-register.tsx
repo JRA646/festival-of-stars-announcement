@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, LoaderCircle, MapPin, Music2, Mic2, Drama, Users, Sparkles } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./festivalofstars-register.css";
@@ -140,7 +140,7 @@ export default function FestivalOfStarsRegister() {
         )}
 
         <form className="register-form" onSubmit={onSubmit}>
-          {selectedTalent && mode === "talent" && <div className="chosen-talent" style={{ "--talent-accent": selectedTalent.accent } as Record<string,string)}><span>{selectedTalent.name}</span><strong>{selectedTalent.tagline}</strong><small>{selectedTalent.description}</small></div>}
+          {selectedTalent && mode === "talent" && <div className="chosen-talent" style={{ "--talent-accent": selectedTalent.accent } as Record<string,string>}><span>{selectedTalent.name}</span><strong>{selectedTalent.tagline}</strong><small>{selectedTalent.description}</small></div>}
 
           <div className="form-grid">
             <label><span>Full name *</span><input required minLength={2} value={mode==="rsvp"?rsvp.full_name:talentForm.full_name} onChange={(e)=>mode==="rsvp"?updateRsvp("full_name",e.target.value):updateTalent("full_name",e.target.value)} placeholder="Juan Dela Cruz"/></label>

@@ -38,7 +38,12 @@ export default function FestivalOfStarsRegister() {
       if (rpcError || !data) {
         setError("Registration is temporarily unavailable.");
       } else {
-        setFestival(data as PublicFestival);
+        const typed = data as PublicFestival;
+        setFestival(typed);
+        setRsvp((current) => ({
+          ...current,
+          attending_service: new Date(typed.event.start_at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }),
+        }));
       }
       setLoading(false);
     };
@@ -106,6 +111,7 @@ export default function FestivalOfStarsRegister() {
 
   if (loading) return <main className="fos-register-state"><LoaderCircle className="register-spin"/><p>Loading registration…</p></main>;
   if (!festival) return <main className="fos-register-state"><Sparkles/><h1>Registration unavailable</h1><p>{error || "Please try again later."}</p><a href="/festivalofstars">Back to Festival of Stars</a></main>;
+  if (!festival.announcement.registration_enabled) return <main className="fos-register-state"><Sparkles/><h1>Registration is closed</h1><p>Registration for Festival of Stars is not currently open.</p><a href="/festivalofstars">Back to Festival of Stars</a></main>;
 
   return (
     <main className="fos-register-page">
@@ -150,7 +156,7 @@ export default function FestivalOfStarsRegister() {
             {mode === "rsvp" ? (
               <>
                 <label><span>Guests</span><select value={rsvp.guests} onChange={(e)=>updateRsvp("guests",e.target.value)}>{Array.from({length:11},(_,i)=><option key={i} value={i}>{i===0?"Just me":i}</option>)}</select></label>
-                <label><span>Gathering time</span><select value={rsvp.attending_service} onChange={(e)=>updateRsvp("attending_service",e.target.value)}><option>4:00 PM</option><option>OTHER</option></select></label>
+                <label><span>Gathering time</span><select value={rsvp.attending_service} onChange={(e)=>updateRsvp("attending_service",e.target.value)}><option>{new Date(festival.event.start_at).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})}</option><option>NOT SURE YET</option></select></label>
                 <label className="field-full"><span>Message (optional)</span><textarea value={rsvp.message} onChange={(e)=>updateRsvp("message",e.target.value)} rows={5} placeholder="Tell us anything we should know."/></label>
               </>
             ) : (

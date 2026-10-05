@@ -444,7 +444,7 @@ export default function FestivalOfStars() {
 
           <div
             className="talent-preview"
-            style={{ "--talent-accent": talentContent[activeTalent].accent } as React.CSSProperties}
+            style={{ "--talent-accent": talentContent[activeTalent].accent } as Record<string, string>}
           >
             <div>
               <p>{talentContent[activeTalent].label}</p>

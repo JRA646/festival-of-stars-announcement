@@ -1,5 +1,5 @@
 import {useEffect,useMemo,useState} from "react";
-import {ArrowDown,ArrowRight,CalendarDays,ChevronDown,Clock3,MapPin,Share2,Star,Users,Volume2,BookOpen,Music2,Gamepad2} from "lucide-react";
+import {ArrowDown,ArrowRight,CalendarDays,Clock3,MapPin,Share2,Star,Users,BookOpen,Music2,Gamepad2} from "lucide-react";
 import {supabase} from "./lib/supabase";
 import "./festivalofstars.css";
 

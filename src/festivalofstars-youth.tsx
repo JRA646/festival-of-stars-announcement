@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import {
-  ArrowDown, ArrowRight, CalendarDays, ChevronDown, Clock3, MapPin, Share2,
+  ArrowDown, ArrowRight, CalendarDays, ChevronDown, MapPin, Share2,
   Star, Users, BookOpen, Music2, Mic2, Drama, Sparkles, Volume2, VolumeX,
   Play, Heart, Instagram, Plus
 } from "lucide-react";
@@ -312,7 +312,7 @@ export default function FestivalOfStarsYouth() {
 
       <div className="fy-hero-visual">
         <div className="hero-image-main">
-          <img src="/festival-assets/festival-moodboard.jpg" alt="AI-style young singer performing at Festival of Stars" loading="eager" />
+          <img src="/festival-assets/01_Singer_Male_1.png" alt="AI-style young singer performing at Festival of Stars" loading="eager" />
           <span className="image-badge">AI HUMAN / SINGING</span>
         </div>
         <div className="hero-image-side mood-image youth-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style youth community scene" /></div>
@@ -351,7 +351,7 @@ export default function FestivalOfStarsYouth() {
         </div>
       </div>
       <div className="about-art">
-        <div className="group-photo mood-image group-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style friends together" /></div>
+        <div className="group-photo mood-image group-crop"><img src="/festival-assets/05_Worship_Crowd.png" alt="AI-style friends together" /></div>
         <div className="hand-note"><Plus /><b>YOU ARE<br /><em>A STAR</em></b><small>Shine where God placed you.</small></div>
         <div className="about-doodle doodle-heart">♡</div><div className="about-doodle doodle-star">✦</div>
       </div>
@@ -364,7 +364,7 @@ export default function FestivalOfStarsYouth() {
         <p>Worship. Community. Creativity. Purpose. All in one night.</p>
       </div>
       <div className="experience-grid">
-        <article className="experience-card card-pink"><div className="experience-photo mood-image exp-worship"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style young worshipper performing" loading="lazy" /></div><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
+        <article className="experience-card card-pink"><div className="experience-photo mood-image exp-worship"><img src="/festival-assets/08_Youth_Community.png" alt="AI-style young worshipper performing" loading="lazy" /></div><Music2 /><span>01</span><h3>WORSHIP</h3><p>Sing loud, lift your hands, and make space for God's presence.</p></article>
         <article className="experience-card card-yellow"><div className="experience-photo mood-image exp-community"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style friends together" loading="lazy" /></div><Users /><span>02</span><h3>COMMUNITY</h3><p>Meet new friends, laugh together, and find people who get you.</p></article>
         <article className="experience-card card-cyan"><div className="experience-photo mood-image exp-purpose"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style festival stage lights" loading="lazy" /></div><BookOpen /><span>03</span><h3>PURPOSE</h3><p>Hear practical truth and discover what God has put in you.</p></article>
         <article className="experience-card card-violet"><div className="experience-photo mood-image exp-fun"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style young people enjoying Festival of Stars" loading="lazy" /></div><Sparkles /><span>04</span><h3>FUN</h3><p>Games, creative activities, performances, and surprises.</p></article>

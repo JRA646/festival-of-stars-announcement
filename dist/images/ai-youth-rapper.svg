@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<defs>
+  <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff6c4a"/><stop offset=".5" stop-color="#ffd11f"/><stop offset="1" stop-color="#182737"/></linearGradient>
+  <linearGradient id="skin2"><stop stop-color="#d89d7b"/><stop offset="1" stop-color="#8f5147"/></linearGradient>
+  <linearGradient id="hood"><stop stop-color="#15151e"/><stop offset="1" stop-color="#233c4f"/></linearGradient>
+</defs>
+<rect width="600" height="800" rx="32" fill="url(#bg2)"/>
+<circle cx="500" cy="125" r="85" fill="#30e5df" opacity=".3"/><circle cx="120" cy="150" r="110" fill="#ff4fa3" opacity=".22"/>
+<path d="M0 590 Q170 500 300 590 T600 560 V800 H0Z" fill="#08131c" opacity=".8"/>
+<ellipse cx="310" cy="195" rx="106" ry="132" fill="url(#skin2)"/>
+<path d="M195 205 Q186 58 315 55 Q436 57 430 216 Q390 120 310 118 Q228 120 195 205Z" fill="#111722"/>
+<path d="M215 190 Q206 77 330 80 Q390 84 418 135 Q359 112 310 126 Q255 130 215 190Z" fill="#233042"/>
+<path d="M225 213 Q250 196 275 213M327 213 Q350 196 376 213" fill="none" stroke="#07131d" stroke-width="9" stroke-linecap="round"/>
+<circle cx="264" cy="238" r="5" fill="#07131d"/><circle cx="345" cy="238" r="5" fill="#07131d"/>
+<path d="M271 268 Q306 284 341 266" fill="none" stroke="#5a2831" stroke-width="7" stroke-linecap="round"/>
+<path d="M180 345 Q310 300 450 350 L560 800 H60Z" fill="url(#hood)"/>
+<path d="M185 360 Q125 320 95 365 Q130 410 175 404Z" fill="#111722"/>
+<path d="M425 420 L530 350 L555 380 L450 460Z" fill="url(#skin2)"/>
+<rect x="420" y="337" width="118" height="30" rx="15" transform="rotate(-24 420 337)" fill="#07131d"/>
+<circle cx="420" cy="351" r="18" fill="#30e5df"/>
+<path d="M230 500 L410 500" stroke="#ffd11f" stroke-width="9" opacity=".7"/>
+<text x="36" y="742" fill="#08131c" font-family="Arial, sans-serif" font-size="23" font-weight="900" letter-spacing="4">AI HUMAN • RAP</text>
+</svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff4fa3"/><stop offset=".45" stop-color="#6c52ff"/><stop offset="1" stop-color="#071b2a"/></linearGradient>
+  <radialGradient id="light" cx=".5" cy=".2" r=".8"><stop stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d99572"/><stop offset="1" stop-color="#9f5e4e"/></linearGradient>
+  <linearGradient id="jacket" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#224d63"/><stop offset="1" stop-color="#08131d"/></linearGradient>
+</defs>
+<rect width="600" height="800" rx="32" fill="url(#bg)"/>
+<circle cx="90" cy="110" r="95" fill="#30e5df" opacity=".25"/><circle cx="520" cy="160" r="120" fill="#ffd11f" opacity=".2"/>
+<path d="M0 620 Q140 520 300 600 T600 570 V800 H0Z" fill="#06131d" opacity=".75"/>
+<g fill="#fff" opacity=".75"><circle cx="78" cy="80" r="5"/><circle cx="510" cy="90" r="4"/><circle cx="465" cy="280" r="3"/><circle cx="128" cy="300" r="4"/></g>
+<ellipse cx="300" cy="190" rx="108" ry="132" fill="url(#skin)"/>
+<path d="M190 215 Q190 62 314 58 Q436 57 426 214 Q389 130 304 126 Q236 126 190 215Z" fill="#15202b"/>
+<path d="M187 234 Q170 90 315 70 Q437 66 436 212 L410 245 Q393 145 304 128 Q228 127 187 234Z" fill="#1e2a37"/>
+<path d="M238 198 q22 -16 44 0M317 198 q22 -16 44 0" fill="none" stroke="#07131d" stroke-width="10" stroke-linecap="round"/>
+<circle cx="264" cy="228" r="5" fill="#07131d"/><circle cx="337" cy="228" r="5" fill="#07131d"/>
+<path d="M267 258 Q300 278 335 258" fill="none" stroke="#5a2731" stroke-width="8" stroke-linecap="round"/>
+<path d="M195 336 Q300 305 405 336 L505 800 H95Z" fill="url(#jacket)"/>
+<path d="M240 340 L300 490 L360 340" fill="#fff"/>
+<path d="M255 340 L300 490 L345 340" fill="#f1eff4"/>
+<path d="M170 370 L95 735" stroke="#30e5df" stroke-width="24" opacity=".75"/>
+<path d="M430 370 L505 735" stroke="#ff4fa3" stroke-width="24" opacity=".75"/>
+<path d="M430 360 Q485 300 520 338 Q542 357 525 382 Q478 412 430 409Z" fill="url(#skin)"/>
+<rect x="458" y="292" width="90" height="23" rx="11" transform="rotate(12 458 292)" fill="#07131d"/>
+<circle cx="458" cy="304" r="18" fill="#ffd11f"/>
+<path d="M425 640 Q500 610 540 660" fill="none" stroke="#ffd11f" stroke-width="12" stroke-linecap="round"/>
+<text x="36" y="742" fill="#fff" font-family="Arial, sans-serif" font-size="23" font-weight="900" letter-spacing="4">AI HUMAN • SINGING</text>
+</svg>

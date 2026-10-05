@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<defs>
+  <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131d"/><stop offset=".5" stop-color="#143e49"/><stop offset="1" stop-color="#30e5df"/></linearGradient>
+  <linearGradient id="skin4"><stop stop-color="#e3ad87"/><stop offset="1" stop-color="#9a5f4d"/></linearGradient>
+</defs>
+<rect width="600" height="800" rx="32" fill="url(#bg4)"/>
+<circle cx="120" cy="120" r="90" fill="#ff5aa5" opacity=".3"/><circle cx="500" cy="150" r="105" fill="#ffd11f" opacity=".18"/>
+<path d="M0 610 Q160 520 300 600 T600 570 V800 H0Z" fill="#050e16" opacity=".75"/>
+<g transform="translate(55 0)">
+<ellipse cx="170" cy="240" rx="72" ry="93" fill="url(#skin4)"/>
+<path d="M98 232 Q100 135 172 130 Q244 135 244 232 Q214 185 169 181 Q126 184 98 232Z" fill="#1b2730"/>
+<path d="M112 252 Q126 242 143 252M187 252 Q205 241 224 252" fill="none" stroke="#07131d" stroke-width="7"/>
+<path d="M95 355 Q170 325 245 355 L285 675 H55Z" fill="#ff5aa5"/>
+</g>
+<g transform="translate(235 5)">
+<ellipse cx="170" cy="225" rx="75" ry="96" fill="url(#skin4)"/>
+<path d="M98 220 Q93 120 172 118 Q250 124 245 225 Q214 170 169 169 Q125 170 98 220Z" fill="#2c1d2a"/>
+<path d="M110 244 Q128 231 145 244M190 244 Q207 231 225 244" fill="none" stroke="#07131d" stroke-width="7"/>
+<path d="M90 350 Q170 315 250 350 L285 690 H55Z" fill="#30e5df"/>
+</g>
+<text x="42" y="742" fill="#fff" font-family="Arial, sans-serif" font-size="23" font-weight="900" letter-spacing="4">AI HUMAN • COMMUNITY</text>
+</svg>

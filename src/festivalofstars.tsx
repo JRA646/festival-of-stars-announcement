@@ -100,6 +100,12 @@ export default function FestivalOfStars() {
     ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.location)
     : "#";
 
+  const peoplePhotos = {
+    worship: "https://images.unsplash.com/photo-1770097043369-4ee5a231ecc0?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    crowd: "https://images.unsplash.com/photo-1739888826320-784a10e880ea?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    friends: "https://images.unsplash.com/photo-1771605609561-c853e748397d?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+  };
+
   const share = () => {
     if (navigator.share) {
       void navigator.share({
@@ -208,6 +214,27 @@ export default function FestivalOfStars() {
         </a>
       </section>
 
+      <section className="human-strip" aria-label="Festival moments">
+        <div className="human-photo">
+          <img src={peoplePhotos.worship} alt="Young people worshipping together" loading="eager" />
+          <span>WORSHIP TOGETHER ✦</span>
+        </div>
+        <div className="human-photo">
+          <img src={peoplePhotos.friends} alt="Friends enjoying a youth event together" loading="lazy" />
+          <span>REAL PEOPLE · REAL STORIES</span>
+        </div>
+        <div className="human-photo">
+          <img src={peoplePhotos.crowd} alt="Crowd celebrating at a live event" loading="lazy" />
+          <span>MAKE A DIFFERENCE</span>
+        </div>
+      </section>
+
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          <span>✦ SHINE</span><span>✦ BELONG</span><span>✦ WORSHIP</span><span>✦ CONNECT</span><span>✦ CREATE</span><span>✦ DISCOVER</span><span>✦ SHINE</span><span>✦ BELONG</span><span>✦ WORSHIP</span><span>✦ CONNECT</span><span>✦ CREATE</span><span>✦ DISCOVER</span>
+        </div>
+      </div>
+
       <section className="color-band">
         <h2>Every star has a story.</h2>
         <b>Thank you for showing up.</b>
@@ -261,6 +288,31 @@ export default function FestivalOfStars() {
           <a href={mapsUrl} target="_blank" rel="noreferrer">
             <MapPin size={17} /> Directions
           </a>
+        </div>
+      </section>
+
+      <section className="fos-section light memories">
+        <div className="gallery-title">
+          <div>
+            <div className="section-kicker">PEOPLE OF THE FESTIVAL</div>
+            <h2>Moments you’ll remember.</h2>
+          </div>
+          <p>Come for the celebration. Leave with new memories, new friends, and a bigger sense of purpose.</p>
+        </div>
+
+        <div className="memory-grid">
+          <figure className="memory-card large">
+            <img src={peoplePhotos.crowd} alt="Young people celebrating together" loading="lazy" />
+            <figcaption className="label">ONE BIG FAMILY</figcaption>
+          </figure>
+          <figure className="memory-card">
+            <img src={peoplePhotos.friends} alt="Friends smiling together at an event" loading="lazy" />
+            <figcaption className="label">FIND YOUR PEOPLE</figcaption>
+          </figure>
+          <figure className="memory-card">
+            <img src={peoplePhotos.worship} alt="People raising their hands during worship" loading="lazy" />
+            <figcaption className="label">LIFT YOUR VOICE</figcaption>
+          </figure>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import {
   ArrowDown, ArrowRight, CalendarDays, ChevronDown, Clock3, MapPin, Share2,
   Star, Users, BookOpen, Music2, Mic2, Drama, Sparkles, Volume2, VolumeX,
@@ -236,7 +236,7 @@ export default function FestivalOfStarsYouth() {
     }
   };
 
-  const handleHeroPointer = (event: React.PointerEvent<HTMLElement>) => {
+  const handleHeroPointer = (event: PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;

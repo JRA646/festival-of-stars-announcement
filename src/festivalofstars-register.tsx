@@ -127,7 +127,7 @@ export default function FestivalOfStarsRegister() {
           <p>Choose an RSVP or submit your creative talent. Your next big moment can start here.</p>
           <div className="register-event-meta"><span><CalendarDays size={17}/> {new Date(festival.event.start_at).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})}</span><span><MapPin size={17}/> {festival.event.location || "First Love Church · Las Piñas City"}</span></div>
         </div>
-        <div className="register-art"><div className="register-art-bg"/><div className="register-art-image"><img src="/images/ai-festival-singer.webp" alt="AI-generated Festival of Stars singer" /></div><Sparkles className="register-sparkle"/></div>
+        <div className="register-art"><div className="register-art-bg"/><div className="register-art-image"><img src="/festival-assets/01_Singer_Male_1.png" alt="AI-generated Festival of Stars singer" /></div><Sparkles className="register-sparkle"/></div>
       </section>
 
       <section className="register-shell">

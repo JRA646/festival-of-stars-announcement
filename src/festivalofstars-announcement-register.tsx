@@ -517,7 +517,7 @@ export default function FestivalOfStarsAnnouncementRegister() {
             <div className="foar-success-ticket">
               <div><CalendarDays size={20} /><span><b>WHEN</b><strong>{eventDate}</strong><small>{eventTime}</small></span></div>
               <div><MapPin size={20} /><span><b>WHERE</b><strong>{festival.event.location || "Villar Sipag"}</strong><small>Las Piñas, Philippines</small></span></div>
-              <div><Users size={20} /><span><b>WHO</b><strong>{Number(form.guests) === 0 ? "Just you" : `${form.guests + 1} people`}</strong><small>{form.full_name}</small></span></div>
+              <div><Users size={20} /><span><b>WHO</b><strong>{Number(form.guests) === 0 ? "Just you" : `${Number(form.guests) + 1} people`}</strong><small>{form.full_name}</small></span></div>
             </div>
 
             <div className="foar-success-actions">

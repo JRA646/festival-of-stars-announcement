@@ -149,7 +149,7 @@ export default function FestivalOfStarsAnnouncement() {
   const [openFaq, setOpenFaq] = useState(0);
   const [selectedMore, setSelectedMore] = useState(0);
   const [selectedTimeline, setSelectedTimeline] = useState(0);
-  const [selectedPerformer, setSelectedPerformer] = useState(0);
+  const [selectedPerformerIndex, setSelectedPerformerIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
 
@@ -337,7 +337,7 @@ export default function FestivalOfStarsAnnouncement() {
 
   const selectedTimelineItem = timeline[selectedTimeline] || timeline[0];
   const performers = festival?.talents || [];
-  const selectedPerformer = performers[selectedPerformer] || performers[0] || null;
+  const selectedPerformer = performers[selectedPerformerIndex] || performers[0] || null;
 
   const eventDate = festival ? formatDate(festival.event.start_at) : "";
   const eventTime = festival ? formatTime(festival.event.start_at) : "";
@@ -715,13 +715,13 @@ export default function FestivalOfStarsAnnouncement() {
           <div className="foa-performer-layout">
             <div className="foa-performer-list">
               {performers.map((performer, index) => {
-                const active = selectedPerformer === index;
+                const active = selectedPerformerIndex === index;
                 return (
                   <button
                     key={performer.id}
                     type="button"
                     className={`foa-performer-tab ${active ? "active" : ""}`}
-                    onClick={() => setSelectedPerformer(index)}
+                    onClick={() => setSelectedPerformerIndex(index)}
                     aria-pressed={active}
                   >
                     <span>0{index + 1}</span>

@@ -1,12 +1,82 @@
-import { ArrowRight, CalendarDays, MapPin, Sparkles, Star, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  ArrowRight,
+  CalendarDays,
+  ChevronDown,
+  Clock3,
+  Heart,
+  MapPin,
+  MessageCircle,
+  Sparkles,
+  Star,
+  Users,
+  Zap,
+} from "lucide-react";
 import "./festivalofstars-announcement.css";
 
 const EVENT_DATE = "October 18, 2026";
 const EVENT_TIME = "3:00 PM";
 const EVENT_VENUE = "Villar Sipag";
 const REGISTER_URL = "/festivalofstars/register";
+const MAP_URL =
+  "https://www.google.com/maps/search/?api=1&query=Villar%20Sipag%2C%20Las%20Pi%C3%B1as";
+const EVENT_TIME_ISO = "2026-10-18T15:00:00+08:00";
+
+const faqItems = [
+  {
+    question: "What is the purpose of Festival of Stars?",
+    answer:
+      "Festival of Stars is a celebration of the talent, creativity, fellowship, and unity of the First Love Experience community.",
+  },
+  {
+    question: "Who can attend?",
+    answer:
+      "Festival of Stars is designed for the First Love Experience community, bringing youth and young adults together for one shared celebration.",
+  },
+  {
+    question: "Can I bring a friend?",
+    answer:
+      "Yes. Invite your friends, classmates, teammates, and family members to celebrate with the First Love Experience community.",
+  },
+  {
+    question: "Who will be performing?",
+    answer:
+      "The performances are presented by approved First Love Church performers as part of the celebration program.",
+  },
+];
 
 export default function FestivalOfStarsAnnouncement() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [openFaq, setOpenFaq] = useState(0);
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const remaining = Math.max(
+        0,
+        new Date(EVENT_TIME_ISO).getTime() - Date.now(),
+      );
+
+      setTimeLeft({
+        days: Math.floor(remaining / 86400000),
+        hours: Math.floor((remaining / 3600000) % 24),
+        minutes: Math.floor((remaining / 60000) % 60),
+        seconds: Math.floor((remaining / 1000) % 60),
+      });
+    };
+
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const countdownDone =
+    timeLeft.days + timeLeft.hours + timeLeft.minutes + timeLeft.seconds === 0;
+
   return (
     <main className="foa-page">
       <header className="foa-nav">
@@ -73,6 +143,128 @@ export default function FestivalOfStarsAnnouncement() {
             <span>OCTOBER 18</span>
             <span>VILLAR SIPAG</span>
           </div>
+        </div>
+      </section>
+
+
+
+      <section className="foa-countdown">
+        <div className="foa-countdown-copy">
+          <span>THE STAR COUNTDOWN</span>
+          <h2>{countdownDone ? "THE NIGHT IS HERE." : "COUNTING DOWN."}</h2>
+          <p>
+            {countdownDone
+              ? "Festival of Stars is happening now. Come celebrate with the First Love Experience community."
+              : "Get ready for October 18. Save the date, invite your people, and come celebrate together."}
+          </p>
+        </div>
+
+        <div className="foa-countdown-grid" aria-label="Countdown to Festival of Stars">
+          {[
+            ["DAYS", timeLeft.days],
+            ["HOURS", timeLeft.hours],
+            ["MIN", timeLeft.minutes],
+            ["SEC", timeLeft.seconds],
+          ].map(([label, value]) => (
+            <div className="foa-count-box" key={label}>
+              <strong>{String(value).padStart(2, "0")}</strong>
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="foa-countdown-actions">
+          <a
+            className="foa-primary foa-small-button"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Festival%20of%20Stars&dates=20261018T150000/20261018T180000&details=Festival%20of%20Stars%20%7C%20First%20Love%20Experience&location=Villar%20Sipag%2C%20Las%20Pi%C3%B1as"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <CalendarDays size={17} /> SAVE THE DATE
+          </a>
+          <a className="foa-secondary foa-small-button" href={MAP_URL} target="_blank" rel="noreferrer">
+            <MapPin size={17} /> GET DIRECTIONS
+          </a>
+        </div>
+      </section>
+
+      <section className="foa-more-event" id="more-event">
+        <div className="foa-more-event-head">
+          <span>MORE THAN AN EVENT</span>
+          <h2>MORE THAN<br /><em>A SHOW.</em></h2>
+          <p>
+            Festival of Stars is a space where the First Love Experience community
+            can celebrate what God is doing among us — through talent, creativity,
+            fellowship, and unity.
+          </p>
+        </div>
+
+        <div className="foa-more-grid">
+          <article className="foa-more-card more-red">
+            <span className="foa-more-number">01</span>
+            <span className="foa-more-icon"><Star /></span>
+            <h3>CELEBRATE TALENT</h3>
+            <p>Recognize the gifts and abilities God has placed in our First Love community.</p>
+            <b>GIFTED TO SHINE ✦</b>
+          </article>
+
+          <article className="foa-more-card more-yellow">
+            <span className="foa-more-number">02</span>
+            <span className="foa-more-icon"><Sparkles /></span>
+            <h3>EXPRESS CREATIVITY</h3>
+            <p>Celebrate music, movement, storytelling, and creative expression as part of the program.</p>
+            <b>CREATE WITH PURPOSE ✦</b>
+          </article>
+
+          <article className="foa-more-card more-blue">
+            <span className="foa-more-number">03</span>
+            <span className="foa-more-icon"><Users /></span>
+            <h3>BUILD FELLOWSHIP</h3>
+            <p>Bring people together, strengthen friendships, and create memories as one church family.</p>
+            <b>PEOPLE OVER PERFECTION ✦</b>
+          </article>
+
+          <article className="foa-more-card more-white">
+            <span className="foa-more-number">04</span>
+            <span className="foa-more-icon"><Heart /></span>
+            <h3>LIVE IN UNITY</h3>
+            <p>Celebrate different stories, different gifts, and one shared identity in Christ.</p>
+            <b>ONE COMMUNITY. ONE PURPOSE. ✦</b>
+          </article>
+        </div>
+
+        <div className="foa-more-note">
+          <Zap size={18} />
+          <span>THE HEART OF THE NIGHT</span>
+          <strong>NOT JUST A PERFORMANCE — A CELEBRATION OF WHO WE ARE TOGETHER.</strong>
+        </div>
+      </section>
+
+      <section className="foa-faq" id="faq">
+        <div className="foa-faq-heading">
+          <span>GOOD QUESTIONS</span>
+          <h2>BEFORE YOU<br /><em>COME.</em></h2>
+          <p>Everything you need to know before Festival of Stars.</p>
+        </div>
+
+        <div className="foa-faq-list">
+          {faqItems.map((item, index) => {
+            const open = openFaq === index;
+            return (
+              <article className={`foa-faq-item ${open ? "open" : ""}`} key={item.question}>
+                <button
+                  type="button"
+                  aria-expanded={open}
+                  onClick={() => setOpenFaq(open ? -1 : index)}
+                >
+                  <span className="foa-faq-number">0{index + 1}</span>
+                  <strong>{item.question}</strong>
+                  <ChevronDown size={20} />
+                </button>
+                {open && <p>{item.answer}</p>}
+              </article>
+            );
+          })}
         </div>
       </section>
 

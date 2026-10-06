@@ -1,0 +1,406 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:wght@500;600;700;800;900&family=Permanent+Marker&display=swap");
+
+:root{
+  --foar-blue:#0927a8;
+  --foar-blue-deep:#06156c;
+  --foar-red:#ef233c;
+  --foar-yellow:#ffd31d;
+  --foar-paper:#f5f0e5;
+  --foar-white:#fffdf7;
+  --foar-ink:#08121a;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--foar-paper);font-family:"DM Sans",sans-serif;color:var(--foar-ink)}
+button,input,select,textarea{font:inherit}
+.foar-page{min-height:100vh;overflow-x:hidden;background:var(--foar-paper)}
+.foar-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  min-height:72px;
+  padding:0 clamp(12px,4vw,60px);
+  background:rgba(255,253,247,.96);
+  border-bottom:3px solid var(--foar-ink);
+  backdrop-filter:blur(12px);
+}
+.foar-back,.foar-brand{display:flex;align-items:center}
+.foar-back{
+  gap:7px;
+  color:var(--foar-ink);
+  text-decoration:none;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.foar-brand{flex-direction:column;align-items:flex-end}
+.foar-brand strong{font-size:11px;letter-spacing:.08em}
+.foar-brand span{font-size:7px;letter-spacing:.28em}
+
+.foar-hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:60px;
+  align-items:center;
+  min-height:580px;
+  padding:76px clamp(18px,7vw,100px) 88px;
+  background:
+    radial-gradient(circle at 82% 42%,rgba(66,110,255,.45),transparent 23%),
+    linear-gradient(135deg,var(--foar-blue-deep),var(--foar-blue) 54%,#183bd2);
+  color:#fff;
+  isolation:isolate;
+  overflow:hidden;
+}
+.foar-hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.1;
+  background-image:
+    radial-gradient(circle at 15% 19%,#fff 0 1px,transparent 1.4px),
+    radial-gradient(circle at 72% 70%,#fff 0 1px,transparent 1.4px);
+  background-size:80px 80px,135px 135px;
+}
+.foar-copy{position:relative;z-index:3;max-width:770px}
+.foar-eyebrow{
+  margin:0 0 10px;
+  color:var(--foar-yellow);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.22em;
+  line-height:1.45;
+}
+.foar-kicker{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:7px 10px;
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.12em;
+  transform:rotate(-2deg);
+  box-shadow:5px 5px 0 #000;
+}
+.foar-copy h1{
+  margin:0;
+  font:400 clamp(74px,9vw,138px)/.72 "Bangers",cursive;
+  letter-spacing:.01em;
+  text-transform:uppercase;
+  transform:skew(-5deg);
+  text-shadow:6px 7px 0 #000;
+}
+.foar-copy h1 em{
+  display:block;
+  color:var(--foar-red);
+  -webkit-text-stroke:3px var(--foar-yellow);
+  paint-order:stroke fill;
+  font-style:normal;
+}
+.foar-lead{
+  max-width:660px;
+  margin:22px 0 0;
+  color:#edf1ff;
+  font-size:17px;
+  line-height:1.7;
+}
+.foar-lead b{color:var(--foar-yellow)}
+.foar-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:23px}
+.foar-meta span{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 11px;
+  background:var(--foar-white);
+  color:var(--foar-ink);
+  border:2px solid var(--foar-ink);
+  box-shadow:4px 5px 0 #000;
+  font-size:9px;
+  font-weight:900;
+}
+.foar-sticker{
+  position:relative;
+  z-index:3;
+  width:min(310px,30vw);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:3px;
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  border:5px solid var(--foar-ink);
+  border-radius:50%;
+  box-shadow:12px 14px 0 #000;
+  transform:rotate(8deg);
+  text-align:center;
+}
+.foar-sticker span{font-size:12px;font-weight:900;letter-spacing:.18em}
+.foar-sticker strong{font:400 clamp(38px,5vw,60px)/.85 "Bangers",cursive}
+.foar-sticker small{font-size:7px;font-weight:900;letter-spacing:.16em}
+.foar-lightning{
+  position:absolute;
+  z-index:1;
+  right:30%;
+  top:2%;
+  width:230px;
+  height:210px;
+  background:var(--foar-yellow);
+  clip-path:polygon(35% 0,100% 28%,70% 30%,87% 100%,0 52%,30% 52%);
+  transform:rotate(18deg);
+}
+.foar-burst{
+  position:absolute;
+  z-index:2;
+  color:var(--foar-yellow);
+  font-size:55px;
+  text-shadow:4px 5px 0 #000;
+}
+.burst-a{right:37%;top:19%}
+.burst-b{left:48%;bottom:8%}
+
+.foar-form-shell{
+  width:min(1180px,calc(100% - 36px));
+  margin:-28px auto 0;
+  position:relative;
+  z-index:10;
+  display:grid;
+  grid-template-columns:.62fr 1.38fr;
+  gap:45px;
+  padding:46px;
+  background:var(--foar-white);
+  border:4px solid var(--foar-ink);
+  box-shadow:10px 12px 0 var(--foar-ink);
+}
+.foar-section-label{
+  color:var(--foar-red);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.2em;
+}
+.foar-form-intro h2{
+  margin:8px 0 14px;
+  font:400 clamp(60px,6vw,92px)/.72 "Bangers",cursive;
+  text-shadow:4px 5px 0 rgba(0,0,0,.12);
+}
+.foar-form-intro h2 em{font-style:normal;color:var(--foar-blue)}
+.foar-form-intro p{color:#5e696e;font-size:15px;line-height:1.65}
+.foar-form{
+  display:grid;
+  gap:18px;
+}
+.foar-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.foar-grid label{display:grid;gap:7px}
+.foar-grid label span{
+  color:#59656b;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.foar-grid input,
+.foar-grid select,
+.foar-grid textarea{
+  width:100%;
+  border:3px solid var(--foar-ink);
+  background:#fff;
+  color:var(--foar-ink);
+  padding:13px 13px;
+  outline:none;
+  border-radius:0;
+}
+.foar-grid input:focus,
+.foar-grid select:focus,
+.foar-grid textarea:focus{
+  border-color:var(--foar-blue);
+  box-shadow:4px 4px 0 var(--foar-yellow);
+}
+.foar-grid textarea{resize:vertical;min-height:130px}
+.field-full{grid-column:1 / -1}
+.foar-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  color:#586369;
+  font-size:11px;
+  line-height:1.5;
+}
+.foar-consent input{margin-top:2px;accent-color:var(--foar-blue)}
+.foar-error,.foar-success{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:12px 14px;
+  border:3px solid var(--foar-ink);
+  font-size:11px;
+  font-weight:800;
+}
+.foar-error{background:#ffd7dd;color:#8b1627}
+.foar-success{background:#d9f8e4;color:#15572d}
+.foar-submit{
+  width:100%;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  min-height:54px;
+  border:3px solid var(--foar-ink);
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  box-shadow:6px 7px 0 var(--foar-ink);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  cursor:pointer;
+  transition:.16s ease;
+}
+.foar-submit:hover{transform:translateY(-2px);box-shadow:8px 9px 0 var(--foar-ink)}
+.foar-submit:active{transform:translateY(2px);box-shadow:3px 4px 0 var(--foar-ink)}
+.foar-note{
+  width:min(1180px,calc(100% - 36px));
+  margin:40px auto 80px;
+  padding:20px 24px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:13px;
+  background:var(--foar-red);
+  color:#fff;
+  border:4px solid var(--foar-ink);
+  box-shadow:8px 9px 0 var(--foar-ink);
+}
+.foar-note svg{color:var(--foar-yellow)}
+.foar-note strong,.foar-note span{display:block}
+.foar-note strong{font-size:9px;letter-spacing:.14em}
+.foar-note span{margin-top:4px;font-size:12px;line-height:1.45}
+.foar-note a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:11px 13px;
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  text-decoration:none;
+  border:3px solid var(--foar-ink);
+  font-size:8px;
+  font-weight:900;
+}
+.foar-footer{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:21px clamp(14px,5vw,60px);
+  background:var(--foar-ink);
+  color:#fff;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+.foar-state{
+  min-height:100vh;
+  display:grid;
+  place-content:center;
+  justify-items:center;
+  gap:10px;
+  padding:24px;
+  background:var(--foar-blue-deep);
+  color:#fff;
+  text-align:center;
+}
+.foar-state h1{font:400 46px "Bangers",cursive}
+.foar-state a{
+  color:var(--foar-yellow);
+  text-decoration:none;
+  font-weight:900;
+}
+.foar-spin{animation:foarSpin 1s linear infinite}
+@keyframes foarSpin{to{transform:rotate(360deg)}}
+
+@media(max-width:900px){
+  .foar-hero{
+    grid-template-columns:1fr;
+    gap:28px;
+    padding:58px 22px 76px;
+  }
+  .foar-sticker{
+    width:min(300px,72vw);
+    margin:0 auto;
+  }
+  .foar-form-shell{
+    grid-template-columns:1fr;
+    gap:28px;
+    padding:30px 22px;
+  }
+}
+@media(max-width:560px){
+  .foar-header{min-height:64px;padding:0 12px}
+  .foar-brand strong{font-size:9px}
+  .foar-brand span{font-size:6px}
+  .foar-back{font-size:8px}
+
+  .foar-hero{padding:42px 14px 62px;gap:24px}
+  .foar-eyebrow{font-size:7px;letter-spacing:.15em}
+  .foar-kicker{font-size:7px;box-shadow:3px 3px 0 #000}
+  .foar-copy h1{
+    font-size:clamp(55px,17vw,78px);
+    text-shadow:3px 4px 0 #000;
+  }
+  .foar-copy h1 em{
+    -webkit-text-stroke:2px var(--foar-yellow);
+  }
+  .foar-lead{font-size:14px;line-height:1.58}
+  .foar-meta{display:grid;grid-template-columns:1fr}
+  .foar-meta span{
+    width:100%;
+    box-shadow:3px 4px 0 #000;
+    font-size:8px;
+  }
+  .foar-sticker{
+    width:min(250px,78vw);
+    border-width:4px;
+    box-shadow:7px 8px 0 #000;
+  }
+  .foar-form-shell{
+    width:calc(100% - 18px);
+    margin:-16px auto 0;
+    padding:27px 16px;
+    grid-template-columns:1fr;
+    border-width:3px;
+    box-shadow:5px 6px 0 var(--foar-ink);
+  }
+  .foar-form-intro h2{font-size:clamp(54px,16vw,73px)}
+  .foar-grid{grid-template-columns:1fr;gap:13px}
+  .foar-grid input,.foar-grid select,.foar-grid textarea{border-width:2px;padding:12px}
+  .foar-submit{box-shadow:4px 5px 0 var(--foar-ink)}
+  .foar-note{
+    width:calc(100% - 18px);
+    grid-template-columns:auto 1fr;
+    padding:18px 15px;
+    margin:30px auto 56px;
+    border-width:3px;
+    box-shadow:5px 6px 0 var(--foar-ink);
+  }
+  .foar-note a{grid-column:1 / -1;justify-content:center}
+  .foar-footer{flex-direction:column;gap:9px;padding:19px 13px}
+}
+@media(max-width:360px){
+  .foar-hero{padding-left:10px;padding-right:10px}
+  .foar-copy h1{font-size:53px}
+  .foar-lead{font-size:13px}
+  .foar-sticker{width:210px}
+  .foar-form-shell{width:calc(100% - 14px);padding:24px 13px}
+  .foar-form-intro h2{font-size:54px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}

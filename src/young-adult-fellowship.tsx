@@ -3,10 +3,12 @@ import {
   ArrowRight,
   BookOpen,
   CalendarDays,
+  Check,
   Heart,
   MapPin,
   Menu,
   MessageCircle,
+  Sparkles,
   Star,
   Users,
   X,
@@ -37,7 +39,7 @@ export default function YoungAdultFellowship() {
   useEffect(() => {
     document.title = "First Love Young Adults | Real Faith, Real Life";
     const description =
-      "A young adult fellowship where real people can connect, grow in faith, ask honest questions, and live out God's purpose together.";
+      "A young adult fellowship where real people connect, grow in faith, ask honest questions, and live out God's purpose together.";
 
     const setMeta = (attr: string, key: string, value: string) => {
       let node = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
@@ -73,6 +75,7 @@ export default function YoungAdultFellowship() {
           <a className="active" href="#home" onClick={closeMenu}>Home</a>
           <a href="#why" onClick={closeMenu}>About</a>
           <a href="#event" onClick={closeMenu}>Event</a>
+          <a href="#topics" onClick={closeMenu}>Topics</a>
           <a href="#contact" onClick={closeMenu}>Contact</a>
         </div>
 
@@ -87,44 +90,86 @@ export default function YoungAdultFellowship() {
 
       <section id="home" className="ya-hero">
         <div className="ya-hero-image" aria-hidden="true">
-          <img src="/festival-assets/person_1.png" alt="" />
+          <img src="/festival-assets/08_Youth_Community.png" alt="" />
         </div>
         <div className="ya-hero-overlay" />
+        <div className="ya-hero-grain" />
 
         <div className="ya-hero-content">
-          <p className="ya-kicker">YOUNG ADULT FELLOWSHIP</p>
+          <div className="ya-stamp">COME AS YOU ARE<br /><strong>EST. 2026</strong></div>
+          <p className="ya-kicker">Y O U N G &nbsp; A D U L T &nbsp; F E L L O W S H I P</p>
+
           <h1>
             REAL PEOPLE
             <span>REAL FAITH</span>
             <strong>REAL LIFE</strong>
           </h1>
+
           <p className="ya-hero-lead">
             A community for young adults to connect, grow, and live out God's purpose together.
           </p>
-          <a className="ya-brush-button" href="#event">
-            COME AS YOU ARE
-          </a>
+
+          <div className="ya-hero-actions">
+            <a className="ya-brush-button" href="#event">COME AS YOU ARE!</a>
+            <a className="ya-outline-button" href={TOPIC_FORM_URL} target="_blank" rel="noreferrer">
+              SUGGEST A TOPIC <ArrowRight size={17} />
+            </a>
+          </div>
+
+          <div className="ya-hero-tags">
+            <span>FAITH</span><span>FRIENDSHIP</span><span>PURPOSE</span><span>COMMUNITY</span>
+          </div>
         </div>
 
-        <div className="ya-hero-doodle ya-doodle-top">FAITH<br />FRIENDS<br />PURPOSE<br /><b>TOGETHER ♡</b></div>
-        <div className="ya-crown">♕</div>
-        <div className="ya-brush ya-brush-left" />
-        <div className="ya-brush ya-brush-right" />
+        <div className="ya-hero-collage" aria-label="Young adult fellowship community">
+          <div className="ya-photo-card ya-photo-back">
+            <img src="/festival-assets/person_2.png" alt="Young adult fellowship" />
+            <span>FRIENDS</span>
+          </div>
+          <div className="ya-photo-card ya-photo-main">
+            <img src="/festival-assets/08_Youth_Community.png" alt="Young adults together" />
+            <span>TOGETHER</span>
+          </div>
+          <div className="ya-photo-card ya-photo-front">
+            <img src="/festival-assets/person_1.png" alt="Young adult community" />
+            <span>REAL LIFE</span>
+          </div>
+          <div className="ya-doodle-note ya-note-one">FAITH<br />FRIENDS<br />PURPOSE<br /><b>♡ TOGETHER</b></div>
+          <div className="ya-doodle-note ya-note-two">WORSHIP<br />WORD<br />COMMUNITY<br />FUN :)</div>
+          <div className="ya-star-doodle">✦</div>
+          <div className="ya-arrow-doodle">↘</div>
+        </div>
+
+        <div className="ya-hero-bottom-edge">
+          <span>DIFFERENT STORIES</span>
+          <span className="edge-orange">ONE PURPOSE</span>
+          <span className="edge-heart">♡</span>
+        </div>
       </section>
 
-      <section id="why" className="ya-benefits">
-        {benefits.map(({ icon: Icon, title, text }, index) => (
-          <div className="ya-benefit" key={title}>
-            <span className={`ya-benefit-icon benefit-${index + 1}`}><Icon size={28} strokeWidth={2} /></span>
-            <span>
-              <b>{title}</b>
-              <small>{text}</small>
-            </span>
-          </div>
-        ))}
+      <section id="why" className="ya-benefits-wrap">
+        <div className="ya-benefits-intro">
+          <span className="ya-mini-label">MORE THAN A MEETING</span>
+          <span className="ya-mini-script">This is your people.</span>
+        </div>
+        <div className="ya-benefits">
+          {benefits.map(({ icon: Icon, title, text }, index) => (
+            <div className="ya-benefit" key={title}>
+              <span className={`ya-benefit-icon benefit-${index + 1}`}>
+                <Icon size={28} strokeWidth={2.1} />
+              </span>
+              <span>
+                <b>{title}</b>
+                <small>{text}</small>
+              </span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="event" className="ya-event">
+        <div className="ya-event-tape tape-a" />
+        <div className="ya-event-tape tape-b" />
         <div className="ya-event-inner">
           <div className="ya-event-details">
             <div className="ya-detail">
@@ -147,7 +192,9 @@ export default function YoungAdultFellowship() {
           </div>
 
           <div className="ya-event-photo">
-            <img src="/festival-assets/person_1.png" alt="Young adult worship moment" />
+            <span className="ya-photo-tape" />
+            <img src="/festival-assets/person_1.png" alt="Young adult fellowship moment" />
+            <small>SATURDAY NIGHTS</small>
           </div>
 
           <div className="ya-event-note">
@@ -160,13 +207,14 @@ export default function YoungAdultFellowship() {
       </section>
 
       <section id="topics" className="ya-topics">
+        <div className="ya-topic-scribble">YOUR VOICE<br /><span>MATTERS.</span></div>
         <div className="ya-topic-inner">
           <div className="ya-topic-copy">
-            <div className="ya-lightbulb">☼</div>
-            <p className="ya-section-kicker">YOUR VOICE MATTERS</p>
+            <div className="ya-lightbulb"><Sparkles size={50} /></div>
+            <p className="ya-section-kicker">YOU GET A SAY</p>
             <h2>SHARE YOUR <em>TOPICS!</em></h2>
             <p>
-              We want to hear from you! Help us make your Young Adult Fellowship more meaningful by sharing the topics you want to discuss.
+              We want to hear from you! Help shape your Young Adult Fellowship by sharing the questions and conversations you actually want to have.
             </p>
 
             <a className="ya-topic-cta" href={TOPIC_FORM_URL} target="_blank" rel="noreferrer">
@@ -179,14 +227,29 @@ export default function YoungAdultFellowship() {
           </div>
 
           <div className="ya-topic-paper">
+            <span className="ya-paper-pin">✦</span>
             <span className="ya-paper-title">EXAMPLES:</span>
             <ul>
               {topicExamples.map((topic) => (
-                <li key={topic}><span>✓</span>{topic}</li>
+                <li key={topic}><span><Check size={17} /></span>{topic}</li>
               ))}
             </ul>
-            <div className="ya-paper-doodle">✦</div>
+            <div className="ya-paper-doodle">★</div>
           </div>
+        </div>
+      </section>
+
+      <section className="ya-community-band">
+        <div className="ya-community-grid" />
+        <div className="ya-community-copy">
+          <span className="ya-mini-label">REAL QUESTIONS. REAL PEOPLE.</span>
+          <h2>BRING YOUR<br /><em>WHOLE SELF.</em></h2>
+          <p>Come with your wins, doubts, plans, pressure, stories, and questions. There is room for all of it here.</p>
+        </div>
+        <div className="ya-community-cards">
+          <span>ASK.</span>
+          <span>LISTEN.</span>
+          <span>GROW.</span>
         </div>
       </section>
 
@@ -210,6 +273,7 @@ export default function YoungAdultFellowship() {
 
       <footer className="ya-footer">
         <span>FIRST LOVE <b>YOUNG ADULTS</b></span>
+        <span className="ya-footer-note">FAITH • FRIENDSHIP • PURPOSE</span>
         <a href={TOPIC_FORM_URL} target="_blank" rel="noreferrer">Suggest a topic <ArrowRight size={15} /></a>
       </footer>
     </main>

@@ -17,7 +17,7 @@ import "./festivalofstars-announcement.css";
 const EVENT_DATE = "October 18, 2026";
 const EVENT_TIME = "3:00 PM";
 const EVENT_VENUE = "Villar Sipag";
-const REGISTER_URL = "/festivalofstars/register";
+const REGISTER_URL = "/festivalofstars/announcement/register";
 const MAP_URL =
   "https://www.google.com/maps/search/?api=1&query=Villar%20Sipag%2C%20Las%20Pi%C3%B1as";
 const EVENT_TIME_ISO = "2026-10-18T15:00:00+08:00";

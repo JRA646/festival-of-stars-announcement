@@ -3,7 +3,6 @@ import {
   ArrowRight,
   CalendarDays,
   ChevronDown,
-  Clock3,
   Heart,
   MapPin,
   MessageCircle,

@@ -263,7 +263,7 @@ export default function FestivalOfStarsYouth() {
         <span className="brand-logo-wrap"><img className="brand-logo" src="/images/app_logo.png" alt="" aria-hidden="true" /></span><span>First Love<small>CHURCH</small></span>
       </a>
       <div className={`fy-links ${mobileMenuOpen ? "open" : ""}`}>
-        {[["home","Home"],["about","About"],["details","Details"],["talent","Talent"],["vibe","Vibe"],["faq","FAQ"]].map(([id,label]) =>
+        {[["home","Home"],["about","About"],["details","Details"],["performers","Performers"],["vibe","Vibe"],["faq","FAQ"]].map(([id,label]) =>
           <a key={id} href={`#${id}`} className={activeNav === id ? "active" : ""} onClick={() => setMobileMenuOpen(false)}>{label}</a>
         )}
       </div>
@@ -345,7 +345,7 @@ export default function FestivalOfStarsYouth() {
       <div className="strip-item"><span className="strip-icon yellow"><Sparkles /></span><div><b>FUN + CREATIVE</b><small>Games, booths, surprises.</small></div></div>
     </section>
 
-    <div className="fy-marquee" aria-hidden="true"><div><span>✦ SHINE</span><span>✦ BELONG</span><span>✦ WORSHIP</span><span>✦ CREATE</span><span>✦ RAP</span><span>✦ ACTING</span><span>✦ SINGING</span><span>✦ DISCOVER</span><span>✦ SHINE</span><span>✦ BELONG</span></div></div>
+    <div className="fy-marquee" aria-hidden="true"><div><span>✦ SHINE</span><span>✦ BELONG</span><span>✦ WORSHIP</span><span>✦ CELEBRATE</span><span>✦ CREATE</span><span>✦ COMMUNITY</span><span>✦ PURPOSE</span><span>✦ DISCOVER</span><span>✦ SHINE</span><span>✦ BELONG</span></div></div>
 
     <section id="about" className={`fy-section fy-about ${reveal("about")}`} data-reveal="about">
       <div className="about-copy">
@@ -354,7 +354,7 @@ export default function FestivalOfStarsYouth() {
         <p className="lead">{content?.about_copy || "Festival of Stars is more than an event. It is a space where young people can worship boldly, meet people, discover purpose, and use their creativity for something bigger."}</p>
         <p>{content?.about_body || "Come for the energy. Stay for the people. Leave with purpose."}</p>
         <div className="about-actions">
-          <a className="text-link" href="#talent">See the talent <ArrowRight size={16} /></a>
+          <a className="text-link" href="#performers">Meet the performers <ArrowRight size={16} /></a>
           <a className="heart-link" href="#vibe"><Heart size={15} fill="currentColor" /> Feel the vibe</a>
         </div>
       </div>
@@ -379,10 +379,10 @@ export default function FestivalOfStarsYouth() {
       </div>
     </section>
 
-    <section id="talent" className={`fy-section fy-talent ${reveal("talent")}`} data-reveal="talent">
+    <section id="performers" className={`fy-section fy-talent ${reveal("performers")}`} data-reveal="performers">
       <div className="talent-heading">
-        <div><p className="fy-eyebrow pink-text">EXPRESS YOURSELF</p><h2>TALENT <em>SHOWCASE</em></h2></div>
-        <p>{content?.talent_intro || "Use what God has given you and let your light shine. Open to individuals and groups."}</p>
+        <div><p className="fy-eyebrow pink-text">FIRST LOVE CHURCH</p><h2>FIRST LOVE <em>PERFORMERS</em></h2></div>
+        <p>{content?.talent_intro || "Festival of Stars performances are for our First Love Church family. Singing, rap, and acting will be presented by approved First Love performers."}</p>
       </div>
       <div className="talent-cards">
         {festival.talents.map((talent, index) => {
@@ -404,8 +404,7 @@ export default function FestivalOfStarsYouth() {
       </div>
       {active && <div className="talent-detail" style={{ "--talent-accent": active.accent } as CSSProperties}>
         <div><span>{active.name}</span><h3>{active.tagline}</h3><p>{active.description}</p></div>
-        {festival.announcement.registration_enabled &&
-          <a href={`/festivalofstars/register?talent=${active.slug}`} onClick={() => track(festival.event.id, "talent_view", { talent: active.slug })}>Register this talent <ArrowRight size={16} /></a>}
+        <span className="performer-note">Presented by approved First Love Church performers.</span>
       </div>}
     </section>
 
@@ -470,7 +469,7 @@ export default function FestivalOfStarsYouth() {
       </div>
     </section>
 
-    {visits.length > 0 && <section className="fy-visit">
+    {false && visits.length > 0 && <section className="fy-visit">
       <div><p className="fy-eyebrow">WHAT TO EXPECT</p><h2>COME READY.</h2></div>
       <div className="visit-grid">{visits.slice(0, 3).map((item) => <div className="visit-card" key={item.title}><Star /><h3>{item.title}</h3><p>{item.copy}</p></div>)}</div>
     </section>}

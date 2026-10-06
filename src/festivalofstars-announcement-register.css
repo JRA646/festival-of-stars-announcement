@@ -404,3 +404,415 @@ button,input,select,textarea{font:inherit}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
+
+
+/* =========================================================
+   INTERACTIVE RSVP EXPERIENCE
+   ========================================================= */
+.foar-page{
+  --foar-shadow:6px 7px 0 var(--foar-ink);
+}
+.foar-page :focus-visible{
+  outline:3px solid var(--foar-yellow);
+  outline-offset:4px;
+}
+.foar-skip-link{
+  position:fixed;
+  left:12px;
+  top:8px;
+  z-index:100;
+  padding:8px 11px;
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  border:3px solid var(--foar-ink);
+  transform:translateY(-150%);
+  font-size:8px;
+  font-weight:900;
+}
+.foar-skip-link:focus{transform:none}
+.foar-hero-noise{
+  position:absolute;
+  inset:0;
+  opacity:.1;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle at 10% 18%,#fff 0 1px,transparent 1.3px),
+    radial-gradient(circle at 84% 72%,#fff 0 1px,transparent 1.3px);
+  background-size:74px 74px,128px 128px;
+}
+.foar-hero{
+  min-height:620px;
+}
+.foar-event-facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:22px;
+}
+.foar-event-facts span{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 10px;
+  background:rgba(255,255,255,.96);
+  color:var(--foar-ink);
+  border:2px solid #000;
+  box-shadow:4px 5px 0 #000;
+  font-size:8px;
+  font-weight:900;
+}
+.foar-event-facts svg{color:var(--foar-red)}
+.foar-invite-poster{
+  position:relative;
+  width:min(310px,31vw);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:4px;
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+  border:5px solid #000;
+  border-radius:50%;
+  box-shadow:12px 14px 0 #000;
+  transform:rotate(7deg);
+  text-align:center;
+}
+.foar-invite-poster:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:2px dashed rgba(0,0,0,.55);
+  border-radius:50%;
+}
+.foar-invite-poster span,
+.foar-invite-poster strong,
+.foar-invite-poster small,
+.foar-invite-poster b{position:relative;z-index:2}
+.foar-invite-poster span{font-size:10px;font-weight:900;letter-spacing:.2em}
+.foar-invite-poster strong{
+  font:400 clamp(43px,5.5vw,67px)/.8 "Bangers",cursive;
+  text-shadow:3px 4px 0 #fff;
+}
+.foar-invite-poster small{font-size:7px;font-weight:900;letter-spacing:.15em}
+.foar-invite-poster b{
+  margin-top:10px;
+  padding:7px 10px;
+  background:var(--foar-red);
+  color:#fff;
+  border:2px solid #000;
+  font-size:9px;
+  box-shadow:3px 4px 0 #000;
+}
+.foar-content{
+  width:min(1180px,calc(100% - 36px));
+  margin:-25px auto 70px;
+  position:relative;
+  z-index:10;
+}
+.foar-steps{
+  display:grid;
+  grid-template-columns:1fr 60px 1fr 60px 1fr;
+  align-items:center;
+  gap:0;
+  margin-bottom:17px;
+}
+.foar-steps>div{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:9px 8px;
+  background:#d8d4cb;
+  border:3px solid var(--foar-ink);
+  color:#667074;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+.foar-steps>div.active{
+  background:var(--foar-yellow);
+  color:var(--foar-ink);
+}
+.foar-steps>div.current{
+  box-shadow:4px 5px 0 var(--foar-ink);
+}
+.foar-steps>div span{
+  font:400 20px/1 "Bangers",cursive;
+  color:var(--foar-red);
+}
+.foar-steps i{
+  height:3px;
+  background:var(--foar-ink);
+}
+.foar-form-shell{
+  margin:0;
+  width:100%;
+  grid-template-columns:.63fr 1.37fr;
+  box-shadow:10px 12px 0 var(--foar-ink);
+}
+.foar-form-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:9px;
+}
+.foar-secondary-button{
+  min-height:54px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 16px;
+  border:3px solid var(--foar-ink);
+  background:#fff;
+  color:var(--foar-ink);
+  box-shadow:5px 6px 0 var(--foar-ink);
+  cursor:pointer;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.foar-form-actions .foar-submit{flex:1}
+.foar-confirm-summary{
+  padding:18px;
+  background:var(--foar-blue);
+  color:#fff;
+  border:3px solid var(--foar-ink);
+  box-shadow:5px 6px 0 var(--foar-ink);
+}
+.foar-confirm-summary span,
+.foar-confirm-summary strong,
+.foar-confirm-summary small{display:block}
+.foar-confirm-summary span{
+  color:var(--foar-yellow);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+.foar-confirm-summary strong{
+  margin-top:5px;
+  font-size:18px;
+}
+.foar-confirm-summary small{
+  margin-top:4px;
+  color:#d8e3f0;
+  font-size:10px;
+}
+.foar-success-screen{
+  position:relative;
+  overflow:hidden;
+  padding:65px 38px 58px;
+  background:var(--foar-white);
+  border:4px solid var(--foar-ink);
+  box-shadow:11px 13px 0 var(--foar-ink);
+  text-align:center;
+}
+.foar-success-screen:before{
+  content:"★ ✦ ★ ✦ ★";
+  position:absolute;
+  top:22px;
+  right:5%;
+  color:var(--foar-yellow);
+  font-size:26px;
+  letter-spacing:7px;
+  transform:rotate(8deg);
+}
+.foar-success-star{
+  width:84px;
+  height:84px;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  background:var(--foar-red);
+  color:var(--foar-yellow);
+  border:4px solid var(--foar-ink);
+  border-radius:50%;
+  box-shadow:7px 8px 0 #000;
+  font-size:44px;
+  transform:rotate(-8deg);
+}
+.foar-success-screen h2{
+  margin:10px 0 14px;
+  font:400 clamp(62px,7vw,102px)/.7 "Bangers",cursive;
+  text-shadow:5px 6px 0 rgba(0,0,0,.13);
+}
+.foar-success-screen h2 em{
+  font-style:normal;
+  color:var(--foar-red);
+}
+.foar-success-screen>p{
+  margin:0 auto;
+  max-width:620px;
+  color:#667174;
+  font-size:15px;
+  line-height:1.6;
+}
+.foar-success-ticket{
+  width:min(760px,100%);
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:var(--foar-blue);
+  color:#fff;
+  border:4px solid #000;
+  box-shadow:8px 9px 0 #000;
+}
+.foar-success-ticket>div{
+  display:flex;
+  gap:11px;
+  align-items:flex-start;
+  padding:20px;
+  border-right:1px dashed rgba(255,255,255,.35);
+  text-align:left;
+}
+.foar-success-ticket>div:last-child{border-right:0}
+.foar-success-ticket>div>svg{color:var(--foar-yellow);flex:0 0 auto}
+.foar-success-ticket span b,
+.foar-success-ticket span strong,
+.foar-success-ticket span small{display:block}
+.foar-success-ticket b{
+  color:#9db7ff;
+  font-size:7px;
+  letter-spacing:.15em;
+}
+.foar-success-ticket strong{
+  margin-top:4px;
+  font-size:14px;
+}
+.foar-success-ticket small{
+  margin-top:3px;
+  color:#d8e3ff;
+  font-size:10px;
+}
+.foar-success-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+}
+.foar-success-actions a,
+.foar-success-actions button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-height:44px;
+  padding:10px 13px;
+  border:3px solid var(--foar-ink);
+  background:#fff;
+  color:var(--foar-ink);
+  box-shadow:4px 5px 0 var(--foar-ink);
+  text-decoration:none;
+  cursor:pointer;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.foar-success-actions a:first-child{
+  background:var(--foar-yellow);
+}
+.foar-success-back{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:27px;
+  color:var(--foar-blue);
+  text-decoration:none;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.1em;
+}
+.foar-bottom-note{
+  width:min(1180px,calc(100% - 36px));
+  margin:0 auto 70px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:11px;
+  align-items:center;
+  padding:19px 22px;
+  background:var(--foar-red);
+  color:#fff;
+  border:4px solid var(--foar-ink);
+  box-shadow:7px 8px 0 var(--foar-ink);
+}
+.foar-bottom-note svg{color:var(--foar-yellow)}
+.foar-bottom-note strong,.foar-bottom-note span{display:block}
+.foar-bottom-note strong{font-size:9px;letter-spacing:.13em}
+.foar-bottom-note span{margin-top:4px;font-size:11px;line-height:1.5}
+
+@media(max-width:1050px){
+  .foar-hero{grid-template-columns:1fr auto;gap:30px}
+  .foar-sticker,
+  .foar-invite-poster{width:270px}
+}
+@media(max-width:900px){
+  .foar-hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    justify-items:center;
+  }
+  .foar-copy{max-width:720px}
+  .foar-event-facts{justify-content:center}
+  .foar-invite-poster{width:min(290px,62vw)}
+  .foar-form-shell{grid-template-columns:1fr}
+  .foar-steps{grid-template-columns:1fr 20px 1fr 20px 1fr}
+  .foar-steps i{height:2px}
+}
+@media(max-width:560px){
+  .foar-content{width:calc(100% - 18px);margin-top:-14px}
+  .foar-hero{padding:40px 14px 58px}
+  .foar-copy h1{font-size:clamp(53px,17vw,76px)}
+  .foar-lead{font-size:13px;line-height:1.55}
+  .foar-event-facts{display:grid;width:100%}
+  .foar-event-facts span{justify-content:flex-start;width:100%;font-size:7px;box-shadow:3px 4px 0 #000}
+  .foar-invite-poster{width:210px;border-width:4px;box-shadow:7px 8px 0 #000}
+  .foar-invite-poster strong{font-size:43px}
+  .foar-steps{
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+  }
+  .foar-steps i{display:none}
+  .foar-steps>div{padding:8px 4px;gap:4px;font-size:6px}
+  .foar-steps>div span{font-size:16px}
+  .foar-form-shell{padding:24px 15px;box-shadow:5px 6px 0 var(--foar-ink)}
+  .foar-form-intro h2{font-size:clamp(52px,16vw,70px)}
+  .foar-grid{grid-template-columns:1fr}
+  .foar-form-actions{flex-direction:column-reverse}
+  .foar-form-actions .foar-submit,
+  .foar-secondary-button{width:100%}
+  .foar-confirm-summary{padding:15px}
+  .foar-success-screen{padding:50px 16px 44px;box-shadow:6px 7px 0 var(--foar-ink)}
+  .foar-success-screen h2{font-size:clamp(55px,17vw,78px)}
+  .foar-success-ticket{grid-template-columns:1fr}
+  .foar-success-ticket>div{
+    border-right:0;
+    border-bottom:1px dashed rgba(255,255,255,.35);
+    padding:15px;
+  }
+  .foar-success-ticket>div:last-child{border-bottom:0}
+  .foar-success-actions{display:grid;grid-template-columns:1fr 1fr}
+  .foar-success-actions a,
+  .foar-success-actions button{width:100%;min-height:46px}
+  .foar-success-back{margin-top:23px}
+  .foar-bottom-note{
+    width:calc(100% - 18px);
+    margin-bottom:55px;
+    padding:17px 14px;
+  }
+}
+@media(max-width:360px){
+  .foar-brand{display:none}
+  .foar-copy h1{font-size:51px}
+  .foar-invite-poster{width:195px}
+  .foar-success-actions{grid-template-columns:1fr}
+  .foar-form-shell{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  .foar-invite-poster,
+  .foar-success-star,
+  .foar-success-screen{
+    animation:none!important;
+    transition:none!important;
+  }
+}

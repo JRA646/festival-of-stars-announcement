@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Caveat+Brush&family=DM+Sans:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap");
 
 :root{
   --ya-ink:#06171b;
@@ -45,18 +45,18 @@ body{margin:0}
 .ya-hero-image img{object-position:center 38%;filter:saturate(.9)}
 .ya-hero-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,20,23,.98) 0%,rgba(3,20,23,.86) 35%,rgba(3,20,23,.25) 68%,rgba(3,20,23,.28) 100%)}
 .ya-hero-content{width:min(570px,52vw);z-index:2}
-.ya-kicker,.ya-section-kicker{font-size:12px;letter-spacing:.43em;color:#31d6d5;margin:0 0 10px;font-weight:800}
+.ya-kicker,.ya-section-kicker{font-size:11px;letter-spacing:.42em;color:#31d6d5;margin:0 0 12px;font-weight:800}
 .ya-hero h1{
-  margin:0;font:400 clamp(70px,7.3vw,116px)/.77 "Bangers",cursive;
-  letter-spacing:.02em;text-shadow:4px 5px 0 rgba(0,0,0,.3)
+  margin:0;font:400 clamp(68px,7.2vw,112px)/.84 "Caveat Brush",cursive;
+  letter-spacing:-.015em;text-transform:uppercase;text-shadow:5px 6px 0 rgba(0,0,0,.42)
 }
 .ya-hero h1 span,.ya-hero h1 strong{display:block}
-.ya-hero h1 span{color:var(--ya-orange)}
-.ya-hero h1 strong{color:#19c7ce;font-weight:400}
-.ya-hero-lead{max-width:510px;font-size:18px;line-height:1.55;margin:25px 0;color:#f4f1ea}
+.ya-hero h1 span{color:var(--ya-orange);transform:rotate(-1deg);transform-origin:left center}
+.ya-hero h1 strong{color:#19c7ce;font-weight:400;transform:rotate(-1.2deg);transform-origin:left center}
+.ya-hero-lead{max-width:510px;font-size:18px;line-height:1.55;margin:25px 0;color:#f4f1ea;font-weight:500}
 .ya-brush-button{
   display:inline-flex;padding:13px 34px 15px;background:var(--ya-orange);
-  color:#0a1517;text-decoration:none;font:400 25px "Permanent Marker",cursive;
+  color:#0a1517;text-decoration:none;font:400 24px "Caveat Brush",cursive;letter-spacing:.01em;
   clip-path:polygon(2% 16%,8% 5%,22% 9%,35% 2%,51% 9%,69% 2%,82% 10%,98% 4%,96% 89%,78% 96%,58% 90%,43% 98%,24% 91%,7% 96%);
   transform:rotate(-2deg)
 }

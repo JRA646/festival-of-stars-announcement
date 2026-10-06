@@ -313,10 +313,10 @@ export default function FestivalOfStarsYouth() {
       <div className="fy-hero-visual">
         <div className="hero-image-main">
           <img src="/festival-assets/01_Singer_Male_1.png" alt="AI-style young singer performing at Festival of Stars" loading="eager" />
-          <span className="image-badge">AI HUMAN / SINGING</span>
+          
         </div>
-        <div className="hero-image-side mood-image youth-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style youth community scene" /></div>
-        <div className="hero-image-bottom mood-image stage-crop"><img src="/festival-assets/festival-moodboard.jpg" alt="AI-style festival stage scene" /></div>
+        <div className="hero-image-side hero-back-photo hero-back-female" role="img" aria-label="Female worship image from Festival of Stars sample artwork" />
+        <div className="hero-image-bottom hero-back-photo hero-back-guitar" role="img" aria-label="Guitarist image from Festival of Stars sample artwork" />
         <div className="floating-note note-shine">SHINE<br /><em>YOUR WAY</em></div>
         <div className="floating-note note-create">CREATE<br /><em>TOGETHER</em></div>
       </div>

@@ -259,7 +259,7 @@ export default function FestivalOfStarsYouth() {
 
     <nav className="fy-nav">
       <a className="fy-brand" href="#home" aria-label="First Love Church home">
-        <span className="brand-icon">♥</span><span>First Love<small>CHURCH</small></span>
+        <span className="brand-logo-wrap"><img className="brand-logo" src="/images/first-love-heart-logo.svg" alt="" aria-hidden="true" /></span><span>First Love<small>CHURCH</small></span>
       </a>
       <div className="fy-links">
         {[["home","Home"],["about","About"],["details","Details"],["talent","Talent"],["vibe","Vibe"],["faq","FAQ"]].map(([id,label]) =>

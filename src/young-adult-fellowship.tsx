@@ -278,16 +278,16 @@ export default function YoungAdultFellowship() {
         <div className="ya-vision-mark">YAF</div>
         <div className="ya-vision-copy">
           <span className="ya-mini-label">OUR VISION</span>
-          <h2>YOUNG ADULTS<br /><em>FELLOWSHIP.</em></h2>
+          <h2>GROW IN <em>FAITH.</em><br />BELONG IN <em>COMMUNITY.</em></h2>
           <p>
-            The vision of Young Adults Fellowship (YAF) is for young adults to deepen their relationship with God with like-minded people, to fellowship, make lifelong Christ-centred friendships, and enjoy each other's company.
+            Young Adults Fellowship exists to help young adults deepen their relationship with God alongside like-minded people, build lifelong Christ-centred friendships, and enjoy doing life together.
           </p>
         </div>
         <div className="ya-vision-points" aria-label="Young Adults Fellowship vision pillars">
-          <span><Heart size={18} /> DEEPEN OUR RELATIONSHIP WITH GOD</span>
-          <span><Users size={18} /> FELLOWSHIP WITH LIKE-MINDED PEOPLE</span>
+          <span><Heart size={18} /> GROW DEEPER WITH GOD</span>
+          <span><Users size={18} /> CONNECT WITH LIKE-MINDED PEOPLE</span>
           <span><Star size={18} /> BUILD LIFELONG CHRIST-CENTRED FRIENDSHIPS</span>
-          <span><Sparkles size={18} /> ENJOY EACH OTHER'S COMPANY</span>
+          <span><Sparkles size={18} /> ENJOY DOING LIFE TOGETHER</span>
         </div>
       </section>
 

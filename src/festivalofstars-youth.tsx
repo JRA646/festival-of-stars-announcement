@@ -68,7 +68,7 @@ function useScrollReveal() {
 function useActiveNav() {
   const [active, setActive] = useState("home");
   useEffect(() => {
-    const sections = ["home", "about", "details", "talent", "vibe", "faq"];
+    const sections = ["home", "about", "details", "performers", "vibe", "faq"];
     const nodes = sections.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const observer = new IntersectionObserver((entries) => {
       const hit = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -220,7 +220,6 @@ export default function FestivalOfStarsYouth() {
   const active = useMemo(() => festival?.talents.find((item) => item.slug === activeTalent) || festival?.talents[0] || null, [festival, activeTalent]);
   const content = festival?.announcement.content;
   const faqs = content?.faqs ?? [];
-  const visits = content?.visit_items ?? [];
   const eventDate = festival ? formatDate(festival.event.start_at) : "";
   const eventTime = festival ? formatTime(festival.event.start_at) : "";
   const mapsUrl = festival?.event.location
@@ -468,11 +467,6 @@ export default function FestivalOfStarsYouth() {
         </div>
       </div>
     </section>
-
-    {false && visits.length > 0 && <section className="fy-visit">
-      <div><p className="fy-eyebrow">WHAT TO EXPECT</p><h2>COME READY.</h2></div>
-      <div className="visit-grid">{visits.slice(0, 3).map((item) => <div className="visit-card" key={item.title}><Star /><h3>{item.title}</h3><p>{item.copy}</p></div>)}</div>
-    </section>}
 
     <section className="fy-final">
       <div className="final-backdrop mood-image crowd-bottom"><img src="/festival-assets/festival-moodboard.jpg" alt="" aria-hidden="true" /></div>

@@ -1444,3 +1444,22 @@ body{overflow-x:hidden}
     transform:none !important;
   }
 }
+
+
+.performer-note{
+  display:block;
+  max-width:320px;
+  color:#d8e5e8 !important;
+  font-size:10px !important;
+  font-weight:800 !important;
+  letter-spacing:.04em !important;
+  line-height:1.5;
+}
+@media(max-width:760px){
+  .performer-note{
+    max-width:none;
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,.15);
+  }
+}

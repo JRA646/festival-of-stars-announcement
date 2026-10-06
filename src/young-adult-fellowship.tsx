@@ -4,7 +4,6 @@ import {
   BookOpen,
   CalendarDays,
   Check,
-  Clock3,
   Copy,
   Heart,
   HelpCircle,

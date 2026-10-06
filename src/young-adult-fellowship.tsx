@@ -87,7 +87,7 @@ export default function YoungAdultFellowship() {
 
       <section id="home" className="ya-hero">
         <div className="ya-hero-image" aria-hidden="true">
-          <img src="/festival-assets/05_Worship_Crowd.png" alt="" />
+          <img src="/festival-assets/person_1.png" alt="" />
         </div>
         <div className="ya-hero-overlay" />
 

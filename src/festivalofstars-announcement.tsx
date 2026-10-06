@@ -53,6 +53,8 @@ export default function FestivalOfStarsAnnouncement() {
     seconds: 0,
   });
   const [openFaq, setOpenFaq] = useState(0);
+  const [selectedMore, setSelectedMore] = useState(0);
+  const [shareStatus, setShareStatus] = useState("");
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -77,10 +79,34 @@ export default function FestivalOfStarsAnnouncement() {
   const countdownDone =
     timeLeft.days + timeLeft.hours + timeLeft.minutes + timeLeft.seconds === 0;
 
+
+  const shareEvent = async () => {
+    const shareData = {
+      title: "Festival of Stars",
+      text: "Festival of Stars • October 18, 2026 • 3 PM • Villar Sipag",
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        setShareStatus("SHARED!");
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        setShareStatus("LINK COPIED!");
+      }
+    } catch {
+      setShareStatus("");
+    }
+
+    window.setTimeout(() => setShareStatus(""), 2200);
+  };
+
+
   return (
     <main className="foa-page">
       <header className="foa-nav">
-        <a className="foa-brand" href="/festivalofstars" aria-label="Back to Festival of Stars">
+        <a className="foa-brand" href="#home" aria-label="Festival of Stars home">
           <span className="foa-brand-logo">
             <img src="/images/app_logo.png" alt="" />
           </span>
@@ -90,9 +116,14 @@ export default function FestivalOfStarsAnnouncement() {
           </span>
         </a>
 
-        <a className="foa-nav-link" href="/festivalofstars">
-          Festival of Stars <ArrowRight size={16} />
-        </a>
+        <div className="foa-nav-actions">
+          <a className="foa-nav-link" href="#details">
+            EVENT DETAILS <ArrowRight size={16} />
+          </a>
+          <button className="foa-share-button" type="button" onClick={shareEvent}>
+            <MessageCircle size={16} /> SHARE
+          </button>
+        </div>
       </header>
 
       <section className="foa-hero">
@@ -128,7 +159,11 @@ export default function FestivalOfStarsAnnouncement() {
             <a className="foa-secondary" href="#details">
               EXPLORE THE EVENT
             </a>
+            <button className="foa-hero-share" type="button" onClick={shareEvent}>
+              <MessageCircle size={18} /> SHARE INVITE
+            </button>
           </div>
+          {shareStatus && <span className="foa-share-status">{shareStatus}</span>}
         </div>
 
         <div className="foa-hero-poster" aria-label="Festival of Stars themed poster">
@@ -200,37 +235,45 @@ export default function FestivalOfStarsAnnouncement() {
         </div>
 
         <div className="foa-more-grid">
-          <article className="foa-more-card more-red">
-            <span className="foa-more-number">01</span>
-            <span className="foa-more-icon"><Star /></span>
-            <h3>CELEBRATE TALENT</h3>
-            <p>Recognize the gifts and abilities God has placed in our First Love community.</p>
-            <b>GIFTED TO SHINE ✦</b>
-          </article>
+          {[
+            ["CELEBRATE TALENT", "Recognize the gifts and abilities God has placed in our First Love community.", "GIFTED TO SHINE ✦", Star, "more-red"],
+            ["EXPRESS CREATIVITY", "Celebrate music, movement, storytelling, and creative expression as part of the program.", "CREATE WITH PURPOSE ✦", Sparkles, "more-yellow"],
+            ["BUILD FELLOWSHIP", "Bring people together, strengthen friendships, and create memories as one church family.", "PEOPLE OVER PERFECTION ✦", Users, "more-blue"],
+            ["LIVE IN UNITY", "Celebrate different stories, different gifts, and one shared identity in Christ.", "ONE COMMUNITY. ONE PURPOSE. ✦", Heart, "more-white"],
+          ].map(([title, text, footer, Icon, theme], index) => {
+            const active = selectedMore === index;
+            const MoreIcon = Icon as typeof Star;
+            return (
+              <button
+                key={String(title)}
+                type="button"
+                className={`foa-more-card ${String(theme)} ${active ? "selected" : ""}`}
+                aria-pressed={active}
+                onClick={() => setSelectedMore(index)}
+              >
+                <span className="foa-more-number">0{index + 1}</span>
+                <span className="foa-more-icon"><MoreIcon /></span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <b>{footer}</b>
+              </button>
+            );
+          })}
+        </div>
 
-          <article className="foa-more-card more-yellow">
-            <span className="foa-more-number">02</span>
-            <span className="foa-more-icon"><Sparkles /></span>
-            <h3>EXPRESS CREATIVITY</h3>
-            <p>Celebrate music, movement, storytelling, and creative expression as part of the program.</p>
-            <b>CREATE WITH PURPOSE ✦</b>
-          </article>
-
-          <article className="foa-more-card more-blue">
-            <span className="foa-more-number">03</span>
-            <span className="foa-more-icon"><Users /></span>
-            <h3>BUILD FELLOWSHIP</h3>
-            <p>Bring people together, strengthen friendships, and create memories as one church family.</p>
-            <b>PEOPLE OVER PERFECTION ✦</b>
-          </article>
-
-          <article className="foa-more-card more-white">
-            <span className="foa-more-number">04</span>
-            <span className="foa-more-icon"><Heart /></span>
-            <h3>LIVE IN UNITY</h3>
-            <p>Celebrate different stories, different gifts, and one shared identity in Christ.</p>
-            <b>ONE COMMUNITY. ONE PURPOSE. ✦</b>
-          </article>
+        <div className="foa-more-selected" aria-live="polite">
+          <span>YOU SELECTED</span>
+          <strong>
+            {["TALENT", "CREATIVITY", "FELLOWSHIP", "UNITY"][selectedMore]}
+          </strong>
+          <p>
+            {[
+              "Your gifts are part of what makes the First Love Experience community special.",
+              "Your creativity gives the celebration its color, energy, and expression.",
+              "Fellowship turns a gathering into a community where people belong.",
+              "Unity brings different stories and gifts together around one shared celebration.",
+            ][selectedMore]}
+          </p>
         </div>
 
         <div className="foa-more-note">
@@ -345,7 +388,7 @@ export default function FestivalOfStarsAnnouncement() {
 
       <footer className="foa-footer">
         <span>FIRST LOVE CHURCH PHILIPPINES</span>
-        <a href="/festivalofstars">Back to Festival of Stars <ArrowRight size={15} /></a>
+        <a href="#home">Back to top <ArrowRight size={15} /></a>
       </footer>
     </main>
   );

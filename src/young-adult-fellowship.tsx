@@ -6,6 +6,7 @@ import {
   Check,
   Heart,
   MapPin,
+  Navigation,
   Menu,
   MessageCircle,
   Sparkles,
@@ -187,6 +188,15 @@ export default function YoungAdultFellowship() {
                 <b>WHERE</b>
                 <strong>Villar Sipag Events Place</strong>
                 <small>Las Piñas</small>
+                <a
+                  className="ya-directions"
+                  href="https://www.google.com/maps/dir/?api=1&destination=14.47395,120.98124"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Get directions to Villar Sipag Events Place"
+                >
+                  <Navigation size={13} /> GET DIRECTIONS
+                </a>
               </span>
             </div>
           </div>

@@ -300,9 +300,11 @@ button,input,select,textarea{font:inherit}a{color:inherit}img{max-width:100%}
 
 .fy-hero-bg{
   background-image:
-    linear-gradient(90deg,rgba(2,11,18,.96) 0%,rgba(2,11,18,.78) 42%,rgba(2,11,18,.34) 73%,rgba(2,11,18,.48) 100%),
-    url("/festival-assets/festival-moodboard.jpg");
-  filter:saturate(1.3) contrast(1.08);
+    linear-gradient(90deg,rgba(2,11,18,.90) 0%,rgba(2,11,18,.72) 42%,rgba(2,11,18,.28) 73%,rgba(2,11,18,.42) 100%),
+    url("/images/neon-star-festival-crowd.webp");
+  background-size:cover;
+  background-position:center;
+  filter:saturate(1.2) contrast(1.06);
 }
 
 .fy-hero-copy{

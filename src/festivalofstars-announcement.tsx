@@ -347,6 +347,11 @@ export default function FestivalOfStarsAnnouncement() {
       )}`
     : "#";
   const calendarUrl = festival ? buildCalendarUrl(festival) : "#";
+  const mapEmbedUrl = festival
+    ? `https://www.google.com/maps?q=${encodeURIComponent(
+        `${festival.event.location || "Villar Sipag"}, Las Piñas, Philippines`,
+      )}&output=embed`
+    : "";
   const countdownDone =
     timeLeft.days + timeLeft.hours + timeLeft.minutes + timeLeft.seconds === 0;
 
@@ -816,6 +821,23 @@ export default function FestivalOfStarsAnnouncement() {
                 <span key={item}><Check size={15} /> {item}</span>
               ))}
             </div>
+          </div>
+
+          <div className="foa-map-card">
+            <div className="foa-map-info">
+              <span>FIND YOUR WAY</span>
+              <h3>SEE YOU<br /><em>AT VILLAR SIPAG.</em></h3>
+              <p>Use the map preview to check the venue before you head out.</p>
+              <a className="foa-map-link" href={mapUrl} target="_blank" rel="noreferrer">
+                OPEN IN GOOGLE MAPS <ArrowRight size={16} />
+              </a>
+            </div>
+            <iframe
+              title={`Map to ${festival.event.location || "Villar Sipag"}`}
+              src={mapEmbedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
 

@@ -117,6 +117,7 @@ export default function FestivalOfStarsYouth() {
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [clock, setClock] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [progress, setProgress] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [heroStyle, setHeroStyle] = useState<CSSProperties>({});
   const trackedPageView = useRef(false);
   const reveal = useScrollReveal();
@@ -261,11 +262,14 @@ export default function FestivalOfStarsYouth() {
       <a className="fy-brand" href="#home" aria-label="First Love Church home">
         <span className="brand-logo-wrap"><img className="brand-logo" src="/images/first-love-heart-logo.svg" alt="" aria-hidden="true" /></span><span>First Love<small>CHURCH</small></span>
       </a>
-      <div className="fy-links">
+      <div className={`fy-links ${mobileMenuOpen ? "open" : ""}`}>
         {[["home","Home"],["about","About"],["details","Details"],["talent","Talent"],["vibe","Vibe"],["faq","FAQ"]].map(([id,label]) =>
-          <a key={id} href={`#${id}`} className={activeNav === id ? "active" : ""}>{label}</a>
+          <a key={id} href={`#${id}`} className={activeNav === id ? "active" : ""} onClick={() => setMobileMenuOpen(false)}>{label}</a>
         )}
       </div>
+      <button className="fy-menu" type="button" aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((v) => !v)}>
+        {mobileMenuOpen ? <X size={20}/> : <Menu size={20}/>}
+      </button>
       <div className="fy-actions">
         <button className="fy-icon" onClick={() => { sound.toggle(); track(festival.event.id, "sound_toggle", { enabled: !sound.enabled }); }} aria-label={sound.enabled ? "Turn sound off" : "Turn sound on"}>
           {sound.enabled ? <Volume2 size={17} /> : <VolumeX size={17} />}

@@ -220,3 +220,652 @@ button,input,select,textarea{font:inherit}a{color:inherit}img{max-width:100%}
   .hero-image-bottom>img{object-position:88% 23% !important}
   .group-photo>img{object-position:34% 55% !important}
 }
+
+
+/* =========================================================
+   MAXIMALIST YOUTH FESTIVAL LAYER
+   Dense collage, stickers, loud type, layered frames.
+   ========================================================= */
+
+:root{
+  --max-pink:#ff3f9f;
+  --max-yellow:#ffd21f;
+  --max-cyan:#22e6df;
+  --max-orange:#ff704d;
+  --max-lime:#d9ff43;
+  --max-purple:#9c7bff;
+  --max-black:#020b12;
+  --max-cream:#fff4df;
+}
+
+.fos-youth{
+  background:
+    radial-gradient(circle at 8% 4%,rgba(255,63,159,.10),transparent 18%),
+    radial-gradient(circle at 92% 18%,rgba(34,230,223,.10),transparent 20%),
+    var(--fy-paper);
+}
+
+/* Sticky nav becomes a branded control bar. */
+.fy-nav{
+  border-bottom:3px solid var(--max-yellow);
+  box-shadow:0 7px 0 rgba(0,0,0,.16);
+}
+.fy-brand{
+  position:relative;
+}
+.fy-brand::after{
+  content:"★ LIVE • LOUD • TOGETHER";
+  position:absolute;
+  left:44px;
+  top:51px;
+  width:max-content;
+  padding:3px 7px;
+  background:var(--max-pink);
+  color:#fff;
+  font:900 7px/1 "DM Sans",sans-serif;
+  letter-spacing:.12em;
+  transform:rotate(-3deg);
+  box-shadow:3px 4px 0 #000;
+}
+
+.fy-hero{
+  min-height:930px;
+  background:#04111b;
+}
+
+/* Turn the hero into a layered poster wall. */
+.fy-hero::before,
+.fy-hero::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+}
+.fy-hero::before{
+  inset:24px;
+  border:2px solid rgba(255,255,255,.16);
+  transform:rotate(-.6deg);
+}
+.fy-hero::after{
+  width:320px;
+  height:120px;
+  left:-50px;
+  bottom:135px;
+  background:var(--max-orange);
+  transform:rotate(10deg);
+  mix-blend-mode:screen;
+  opacity:.72;
+  clip-path:polygon(0 8%,93% 0,100% 58%,6% 100%);
+}
+
+.fy-hero-bg{
+  background-image:
+    linear-gradient(90deg,rgba(2,11,18,.96) 0%,rgba(2,11,18,.78) 42%,rgba(2,11,18,.34) 73%,rgba(2,11,18,.48) 100%),
+    url("/festival-assets/festival-moodboard.jpg");
+  filter:saturate(1.3) contrast(1.08);
+}
+
+.fy-hero-copy{
+  max-width:690px;
+}
+.fy-hero-copy h1{
+  font-size:clamp(96px,10vw,166px);
+  letter-spacing:-.015em;
+  text-shadow:
+    8px 9px 0 #000,
+    -2px -2px 0 rgba(255,255,255,.08);
+}
+.fy-hero-copy h1 span{
+  display:inline-block;
+  transform:rotate(-3deg);
+}
+.fy-hero-copy h1 strong{
+  display:inline-block;
+  padding:0 16px 7px 10px;
+  transform:rotate(2deg);
+  background:var(--max-yellow);
+  color:var(--max-black);
+  box-shadow:10px 12px 0 #000;
+}
+.fy-tagline{
+  margin-left:8px;
+  transform:rotate(-2deg);
+  border:3px solid #000;
+}
+.fy-description{
+  padding-left:15px;
+  border-left:6px solid var(--max-pink);
+}
+
+.fy-hero-buttons .fy-register{
+  transform:rotate(-1deg);
+}
+.fy-hero-buttons .fy-outline{
+  transform:rotate(1deg);
+  border-width:2px;
+}
+
+.fy-countdown{
+  position:relative;
+}
+.fy-countdown::before{
+  content:"TICK • TICK • TICK";
+  position:absolute;
+  left:2px;
+  top:-22px;
+  color:var(--max-cyan);
+  font:900 8px/1 "DM Sans",sans-serif;
+  letter-spacing:.28em;
+}
+.count-box{
+  border:2px solid rgba(255,255,255,.62);
+  border-radius:4px;
+  box-shadow:5px 5px 0 rgba(0,0,0,.65);
+}
+.count-box:nth-child(1){background:rgba(255,63,159,.18);transform:rotate(-2deg)}
+.count-box:nth-child(2){background:rgba(34,230,223,.15);transform:rotate(2deg)}
+.count-box:nth-child(3){background:rgba(255,210,31,.15);transform:rotate(-1deg)}
+.count-box:nth-child(4){background:rgba(156,123,255,.16);transform:rotate(2deg)}
+
+.fy-hero-visual{
+  min-height:620px;
+}
+.hero-image-main,
+.hero-image-side,
+.hero-image-bottom{
+  border:7px solid #fff;
+  box-shadow:12px 14px 0 rgba(0,0,0,.58),0 22px 46px rgba(0,0,0,.28);
+}
+.hero-image-main{
+  transform:rotate(-2deg);
+}
+.hero-image-side{
+  transform:rotate(4deg);
+}
+.hero-image-bottom{
+  transform:rotate(-3deg);
+}
+.hero-image-main::before,
+.hero-image-side::before,
+.hero-image-bottom::before{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:2px solid rgba(255,255,255,.55);
+  z-index:2;
+  pointer-events:none;
+}
+.hero-image-main::after{
+  content:"STAGE ENERGY";
+  position:absolute;
+  right:-15px;
+  top:18px;
+  padding:7px 10px;
+  background:var(--max-pink);
+  color:#fff;
+  border:3px solid #000;
+  font:900 10px/1 "DM Sans",sans-serif;
+  letter-spacing:.08em;
+  transform:rotate(9deg);
+  z-index:4;
+  box-shadow:4px 5px 0 #000;
+}
+
+.floating-note{
+  border:3px solid #000;
+}
+.note-shine{
+  background:var(--max-cyan);
+  transform:rotate(6deg);
+}
+.note-create{
+  background:#fff;
+  transform:rotate(-6deg);
+}
+
+.fy-event-chip{
+  border:4px solid #000;
+  box-shadow:9px 10px 0 #000;
+  transform:translateX(-50%) rotate(-1deg);
+}
+.fy-event-chip svg{color:var(--max-pink)}
+
+.fy-strip{
+  max-width:none;
+  border-top:3px solid #000;
+  border-bottom:3px solid #000;
+  box-shadow:0 6px 0 #000;
+}
+.strip-item{
+  position:relative;
+}
+.strip-item:nth-child(1){background:linear-gradient(90deg,#ff9bd0,transparent)}
+.strip-item:nth-child(2){background:linear-gradient(90deg,#c4b4ff,transparent)}
+.strip-item:nth-child(3){background:linear-gradient(90deg,#9cf6f2,transparent)}
+.strip-item:nth-child(4){background:linear-gradient(90deg,#ffe77c,transparent)}
+.strip-icon{
+  border:3px solid #000;
+  box-shadow:4px 4px 0 #000;
+}
+.strip-item:nth-child(odd) .strip-icon{transform:rotate(-5deg)}
+.strip-item:nth-child(even) .strip-icon{transform:rotate(5deg)}
+
+.fy-marquee{
+  height:48px;
+  display:flex;
+  align-items:center;
+  border-top:3px solid #000;
+  border-bottom:3px solid #000;
+  background:var(--max-yellow);
+  transform:rotate(-.7deg) scaleX(1.015);
+  box-shadow:0 6px 0 #000;
+}
+.fy-marquee>div{
+  color:#000;
+  text-shadow:2px 2px 0 rgba(255,255,255,.7);
+}
+
+.fy-section{
+  position:relative;
+}
+.fy-section::before{
+  content:"✦";
+  position:absolute;
+  right:22px;
+  top:30px;
+  color:var(--max-pink);
+  font:400 58px/1 "Bangers",cursive;
+  transform:rotate(12deg);
+  text-shadow:4px 5px 0 #000;
+  animation:doodleFloat 4.6s ease-in-out infinite;
+}
+
+.fy-about{
+  padding-top:110px;
+  padding-bottom:105px;
+}
+.fy-about::after{
+  content:"BE YOU.";
+  position:absolute;
+  left:-20px;
+  bottom:70px;
+  padding:7px 14px;
+  background:var(--max-cyan);
+  border:3px solid #000;
+  box-shadow:6px 7px 0 #000;
+  font:400 24px/1 "Permanent Marker",cursive;
+  transform:rotate(-7deg);
+}
+.fy-about h2,
+.fy-experience h2,
+.fy-talent h2,
+.fy-vibe h2,
+.fy-faq h2,
+.fy-event h2,
+.fy-visit h2{
+  text-shadow:5px 6px 0 rgba(0,0,0,.10);
+}
+.fy-about h2::selection,
+.fy-experience h2::selection{background:var(--max-pink);color:#fff}
+
+.about-art{
+  min-height:470px;
+}
+.group-photo{
+  transform:rotate(2.5deg);
+  border:8px solid #fff;
+  box-shadow:10px 12px 0 #000,0 22px 40px rgba(0,0,0,.16);
+}
+.hand-note{
+  border:3px solid #000;
+  box-shadow:9px 10px 0 #000;
+}
+.about-doodle{
+  text-shadow:3px 4px 0 #000;
+}
+
+.fy-experience{
+  position:relative;
+  padding-top:110px;
+  padding-bottom:110px;
+}
+.fy-experience::before{
+  content:"WORSHIP • CONNECT • CREATE •";
+  position:absolute;
+  right:-45px;
+  top:88px;
+  padding:8px 15px;
+  background:var(--max-pink);
+  color:#fff;
+  border:3px solid #000;
+  transform:rotate(90deg);
+  transform-origin:center;
+  font:900 10px/1 "DM Sans",sans-serif;
+  letter-spacing:.2em;
+  box-shadow:5px 6px 0 #000;
+}
+.experience-grid{
+  gap:18px;
+}
+.experience-card{
+  min-height:320px;
+  border:3px solid #000;
+  border-radius:8px;
+  box-shadow:9px 10px 0 rgba(0,0,0,.5);
+}
+.experience-card:nth-child(1){transform:rotate(-1.6deg)}
+.experience-card:nth-child(2){transform:rotate(1deg);margin-top:-10px}
+.experience-card:nth-child(3){transform:rotate(-.6deg);margin-top:7px}
+.experience-card:nth-child(4){transform:rotate(1.7deg)}
+.experience-card:hover{
+  transform:translateY(-12px) rotate(0deg) scale(1.015);
+  z-index:4;
+}
+.experience-photo{
+  height:140px;
+  border-bottom:3px solid #000;
+}
+.experience-card>svg{
+  width:40px;
+  height:40px;
+  padding:6px;
+  background:#fff;
+  border:3px solid #000;
+  border-radius:50%;
+  box-shadow:4px 4px 0 #000;
+  margin-top:4px;
+}
+.experience-card h3{
+  font-size:35px;
+}
+.experience-card p{
+  font-size:14px;
+}
+
+.fy-talent{
+  padding-top:104px;
+  padding-bottom:108px;
+}
+.fy-talent::before{
+  content:"YOUR MOMENT";
+  right:-6px;
+  top:25px;
+  color:var(--max-orange);
+}
+.talent-cards{
+  gap:18px;
+}
+.talent-image-card{
+  min-height:390px;
+  border:4px solid #fff;
+  box-shadow:10px 12px 0 #000;
+  border-radius:6px;
+}
+.talent-image-card:nth-child(1){transform:rotate(-1.5deg)}
+.talent-image-card:nth-child(2){transform:rotate(1.7deg);margin-top:-12px}
+.talent-image-card:nth-child(3){transform:rotate(-1deg);margin-top:6px}
+.talent-image-card:hover,
+.talent-image-card.selected{
+  transform:translateY(-12px) rotate(0deg) scale(1.018);
+  box-shadow:14px 17px 0 #000;
+}
+.talent-icon{
+  border:3px solid #000;
+  box-shadow:4px 4px 0 #000;
+}
+.talent-number{
+  text-shadow:4px 5px 0 #000;
+}
+.talent-detail{
+  border:3px solid #000;
+  border-left-width:12px;
+  box-shadow:8px 9px 0 #000;
+}
+.talent-detail a{
+  border:3px solid #000;
+  box-shadow:4px 5px 0 #000;
+}
+.talent-detail a:hover{
+  transform:translate(-2px,-2px);
+}
+
+.fy-vibe{
+  padding-top:100px;
+  padding-bottom:105px;
+}
+.fy-vibe::after{
+  content:"PEOPLE > PERFECT";
+  position:absolute;
+  left:-25px;
+  bottom:25px;
+  padding:8px 12px;
+  background:var(--max-yellow);
+  border:3px solid #000;
+  box-shadow:5px 6px 0 #000;
+  font:900 9px/1 "DM Sans",sans-serif;
+  transform:rotate(-7deg);
+}
+.gallery-track{
+  gap:16px;
+}
+.gallery-card{
+  height:275px;
+  border:4px solid #fff;
+  border-radius:7px;
+  box-shadow:9px 11px 0 #000;
+}
+.gallery-card:nth-child(1){transform:rotate(-2deg)}
+.gallery-card:nth-child(2){transform:rotate(1.5deg);margin-top:-10px}
+.gallery-card:nth-child(3){transform:rotate(2.5deg);margin-top:5px}
+.gallery-card:hover{
+  transform:translateY(-10px) rotate(0deg) scale(1.02);
+  z-index:4;
+}
+
+.fy-event{
+  position:relative;
+}
+.event-photo{
+  border:7px solid #fff;
+  box-shadow:10px 12px 0 #000;
+  transform:rotate(-1.2deg);
+}
+.event-details{
+  border:4px solid #000;
+  box-shadow:9px 10px 0 #000;
+  transform:rotate(1.1deg);
+}
+.event-details h2{
+  text-shadow:4px 5px 0 rgba(0,0,0,.12);
+}
+.event-buttons .fy-register{
+  border:3px solid #000;
+}
+.dark-outline{
+  border-width:3px;
+  box-shadow:4px 4px 0 #000;
+}
+
+.fy-faq{
+  padding-top:100px;
+  padding-bottom:100px;
+}
+.faq-human{
+  border:7px solid #fff;
+  box-shadow:11px 12px 0 #000;
+  transform:rotate(2deg);
+}
+.faq-bubbles{
+  border:3px solid #000;
+  box-shadow:7px 8px 0 #000;
+  transform:rotate(-4deg);
+}
+
+.fy-visit{
+  position:relative;
+  padding-top:100px;
+  padding-bottom:100px;
+}
+.visit-grid{
+  gap:18px;
+}
+.visit-card{
+  border:3px solid #000;
+  box-shadow:7px 8px 0 #000;
+  border-radius:7px;
+}
+.visit-card:nth-child(1){transform:rotate(-1deg)}
+.visit-card:nth-child(2){transform:rotate(1.2deg);margin-top:-8px}
+.visit-card:nth-child(3){transform:rotate(-1.6deg);margin-top:5px}
+
+.fy-final{
+  min-height:500px;
+  border-top:5px solid #000;
+  border-bottom:5px solid #000;
+}
+.fy-final::before{
+  content:"★ SHINE ★";
+  position:absolute;
+  left:-40px;
+  top:40px;
+  padding:10px 18px;
+  background:var(--max-pink);
+  color:#fff;
+  border:3px solid #000;
+  transform:rotate(-7deg);
+  font:400 22px/1 "Bangers",cursive;
+  box-shadow:5px 6px 0 #000;
+  z-index:4;
+}
+.final-copy h2{
+  text-shadow:7px 8px 0 #000;
+}
+.final-button{
+  border:4px solid #000;
+  box-shadow:8px 10px 0 #000;
+}
+
+.fy-footer{
+  border-top:4px solid #000;
+}
+.footer-social button,
+.footer-social a{
+  border:2px solid #fff;
+  box-shadow:3px 3px 0 var(--max-pink);
+}
+
+/* More movement: layered entrance and hover energy without fading content. */
+@keyframes maxReveal{
+  0%{opacity:0;transform:translateY(28px) rotate(-1deg)}
+  100%{opacity:1;transform:translateY(0) rotate(0)}
+}
+[data-reveal].is-visible .experience-card,
+[data-reveal].is-visible .talent-image-card,
+[data-reveal].is-visible .gallery-card,
+[data-reveal].is-visible .visit-card{
+  animation:maxReveal .65s cubic-bezier(.2,.8,.2,1) both;
+}
+[data-reveal].is-visible .experience-card:nth-child(2),
+[data-reveal].is-visible .talent-image-card:nth-child(2),
+[data-reveal].is-visible .gallery-card:nth-child(2),
+[data-reveal].is-visible .visit-card:nth-child(2){animation-delay:.08s}
+[data-reveal].is-visible .experience-card:nth-child(3),
+[data-reveal].is-visible .talent-image-card:nth-child(3),
+[data-reveal].is-visible .gallery-card:nth-child(3),
+[data-reveal].is-visible .visit-card:nth-child(3){animation-delay:.16s}
+[data-reveal].is-visible .experience-card:nth-child(4){animation-delay:.24s}
+
+/* Keep actual raster images visually dominant inside frames. */
+.hero-image-main>img,
+.hero-image-side>img,
+.hero-image-bottom>img,
+.group-photo>img,
+.experience-photo>img,
+.talent-photo>img,
+.gallery-card>img,
+.event-photo>img,
+.faq-human>img,
+.final-backdrop>img{
+  filter:saturate(1.18) contrast(1.04);
+}
+
+/* Mobile maximalism: stack posters instead of shrinking everything into tiny cards. */
+@media(max-width:850px){
+  .fy-brand::after{display:none}
+  .fy-hero{
+    min-height:1180px;
+  }
+  .fy-hero-copy h1{
+    font-size:clamp(82px,17vw,135px);
+  }
+  .fy-hero-copy h1 strong{
+    padding-right:10px;
+    box-shadow:7px 8px 0 #000;
+  }
+  .fy-hero-visual{
+    min-height:520px;
+  }
+  .experience-card:nth-child(2),
+  .experience-card:nth-child(3),
+  .experience-card:nth-child(4),
+  .talent-image-card:nth-child(2),
+  .talent-image-card:nth-child(3),
+  .gallery-card:nth-child(2),
+  .gallery-card:nth-child(3){
+    margin-top:0;
+  }
+  .fy-experience::before{display:none}
+  .fy-event{margin-top:35px}
+  .fy-event .event-photo{transform:rotate(0)}
+  .fy-event .event-details{transform:rotate(0)}
+}
+
+@media(max-width:560px){
+  .fy-hero{
+    min-height:1200px;
+  }
+  .fy-hero::before{
+    inset:10px;
+  }
+  .fy-hero-copy h1{
+    font-size:76px;
+  }
+  .fy-event-chip{
+    box-shadow:6px 7px 0 #000;
+    transform:rotate(-.7deg);
+  }
+  .fy-strip{
+    box-shadow:0 4px 0 #000;
+  }
+  .fy-section::before{
+    font-size:43px;
+    right:10px;
+    top:18px;
+  }
+  .fy-about::after,
+  .fy-vibe::after,
+  .fy-final::before{
+    font-size:18px;
+  }
+  .experience-card,
+  .talent-image-card,
+  .gallery-card,
+  .visit-card{
+    transform:none !important;
+  }
+  .experience-card:hover,
+  .talent-image-card:hover,
+  .talent-image-card.selected,
+  .gallery-card:hover{
+    transform:translateY(-7px) !important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  [data-reveal].is-visible .experience-card,
+  [data-reveal].is-visible .talent-image-card,
+  [data-reveal].is-visible .gallery-card,
+  [data-reveal].is-visible .visit-card{
+    animation:none !important;
+  }
+}

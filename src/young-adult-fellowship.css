@@ -111,3 +111,222 @@ button{font:inherit}
   .ya-footer{flex-direction:column;align-items:flex-start;gap:11px;padding:22px 15px}.ya-footer-note{order:3}.ya-footer a{padding:7px 0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+
+/* VISION REFERENCE LAYOUT */
+.ya-vision{
+  position:relative;
+  width:min(1536px,calc(100% - 106px));
+  margin:0 auto;
+  padding:70px 0 72px;
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(430px,.82fr);
+  gap:74px;
+  align-items:center;
+  background:var(--ya-paper-2);
+  overflow:hidden;
+}
+.ya-vision-paper{
+  position:relative;
+  min-height:460px;
+  display:flex;
+  align-items:center;
+  padding:40px 35px 42px 285px;
+}
+.ya-vision-paper:before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:30px auto 36px 0;
+  width:92%;
+  background:var(--ya-yellow);
+  transform:rotate(-1.2deg);
+  clip-path:polygon(
+    0 8%, 10% 12%, 20% 6%, 31% 11%, 41% 4%, 54% 10%,
+    65% 5%, 77% 10%, 90% 5%, 100% 9%,
+    98% 92%, 89% 96%, 77% 91%, 65% 97%, 53% 92%,
+    41% 97%, 29% 92%, 17% 96%, 7% 91%, 0 95%
+  );
+}
+.ya-vision-badge{
+  position:absolute;
+  z-index:3;
+  left:126px;
+  top:50%;
+  width:98px;
+  height:98px;
+  display:grid;
+  place-items:center;
+  border:5px solid var(--ya-ink);
+  border-radius:50%;
+  background:var(--ya-orange);
+  color:var(--ya-ink);
+  font:400 30px "Caveat Brush",cursive;
+  transform:translateY(-50%) rotate(-8deg);
+  box-shadow:9px 10px 0 rgba(0,0,0,.12);
+}
+.ya-vision-copy{
+  position:relative;
+  z-index:2;
+  max-width:610px;
+}
+.ya-vision-copy .ya-mini-label{
+  color:#4a6367;
+}
+.ya-vision-copy h2{
+  margin:13px 0 24px;
+  font:400 clamp(60px,5.7vw,88px)/.79 "Caveat Brush",cursive;
+  text-transform:uppercase;
+  letter-spacing:-.02em;
+}
+.ya-vision-copy h2 em{
+  font-style:normal;
+  color:var(--ya-teal);
+}
+.ya-vision-copy p{
+  max-width:620px;
+  margin:0;
+  color:#435c60;
+  font-size:17px;
+  line-height:1.72;
+}
+.ya-vision-points{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:560px;
+  justify-self:center;
+  padding:28px 30px;
+  background:#071719;
+  color:#fff;
+  transform:rotate(1.5deg);
+  box-shadow:11px 13px 0 rgba(0,0,0,.18);
+}
+.ya-vision-points span{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:62px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.055em;
+  line-height:1.35;
+}
+.ya-vision-points span:last-child{
+  border-bottom:0;
+}
+.ya-vision-points svg{
+  color:var(--ya-orange);
+  flex:0 0 auto;
+}
+
+@media(max-width:1120px){
+  .ya-vision{
+    width:min(100% - 56px,1320px);
+    grid-template-columns:1fr .9fr;
+    gap:38px;
+    padding:58px 0 62px;
+  }
+  .ya-vision-paper{
+    min-height:430px;
+    padding-left:210px;
+  }
+  .ya-vision-badge{
+    left:80px;
+    width:86px;
+    height:86px;
+    font-size:27px;
+  }
+  .ya-vision-copy h2{
+    font-size:clamp(56px,6.4vw,78px);
+  }
+}
+
+@media(max-width:900px){
+  .ya-vision{
+    width:calc(100% - 36px);
+    grid-template-columns:1fr;
+    gap:38px;
+    padding:46px 0 54px;
+  }
+  .ya-vision-paper{
+    min-height:500px;
+    padding:150px 28px 45px;
+    align-items:flex-end;
+  }
+  .ya-vision-paper:before{
+    inset:28px 0 26px 0;
+    width:100%;
+  }
+  .ya-vision-badge{
+    left:28px;
+    top:36px;
+    width:78px;
+    height:78px;
+    font-size:25px;
+  }
+  .ya-vision-copy{
+    max-width:690px;
+    margin:0 auto;
+  }
+  .ya-vision-copy h2{
+    font-size:clamp(54px,9vw,76px);
+  }
+  .ya-vision-copy p{
+    font-size:16px;
+  }
+  .ya-vision-points{
+    max-width:690px;
+    width:calc(100% - 28px);
+    justify-self:center;
+    transform:rotate(0.8deg);
+  }
+}
+
+@media(max-width:600px){
+  .ya-vision{
+    width:calc(100% - 24px);
+    padding:28px 0 36px;
+    gap:25px;
+  }
+  .ya-vision-paper{
+    min-height:520px;
+    padding:132px 22px 36px;
+  }
+  .ya-vision-paper:before{
+    inset:22px 0 20px 0;
+  }
+  .ya-vision-badge{
+    left:22px;
+    top:28px;
+    width:70px;
+    height:70px;
+    border-width:4px;
+    font-size:22px;
+  }
+  .ya-vision-copy .ya-mini-label{
+    font-size:8px;
+    letter-spacing:.24em;
+  }
+  .ya-vision-copy h2{
+    font-size:53px;
+    line-height:.82;
+    margin:10px 0 20px;
+  }
+  .ya-vision-copy p{
+    font-size:14px;
+    line-height:1.62;
+  }
+  .ya-vision-points{
+    width:calc(100% - 20px);
+    padding:18px 20px;
+  }
+  .ya-vision-points span{
+    min-height:54px;
+    font-size:8px;
+    gap:9px;
+  }
+}

@@ -319,7 +319,9 @@ export default function FestivalOfStarsYouth() {
           <img src="/festival-assets/01_Singer_Male_1.png" alt="AI-style young singer performing at Festival of Stars" loading="eager" />
           
         </div>
-        <div className="hero-image-side hero-back-photo hero-back-female" role="img" aria-label="Female worship image from Festival of Stars sample artwork" />
+        <div className="hero-image-side hero-back-photo hero-back-female" role="img" aria-label="Female worship image from Festival of Stars sample artwork">
+          <img src="/festival-assets/person_1.png" alt="AI-style young singer performing at Festival of Stars" loading="eager" />
+        </div>
         <div className="hero-image-bottom hero-back-photo hero-back-guitar" role="img" aria-label="Guitarist image from Festival of Stars sample artwork" />
         <div className="floating-note note-shine">SHINE<br /><em>YOUR WAY</em></div>
         <div className="floating-note note-create">CREATE<br /><em>TOGETHER</em></div>

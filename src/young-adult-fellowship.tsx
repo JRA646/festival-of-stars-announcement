@@ -176,8 +176,8 @@ export default function YoungAdultFellowship() {
               <span className="ya-detail-icon"><CalendarDays size={24} /></span>
               <span>
                 <b>WHEN</b>
-                <strong>Every Saturday</strong>
-                <small>4:00 PM – 6:00 PM</small>
+                <strong>October 11, 2026</strong>
+                <small>1:00 PM</small>
               </span>
             </div>
             <div className="ya-detail-divider" />
@@ -185,8 +185,8 @@ export default function YoungAdultFellowship() {
               <span className="ya-detail-icon"><MapPin size={24} /></span>
               <span>
                 <b>WHERE</b>
-                <strong>First Love Church</strong>
-                <small>Youth Hall</small>
+                <strong>Villar Sipag Events Place</strong>
+                <small>Las Piñas</small>
               </span>
             </div>
           </div>

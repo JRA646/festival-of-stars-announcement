@@ -330,3 +330,645 @@ button{font:inherit}
     gap:9px;
   }
 }
+
+/* MOBILE RESPONSIVE POLISH */
+@media(max-width:900px){
+  .ya-site{width:100%;overflow-x:hidden}
+  .ya-nav{
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .ya-hero{
+    min-height:900px;
+    padding:42px 18px 118px;
+  }
+  .ya-hero-content{
+    width:100%;
+    max-width:100%;
+    margin:0;
+  }
+  .ya-hero h1{
+    max-width:100%;
+    font-size:clamp(58px,12vw,82px);
+    line-height:.82;
+  }
+  .ya-hero-lead{
+    max-width:100%;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .ya-hero-actions{
+    width:100%;
+    align-items:stretch;
+  }
+  .ya-brush-button{
+    max-width:100%;
+    text-align:center;
+  }
+  .ya-outline-button{
+    justify-content:center;
+  }
+  .ya-hero-collage{
+    width:min(520px,94vw);
+    max-width:94vw;
+    height:min(450px,105vw);
+    right:50%;
+    top:auto;
+    bottom:58px;
+    transform:translateX(50%);
+  }
+  .ya-hero-bottom-edge{
+    left:18px;
+    bottom:21px;
+    max-width:calc(100% - 36px);
+    font-size:14px;
+  }
+
+  .ya-countdown-section{
+    width:calc(100% - 24px);
+    max-width:none;
+    margin:0 12px;
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:24px 18px 26px;
+    transform:none;
+  }
+  .ya-countdown-intro h2{
+    font-size:clamp(34px,9vw,44px);
+  }
+  .ya-countdown{
+    width:100%;
+    justify-content:space-between;
+  }
+  .ya-countdown>div{
+    flex:1;
+    min-width:0;
+    padding:0 6px;
+  }
+  .ya-countdown strong{
+    font-size:clamp(31px,8vw,42px);
+  }
+  .ya-countdown-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .ya-countdown-actions a,
+  .ya-countdown-actions button{
+    min-height:42px;
+    justify-content:center;
+  }
+  .ya-share-toast{
+    grid-column:1 / -1;
+    text-align:left;
+  }
+
+  .ya-benefits-wrap{
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .ya-benefits-intro{
+    padding-left:4px;
+    padding-right:4px;
+    gap:16px;
+  }
+  .ya-mini-script{
+    font-size:17px;
+    text-align:right;
+  }
+  .ya-benefits{
+    width:100%;
+  }
+  .ya-benefit{
+    min-width:0;
+  }
+  .ya-benefit>span:last-child{
+    min-width:0;
+  }
+  .ya-benefit b,
+  .ya-benefit small{
+    overflow-wrap:anywhere;
+  }
+
+  .ya-event{
+    padding:34px 0;
+  }
+  .ya-event-inner{
+    width:calc(100% - 24px);
+    max-width:none;
+  }
+  .ya-event-details{
+    min-width:0;
+  }
+  .ya-detail{
+    min-width:0;
+  }
+  .ya-detail>span:last-child{
+    min-width:0;
+  }
+  .ya-detail strong,
+  .ya-detail small{
+    overflow-wrap:anywhere;
+  }
+  .ya-event-photo{
+    width:min(100%,340px);
+  }
+
+  .ya-expect{
+    padding:64px 18px 72px;
+  }
+  .ya-expect-head,
+  .ya-expect-head p{
+    max-width:100%;
+  }
+  .ya-expect-grid{
+    grid-template-columns:1fr;
+    gap:11px;
+  }
+  .ya-expect-card{
+    min-height:0;
+    padding:22px;
+  }
+
+  .ya-for-you{
+    padding:64px 18px;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  .ya-for-you-paper,
+  .ya-invite-card{
+    width:100%;
+    max-width:none;
+  }
+  .ya-for-you-paper{
+    padding:32px 24px 30px;
+  }
+  .ya-for-you-paper p,
+  .ya-invite-card p{
+    max-width:100%;
+  }
+  .ya-invite-actions{
+    width:100%;
+  }
+  .ya-invite-actions a,
+  .ya-invite-actions button{
+    flex:1 1 145px;
+    justify-content:center;
+  }
+
+  .ya-topics{
+    padding:64px 18px 74px;
+  }
+  .ya-topic-inner{
+    width:100%;
+    max-width:none;
+  }
+  .ya-topic-copy,
+  .ya-topic-paper{
+    min-width:0;
+  }
+  .ya-topic-cta{
+    width:100%;
+    min-width:0;
+  }
+  .ya-topic-paper{
+    width:min(100%,560px);
+    margin:0 auto;
+  }
+
+  .ya-community-band{
+    min-height:auto;
+    padding:64px 18px 70px;
+  }
+  .ya-community-copy{
+    max-width:100%;
+  }
+  .ya-community-cards{
+    flex-wrap:wrap;
+    max-width:100%;
+    justify-content:flex-start;
+  }
+
+  .ya-faq{
+    padding:64px 18px;
+  }
+  .ya-faq-head h2{
+    font-size:clamp(54px,13vw,70px);
+  }
+  .ya-faq-list{
+    min-width:0;
+  }
+  .ya-faq-list summary{
+    align-items:flex-start;
+  }
+  .ya-faq-list summary span{
+    min-width:0;
+    flex:1;
+  }
+
+  .ya-share-band{
+    padding:52px 18px;
+  }
+  .ya-share-band-actions{
+    width:100%;
+  }
+  .ya-share-band-actions button{
+    min-width:0;
+    flex:1 1 150px;
+  }
+
+  .ya-final{
+    min-height:440px;
+    padding:70px 18px;
+  }
+  .ya-final-message{
+    max-width:100%;
+  }
+}
+
+/* SMALL PHONES */
+@media(max-width:480px){
+  .ya-nav{
+    min-height:62px;
+    padding:0 12px;
+  }
+  .ya-brand{
+    gap:8px;
+    min-width:0;
+  }
+  .ya-brand-mark{
+    width:34px;
+    height:34px;
+  }
+  .ya-brand-name{
+    min-width:0;
+    font-size:14px;
+    letter-spacing:.08em;
+  }
+  .ya-brand-name small{
+    margin-top:4px;
+    font-size:5px;
+    letter-spacing:.24em;
+  }
+  .ya-links{
+    left:8px;
+    right:8px;
+    top:62px;
+  }
+
+  .ya-hero{
+    min-height:780px;
+    padding:34px 14px 100px;
+  }
+  .ya-stamp{
+    max-width:100%;
+    font-size:9px;
+    padding:7px 9px;
+    margin-bottom:15px;
+  }
+  .ya-kicker{
+    font-size:7px;
+    letter-spacing:.22em;
+  }
+  .ya-hero h1{
+    font-size:clamp(56px,16vw,68px);
+  }
+  .ya-hero-lead{
+    margin:17px 0 18px;
+    font-size:14px;
+  }
+  .ya-hero-actions{
+    flex-direction:column;
+    gap:8px;
+  }
+  .ya-brush-button,
+  .ya-outline-button{
+    width:100%;
+    justify-content:center;
+  }
+  .ya-brush-button{
+    font-size:19px;
+    padding:12px 18px 14px;
+  }
+  .ya-outline-button{
+    padding:11px 14px;
+    font-size:8px;
+  }
+  .ya-hero-tags{
+    gap:5px;
+    margin-top:14px;
+  }
+  .ya-hero-tags span{
+    font-size:6px;
+    padding:5px 7px;
+  }
+  .ya-hero-collage{
+    width:96vw;
+    max-width:96vw;
+    height:350px;
+    bottom:54px;
+  }
+  .ya-photo-card{
+    padding:6px;
+  }
+  .ya-photo-card span{
+    left:9px;
+    bottom:9px;
+    padding:5px 7px;
+    font-size:9px;
+  }
+  .ya-doodle-note{
+    font-size:9px;
+  }
+  .ya-note-one{
+    right:2%;
+  }
+  .ya-note-two{
+    left:2%;
+  }
+  .ya-star-doodle{
+    font-size:37px;
+  }
+  .ya-arrow-doodle{
+    font-size:47px;
+  }
+  .ya-hero-bottom-edge{
+    left:13px;
+    bottom:17px;
+    font-size:11px;
+  }
+  .edge-heart{
+    font-size:20px;
+  }
+
+  .ya-countdown-section{
+    width:calc(100% - 20px);
+    margin:0 10px;
+    padding:21px 14px 23px;
+  }
+  .ya-countdown-intro p{
+    font-size:11px;
+    line-height:1.45;
+  }
+  .ya-countdown{
+    gap:2px;
+  }
+  .ya-countdown>div{
+    padding:0 3px;
+  }
+  .ya-countdown strong{
+    font-size:30px;
+  }
+  .ya-countdown span{
+    font-size:7px;
+    letter-spacing:.1em;
+  }
+  .ya-countdown-actions{
+    grid-template-columns:1fr;
+  }
+
+  .ya-benefits-intro{
+    align-items:flex-start;
+    padding-top:16px;
+  }
+  .ya-mini-script{
+    font-size:15px;
+  }
+  .ya-benefit{
+    gap:12px;
+    padding:12px 0;
+  }
+  .ya-benefit-icon{
+    width:50px;
+    height:50px;
+  }
+  .ya-benefit b{
+    font-size:11px;
+  }
+  .ya-benefit small{
+    font-size:9px;
+    margin-top:4px;
+  }
+
+  .ya-event{
+    padding:28px 0;
+  }
+  .ya-event-inner{
+    width:calc(100% - 20px);
+    gap:20px;
+  }
+  .ya-detail{
+    align-items:flex-start;
+    gap:11px;
+  }
+  .ya-detail-icon{
+    width:46px;
+    height:46px;
+  }
+  .ya-detail b{
+    font-size:10px;
+  }
+  .ya-detail strong{
+    font-size:16px;
+  }
+  .ya-detail small{
+    font-size:12px;
+  }
+  .ya-event-photo{
+    height:205px;
+  }
+  .ya-event-note{
+    right:2px;
+    font-size:13px;
+  }
+
+  .ya-expect{
+    padding:54px 14px 64px;
+  }
+  .ya-expect h2{
+    font-size:clamp(52px,15vw,64px);
+  }
+  .ya-expect-head p{
+    font-size:15px;
+    line-height:1.58;
+  }
+  .ya-expect-card{
+    padding:20px;
+  }
+  .ya-expect-card h3{
+    margin-top:20px;
+    font-size:25px;
+  }
+  .ya-expect-card p{
+    font-size:12px;
+  }
+
+  .ya-for-you{
+    padding:56px 14px;
+    gap:28px;
+  }
+  .ya-for-you-paper{
+    padding:28px 21px 25px;
+  }
+  .ya-for-you-paper h2{
+    font-size:clamp(56px,15vw,70px);
+  }
+  .ya-invite-card{
+    padding:26px 21px;
+  }
+  .ya-invite-card h3{
+    font-size:54px;
+  }
+
+  .ya-topics{
+    padding:56px 14px 66px;
+  }
+  .ya-topic-scribble{
+    right:4%;
+    font-size:13px;
+  }
+  .ya-lightbulb{
+    margin-bottom:8px;
+  }
+  .ya-topic-copy h2{
+    font-size:clamp(54px,15vw,68px);
+  }
+  .ya-topic-copy>p:not(.ya-section-kicker):not(.ya-form-hint){
+    font-size:15px;
+    line-height:1.55;
+  }
+  .ya-topic-cta{
+    padding:15px 15px;
+    font-size:15px;
+  }
+  .ya-topic-paper{
+    padding:25px 20px;
+  }
+  .ya-paper-title{
+    font-size:20px;
+  }
+  .ya-topic-paper li{
+    font-size:13px;
+    gap:9px;
+  }
+  .ya-topic-chips button{
+    padding:7px 8px;
+  }
+
+  .ya-community-band{
+    padding:56px 14px 62px;
+  }
+  .ya-community-copy h2{
+    font-size:clamp(54px,15vw,68px);
+  }
+  .ya-community-copy p{
+    font-size:14px;
+    line-height:1.58;
+  }
+  .ya-community-cards{
+    gap:6px;
+    margin-top:30px;
+  }
+  .ya-community-cards span{
+    font-size:19px;
+    padding:14px 11px;
+  }
+
+  .ya-faq{
+    padding:56px 14px;
+  }
+  .ya-faq-list summary{
+    padding:14px 12px;
+    gap:8px;
+    font-size:12px;
+  }
+  .ya-faq-list details p{
+    padding:0 12px 15px 40px;
+    font-size:12px;
+  }
+
+  .ya-share-band{
+    padding:44px 14px;
+  }
+  .ya-share-band h2{
+    font-size:clamp(54px,15vw,68px);
+  }
+  .ya-share-band-actions{
+    width:100%;
+    flex-direction:column;
+  }
+  .ya-share-band-actions button{
+    width:100%;
+  }
+
+  .ya-final{
+    min-height:410px;
+    padding:62px 14px;
+  }
+  .ya-final-copy{
+    gap:34px;
+  }
+  .ya-final-script{
+    font-size:21px;
+  }
+  .ya-final-message{
+    font-size:14px;
+  }
+  .ya-see-you{
+    font-size:28px;
+    padding:17px 25px;
+  }
+
+  .ya-footer{
+    padding:20px 13px;
+    font-size:8px;
+  }
+
+  /* Vision card on small screens */
+  .ya-vision{
+    width:calc(100% - 20px);
+    padding:22px 0 28px;
+    gap:18px;
+  }
+  .ya-vision-paper{
+    min-height:470px;
+    padding:125px 18px 31px;
+  }
+  .ya-vision-paper:before{
+    inset:18px 0 17px 0;
+  }
+  .ya-vision-badge{
+    left:18px;
+    top:25px;
+    width:66px;
+    height:66px;
+    font-size:21px;
+  }
+  .ya-vision-copy h2{
+    font-size:49px;
+    margin:9px 0 17px;
+  }
+  .ya-vision-copy p{
+    font-size:14px;
+    line-height:1.58;
+  }
+  .ya-vision-points{
+    width:calc(100% - 10px);
+    padding:16px 17px;
+  }
+  .ya-vision-points span{
+    min-height:52px;
+    padding:9px 0;
+    font-size:8px;
+  }
+}
+
+@media(max-width:360px){
+  .ya-hero h1{font-size:53px}
+  .ya-hero-collage{height:320px}
+  .ya-countdown strong{font-size:27px}
+  .ya-vision-paper{min-height:455px}
+  .ya-vision-copy h2{font-size:45px}
+  .ya-vision-copy p{font-size:13px}
+  .ya-vision-points span{font-size:7px}
+}

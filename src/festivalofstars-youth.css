@@ -896,3 +896,549 @@ button,input,select,textarea{font:inherit}a{color:inherit}img{max-width:100%}
 .brand-logo{width:31px;height:24px;object-fit:contain;display:block}
 .fy-brand:hover .brand-logo{transform:scale(1.06);transition:transform .2s ease}
 @media(max-width:560px){.brand-logo-wrap{width:38px;height:38px}.brand-logo{width:28px;height:22px}}
+
+
+/* =========================================================
+   MOBILE-FIRST RESPONSIVE HARDENING
+   ========================================================= */
+
+html{scroll-padding-top:74px}
+body{overflow-x:hidden}
+.fos-youth{width:100%;overflow-x:clip}
+.fy-menu{display:none}
+
+/* Tablet / small laptop */
+@media(max-width:1100px){
+  .fy-nav{
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .fy-links{gap:18px}
+  .fy-hero{
+    grid-template-columns:minmax(0,1fr) minmax(420px,.9fr);
+    gap:24px;
+    min-height:820px;
+    padding-left:24px;
+    padding-right:24px;
+  }
+  .fy-hero-copy{margin-left:0}
+  .fy-hero-visual{height:540px}
+  .fy-hero-copy h1{font-size:clamp(82px,9vw,132px)}
+  .fy-event-chip{width:min(100% - 32px,1040px)}
+  .fy-section{padding-left:24px;padding-right:24px}
+  .fy-experience{padding-left:24px;padding-right:24px}
+  .fy-event{padding-left:24px;padding-right:24px}
+  .fy-final{padding-left:24px;padding-right:24px}
+  .fy-footer{padding-left:24px;padding-right:24px}
+}
+
+/* Phones and compact tablets */
+@media(max-width:760px){
+  .fy-nav{
+    height:68px;
+    padding:0 14px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .fy-brand{min-width:0;z-index:12}
+  .fy-brand>span:last-child{
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .fy-brand::after{display:none}
+
+  .fy-menu{
+    display:grid;
+    place-items:center;
+    width:42px;
+    height:42px;
+    flex:none;
+    border:2px solid #fff;
+    border-radius:50%;
+    background:#0b2a39;
+    color:#fff;
+    cursor:pointer;
+    box-shadow:3px 3px 0 #000;
+    z-index:12;
+  }
+
+  .fy-links{
+    position:fixed;
+    top:68px;
+    left:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:10px 14px 18px;
+    background:rgba(3,14,22,.98);
+    border-bottom:3px solid var(--max-yellow);
+    box-shadow:0 10px 20px rgba(0,0,0,.28);
+    transform:translateY(-130%);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:transform .25s ease,opacity .2s ease,visibility .2s ease;
+    z-index:11;
+  }
+  .fy-links.open{
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+  .fy-links a{
+    display:flex;
+    align-items:center;
+    min-height:48px;
+    padding:12px 8px;
+    font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .fy-links a:last-child{border-bottom:0}
+  .fy-links a:after{display:none}
+  .fy-links a.active{color:var(--max-yellow)}
+
+  .fy-actions{
+    margin-left:auto;
+    gap:6px;
+  }
+  .fy-actions .fy-icon{display:none}
+  .fy-register.small{
+    white-space:nowrap;
+    padding:10px 13px;
+    font-size:10px;
+  }
+
+  .fy-hero{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    min-height:0;
+    padding:46px 16px 28px;
+    gap:24px;
+  }
+  .fy-hero-copy{
+    width:100%;
+    max-width:none;
+    transform:none !important;
+  }
+  .fy-hero-copy h1{
+    font-size:clamp(70px,19vw,112px);
+    line-height:.78;
+  }
+  .fy-hero-copy h1 span,
+  .fy-hero-copy h1 strong{
+    display:block;
+    width:max-content;
+    max-width:100%;
+  }
+  .fy-hero-copy h1 strong{
+    padding-right:12px;
+    box-shadow:7px 8px 0 #000;
+  }
+  .fy-tagline{
+    max-width:100%;
+    font-size:15px;
+    line-height:1.2;
+  }
+  .fy-description{
+    max-width:100%;
+    font-size:15px;
+    line-height:1.65;
+  }
+  .fy-hero-buttons{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+  }
+  .fy-register,
+  .fy-outline{
+    width:100%;
+    justify-content:center;
+  }
+  .fy-countdown{
+    margin-top:23px;
+  }
+  .countdown-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+  }
+  .count-box{
+    min-width:0;
+    padding:8px 5px;
+  }
+  .count-box strong{font-size:29px}
+
+  .fy-hero-visual{
+    width:100%;
+    height:440px;
+    min-height:0;
+    margin:0;
+    transform:none !important;
+  }
+  .hero-image-main,
+  .hero-image-side,
+  .hero-image-bottom{
+    border-width:5px;
+    border-radius:19px;
+  }
+  .hero-image-main{
+    left:8%;
+    top:2%;
+    width:55%;
+    height:77%;
+  }
+  .hero-image-side{
+    right:0;
+    top:10%;
+    width:36%;
+    height:43%;
+  }
+  .hero-image-bottom{
+    right:11%;
+    bottom:0;
+    width:51%;
+    height:35%;
+  }
+  .floating-note{
+    font-size:13px;
+    padding:8px 10px;
+  }
+  .note-shine{right:0;top:0}
+  .note-create{left:3%;bottom:2%}
+
+  .fy-event-chip{
+    position:relative;
+    left:auto;
+    bottom:auto;
+    transform:none;
+    width:100%;
+    margin-top:2px;
+    grid-template-columns:1fr;
+    gap:11px;
+    padding:14px 15px;
+    border-width:3px;
+    box-shadow:6px 7px 0 #000;
+  }
+  .fy-event-chip i{display:none}
+  .fy-event-chip>div{
+    min-width:0;
+  }
+  .fy-event-chip strong{
+    font-size:11px;
+    line-height:1.2;
+  }
+  .fy-event-chip small{
+    font-size:8px;
+  }
+
+  .fy-strip{
+    grid-template-columns:1fr;
+    padding:10px 16px 15px;
+  }
+  .strip-item,
+  .strip-item+ .strip-item{
+    border-left:0;
+    border-bottom:1px solid var(--fy-line);
+    padding:11px 0;
+  }
+  .strip-item:last-child{border-bottom:0}
+
+  .fy-marquee{
+    height:44px;
+  }
+  .fy-marquee>div{
+    gap:26px;
+    font-size:15px;
+  }
+
+  .fy-section{
+    padding:70px 16px;
+  }
+  .fy-section::before{
+    right:9px;
+    top:17px;
+    font-size:42px;
+  }
+
+  .fy-about{
+    grid-template-columns:1fr;
+    gap:34px;
+    padding-top:72px;
+    padding-bottom:74px;
+  }
+  .fy-about h2,
+  .fy-experience h2,
+  .fy-talent h2,
+  .fy-vibe h2,
+  .fy-faq h2,
+  .fy-event h2,
+  .fy-visit h2{
+    font-size:clamp(48px,14vw,70px);
+    line-height:.9;
+  }
+  .fy-about .lead{
+    font-size:18px;
+    line-height:1.52;
+  }
+  .fy-about p:not(.lead){
+    font-size:15px;
+    line-height:1.65;
+  }
+  .about-art{
+    min-height:340px;
+    width:100%;
+  }
+  .group-photo{
+    height:315px;
+    border-width:5px;
+    transform:rotate(1.5deg);
+  }
+  .hand-note{
+    right:0;
+    bottom:0;
+    max-width:180px;
+    padding:14px;
+  }
+  .hand-note b{font-size:26px}
+
+  .fy-experience{
+    padding-top:78px;
+    padding-bottom:80px;
+  }
+  .experience-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+    margin-top:26px;
+  }
+  .experience-card,
+  .experience-card:nth-child(n){
+    min-height:285px;
+    margin-top:0;
+    transform:none !important;
+  }
+  .experience-card:hover{
+    transform:translateY(-7px) !important;
+  }
+  .experience-photo{height:132px}
+
+  .fy-talent{
+    padding-top:75px;
+    padding-bottom:78px;
+  }
+  .talent-heading{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .talent-heading>p{
+    margin:0;
+    font-size:14px;
+  }
+  .talent-cards{
+    grid-template-columns:1fr;
+    gap:15px;
+    margin-top:24px;
+  }
+  .talent-image-card,
+  .talent-image-card:nth-child(n){
+    min-height:330px;
+    margin-top:0;
+    transform:none !important;
+  }
+  .talent-image-card:hover,
+  .talent-image-card.selected{
+    transform:translateY(-7px) !important;
+  }
+  .talent-label b{font-size:40px}
+  .talent-label small{font-size:15px}
+  .talent-detail{
+    display:block;
+    padding:18px;
+  }
+  .talent-detail h3{font-size:30px}
+  .talent-detail p{font-size:14px}
+  .talent-detail a{
+    width:100%;
+    justify-content:center;
+    margin-top:14px;
+  }
+
+  .fy-vibe{
+    grid-template-columns:1fr;
+    gap:26px;
+    padding-top:72px;
+    padding-bottom:76px;
+  }
+  .vibe-copy p:last-of-type{font-size:15px}
+  .vibe-buttons{margin-top:18px}
+  .gallery-track{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .gallery-card,
+  .gallery-card:nth-child(n){
+    height:260px;
+    margin-top:0;
+    transform:none !important;
+  }
+  .gallery-card:not(:first-child){display:none}
+
+  .fy-event{
+    grid-template-columns:1fr;
+    margin:0 12px 64px;
+    padding:0;
+    gap:0;
+  }
+  .event-photo{
+    min-height:280px;
+    border-width:5px;
+    border-radius:18px 18px 0 0;
+    transform:none !important;
+  }
+  .event-details{
+    padding:26px 20px 24px;
+    border-width:3px;
+    border-radius:0 0 18px 18px;
+    transform:none !important;
+  }
+  .event-details h2{font-size:45px;margin-bottom:22px}
+  .event-facts{gap:12px}
+  .event-note{font-size:14px}
+  .event-buttons{display:grid;grid-template-columns:1fr}
+
+  .fy-faq{
+    grid-template-columns:1fr;
+    gap:30px;
+    padding-top:20px;
+    padding-bottom:75px;
+  }
+  .faq-visual{
+    min-height:300px;
+    width:100%;
+    max-width:none;
+  }
+  .faq-human{
+    height:285px;
+    border-width:5px;
+  }
+  .faq-copy h2{font-size:54px}
+  .faq-row button{
+    padding:17px 0;
+    font-size:14px;
+  }
+  .faq-row p{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .fy-visit{
+    padding:68px 16px;
+  }
+  .visit-grid{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .visit-card,
+  .visit-card:nth-child(n){
+    margin-top:0;
+    transform:none !important;
+  }
+
+  .fy-final{
+    min-height:430px;
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:65px 16px 82px;
+  }
+  .final-copy h2{font-size:64px}
+  .final-button{
+    width:100%;
+    justify-content:center;
+    align-self:auto;
+    justify-self:stretch;
+  }
+
+  .fy-footer{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:24px 16px 90px;
+    gap:18px;
+  }
+  .footer-social{align-self:stretch}
+  .footer-social button,
+  .footer-social a{width:40px;height:40px}
+
+  .fy-mobile-register{
+    left:10px;
+    right:10px;
+    bottom:10px;
+  }
+}
+
+/* Small phones: prioritize readable type and prevent frame/button clipping. */
+@media(max-width:420px){
+  .fy-nav{padding:0 11px}
+  .fy-brand{gap:7px;font-size:14px}
+  .brand-logo-wrap{width:36px;height:36px}
+  .brand-logo{width:26px;height:20px}
+  .fy-actions .fy-register.small{padding:9px 10px;font-size:9px}
+  .fy-hero{padding:40px 12px 24px}
+  .fy-hero-copy h1{font-size:64px}
+  .fy-tagline{font-size:13px;padding:8px 10px}
+  .fy-description{font-size:14px}
+  .countdown-row{grid-template-columns:repeat(2,1fr);gap:7px}
+  .count-box strong{font-size:28px}
+  .fy-hero-visual{height:365px}
+  .hero-image-main{left:7%;width:57%;height:76%}
+  .hero-image-side{width:38%;height:42%}
+  .hero-image-bottom{right:9%;width:53%;height:34%}
+  .floating-note{font-size:11px}
+  .fy-event-chip{padding:12px}
+  .fy-event-chip>div{grid-template-columns:auto minmax(0,1fr)}
+  .fy-event-chip strong,.fy-event-chip small{min-width:0}
+  .fy-about h2,
+  .fy-experience h2,
+  .fy-talent h2,
+  .fy-vibe h2,
+  .fy-faq h2,
+  .fy-event h2,
+  .fy-visit h2{font-size:47px}
+  .fy-about .lead{font-size:17px}
+  .group-photo{height:270px}
+  .hand-note{max-width:165px}
+  .experience-card{min-height:270px}
+  .experience-photo{height:118px}
+  .talent-image-card{min-height:300px}
+  .gallery-card{height:235px}
+  .event-photo{min-height:235px}
+  .final-copy h2{font-size:57px}
+}
+
+/* Landscape phones: keep the hero compact and avoid giant blank areas. */
+@media(max-width:760px) and (orientation:landscape){
+  .fy-hero{
+    flex-direction:row;
+    align-items:center;
+    min-height:640px;
+    padding-top:36px;
+  }
+  .fy-hero-copy{width:53%}
+  .fy-hero-visual{width:47%;height:420px}
+  .fy-hero-copy h1{font-size:clamp(58px,11vw,90px)}
+  .fy-event-chip{position:relative;width:100%;margin-top:0}
+}
+
+/* Touch devices: no hover-only transforms should cause layout jitter. */
+@media(hover:none){
+  .experience-card:hover,
+  .talent-image-card:hover,
+  .gallery-card:hover,
+  .group-photo:hover{
+    transform:none !important;
+  }
+}

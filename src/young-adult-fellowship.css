@@ -203,7 +203,7 @@ body{margin:0;background:var(--ya-paper)}
 .ya-event-details{display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;gap:30px}
 .ya-detail{display:flex;align-items:center;gap:15px}.ya-detail-icon{width:56px;height:56px;border-radius:50%;background:#fff;color:#172326;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 6px 0 rgba(0,0,0,.2)}
 .ya-detail b{display:block;color:var(--ya-cyan);font-size:12px;letter-spacing:.15em;margin-bottom:5px;font-weight:900}
-.ya-detail strong{display:block;font-size:17px}.ya-detail small{display:block;font-size:13px;margin-top:2px;color:#d1dadd}
+.ya-detail strong{display:block;font-size:17px}.ya-detail small{display:block;font-size:13px;margin-top:2px;color:#d1dadd}.ya-directions{display:inline-flex;align-items:center;gap:5px;margin-top:7px;color:var(--ya-orange)!important;text-decoration:none;font-size:9px;font-weight:900;letter-spacing:.08em}.ya-directions:hover{text-decoration:underline}.ya-directions svg{flex:0 0 auto}
 .ya-detail-divider{height:78px;background:#657578}
 .ya-event-photo{height:194px;padding:10px 10px 29px;background:#fff;transform:rotate(-4deg);box-shadow:0 15px 28px rgba(0,0,0,.46);position:relative}
 .ya-event-photo img{width:100%;height:100%;object-fit:cover;object-position:center}

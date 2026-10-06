@@ -1463,3 +1463,357 @@ body{overflow-x:hidden}
     border-top:1px solid rgba(255,255,255,.15);
   }
 }
+
+
+/* =========================================================
+   FINAL MOBILE VISUAL FIXES
+   Reduce heavy shadows, prevent CTA overlap, and keep every
+   section inside the viewport from 320px phones upward.
+   ========================================================= */
+
+.fy-hero-copy h1{
+  text-shadow:5px 6px 0 rgba(0,0,0,.88);
+}
+
+.fy-register{
+  box-shadow:0 6px 0 #000;
+}
+.fy-register:hover{
+  box-shadow:0 8px 0 #000;
+}
+
+@media(max-width:760px){
+  html{scroll-padding-top:68px}
+
+  .fy-hero{
+    width:100%;
+    min-height:0;
+    padding:38px 16px 24px;
+    gap:20px;
+  }
+
+  .fy-hero-copy h1{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(52px,17vw,76px);
+    line-height:.8;
+    letter-spacing:0;
+    text-shadow:3px 4px 0 rgba(0,0,0,.9);
+  }
+
+  .fy-hero-copy h1 span,
+  .fy-hero-copy h1 strong{
+    width:auto;
+    max-width:100%;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+
+  /* The desktop yellow text shadow became a black block on phones. */
+  .fy-hero-copy h1 strong{
+    padding-right:0;
+    box-shadow:none !important;
+  }
+
+  .fy-tagline{
+    max-width:100%;
+    margin:20px 0 14px;
+    padding:8px 11px;
+    font-size:clamp(13px,3.8vw,17px);
+    line-height:1.15;
+    box-shadow:3px 4px 0 rgba(0,0,0,.9);
+  }
+
+  .fy-description{
+    max-width:100%;
+    font-size:clamp(13px,3.8vw,15px);
+    line-height:1.55;
+  }
+
+  .fy-hero-buttons{
+    width:100%;
+    margin-top:19px;
+    gap:9px;
+  }
+
+  .fy-register,
+  .fy-outline{
+    width:100%;
+    min-height:45px;
+    justify-content:center;
+  }
+
+  .fy-register{
+    padding:12px 16px;
+    box-shadow:0 5px 0 #000;
+  }
+
+  .fy-outline{
+    padding:11px 13px;
+  }
+
+  .fy-countdown{
+    width:100%;
+    margin-top:19px;
+  }
+
+  .countdown-row{
+    width:100%;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:5px;
+  }
+
+  .count-box{
+    min-width:0;
+    padding:8px 4px;
+    border-radius:8px;
+  }
+
+  .count-box strong{
+    font-size:clamp(25px,8vw,32px);
+  }
+
+  .count-box span{
+    font-size:7px;
+  }
+
+  .fy-hero-visual{
+    width:100%;
+    max-width:560px;
+    height:clamp(320px,100vw,440px);
+    margin:0 auto;
+  }
+
+  .hero-image-main,
+  .hero-image-side,
+  .hero-image-bottom{
+    box-shadow:0 10px 20px rgba(0,0,0,.28);
+    border-width:4px;
+    border-radius:16px;
+  }
+
+  .hero-image-main{
+    left:5%;
+    top:3%;
+    width:57%;
+    height:76%;
+  }
+
+  .hero-image-side{
+    right:1%;
+    top:8%;
+    width:37%;
+    height:43%;
+  }
+
+  .hero-image-bottom{
+    right:8%;
+    bottom:1%;
+    width:52%;
+    height:35%;
+  }
+
+  .floating-note{
+    padding:7px 9px;
+    font-size:clamp(9px,3vw,13px);
+    box-shadow:3px 4px 0 rgba(0,0,0,.65);
+  }
+
+  .fy-event-chip{
+    width:100%;
+    margin-top:0;
+    padding:13px 14px;
+    border-radius:12px;
+    box-shadow:4px 5px 0 rgba(0,0,0,.9);
+  }
+
+  .fy-event-chip strong{
+    font-size:11px;
+  }
+
+  .fy-event-chip small{
+    font-size:8px;
+    line-height:1.35;
+  }
+
+  /* Avoid a second REGISTER NOW button covering the hero/countdown. */
+  .fy-mobile-register{
+    display:none !important;
+  }
+
+  .fy-strip{
+    box-shadow:0 3px 0 #000;
+  }
+}
+
+@media(max-width:480px){
+  .fy-hero{
+    padding:32px 13px 22px;
+    gap:18px;
+  }
+
+  .fy-hero-copy h1{
+    font-size:clamp(50px,16.5vw,67px);
+    text-shadow:2px 3px 0 rgba(0,0,0,.92);
+  }
+
+  .fy-hero-copy h1 span{
+    transform:none;
+  }
+
+  .fy-hero-copy h1 strong{
+    transform:translateX(0);
+  }
+
+  .fy-stamp{
+    transform:rotate(-4deg);
+    box-shadow:2px 3px 0 rgba(0,0,0,.8);
+  }
+
+  .fy-kicker{
+    font-size:7px;
+    letter-spacing:.2em;
+    white-space:normal;
+  }
+
+  .fy-hero-buttons{
+    margin-top:16px;
+  }
+
+  .fy-hero-visual{
+    height:330px;
+  }
+
+  .hero-image-main{
+    left:4%;
+    width:58%;
+    height:77%;
+  }
+
+  .hero-image-side{
+    width:39%;
+    height:41%;
+  }
+
+  .hero-image-bottom{
+    right:7%;
+    width:54%;
+    height:35%;
+  }
+
+  .countdown-row{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .count-box{
+    padding:8px 5px;
+  }
+
+  .fy-event-chip{
+    gap:8px;
+  }
+}
+
+@media(max-width:360px){
+  .fy-nav{
+    padding-left:9px;
+    padding-right:9px;
+  }
+
+  .fy-brand{
+    gap:6px;
+  }
+
+  .fy-hero{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .fy-hero-copy h1{
+    font-size:50px;
+  }
+
+  .fy-hero-lead{
+    font-size:13px;
+  }
+
+  .fy-tagline{
+    font-size:12px;
+  }
+
+  .fy-description{
+    font-size:13px;
+  }
+
+  .fy-hero-visual{
+    height:305px;
+  }
+
+  .floating-note{
+    font-size:8px;
+    padding:6px 7px;
+  }
+
+  .fy-event-chip{
+    padding:11px 10px;
+  }
+
+  .fy-event-chip strong{
+    font-size:10px;
+  }
+
+  .fy-event-chip small{
+    font-size:7px;
+  }
+}
+
+@media(max-width:760px) and (orientation:landscape){
+  .fy-hero{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-items:center;
+    min-height:640px;
+    padding:30px 14px;
+    gap:18px;
+  }
+
+  .fy-hero-copy{
+    width:100%;
+  }
+
+  .fy-hero-copy h1{
+    font-size:clamp(52px,9vw,78px);
+  }
+
+  .fy-hero-visual{
+    height:360px;
+  }
+
+  .fy-event-chip{
+    grid-column:1 / -1;
+  }
+
+  .fy-event-chip>div{
+    min-width:0;
+  }
+}
+
+@media(hover:none){
+  .fy-register:hover,
+  .fy-outline:hover{
+    transform:none;
+  }
+
+  .fy-register:active{
+    transform:translateY(2px);
+    box-shadow:0 3px 0 #000;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .fy-hero-visual,
+  .fy-register,
+  .fy-outline{
+    transition:none !important;
+  }
+}

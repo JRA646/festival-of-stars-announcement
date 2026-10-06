@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerE
 import {
   ArrowDown, ArrowRight, CalendarDays, ChevronDown, MapPin, Share2,
   Star, Users, BookOpen, Music2, Mic2, Drama, Sparkles, Volume2, VolumeX,
-  Play, Heart, Instagram, Plus
+  Play, Heart, Instagram, Plus, Menu, X
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./festivalofstars-youth.css";

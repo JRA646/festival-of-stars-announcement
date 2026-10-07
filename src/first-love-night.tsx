@@ -11,7 +11,6 @@ import {
   LoaderCircle,
   MapPin,
   Menu,
-  MessageCircle,
   Share2,
   ShieldCheck,
   Sparkles,

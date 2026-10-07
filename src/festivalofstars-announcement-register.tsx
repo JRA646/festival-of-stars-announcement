@@ -5,7 +5,6 @@ import {
   CalendarDays,
   Clock3,
   Check,
-  CheckCircle2,
   Copy,
   Heart,
   LoaderCircle,

@@ -568,25 +568,33 @@ export default function FirstLoveNight() {
       </section>
 
       <section className="fln-intro-strip">
-        <div>
-          <span>FIRST LOVE NIGHT · RSVP REQUIRED</span>
-          <strong>Come dressed. Come expectant. Come ready to encounter Jesus.</strong>
+        <div className="fln-strip-brand">
+          <FirstLoveMark compact />
+          <div>
+            <span>FIRST LOVE NIGHT · RSVP REQUIRED</span>
+            <strong>Come dressed. Come expectant. Come ready to encounter Jesus.</strong>
+          </div>
         </div>
         <button type="button" onClick={() => openRegistration("strip")}>
-          RSVP NOW <ArrowRight size={15} />
+          SAVE MY PLACE <ArrowRight size={15} />
         </button>
       </section>
 
       <section id="about" className="fln-vision">
-        <div className="fln-vision-photo" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
+        <div className="fln-vision-art">
+          <FirstLoveMark />
+          <span>FIRST LOVE NIGHT</span>
+          <strong>LOVE</strong>
+          <small>FIRST LOVE · 1 JOHN 4:19</small>
+        </div>
         <div className="fln-vision-copy">
-          <span>WHY THIS NIGHT EXISTS</span>
-          <h2>{content.vision_title}</h2>
+          <span>WHY WE GATHER</span>
+          <h2>First Love Night is more than a formal.</h2>
           <div className="fln-rule" />
           <p>{content.vision_copy}</p>
           <div className="fln-vision-note">
             <Heart size={17} />
-            <span>A formal night with a purpose bigger than the dress code.</span>
+            <span>A night to celebrate friendship, make memories and encounter Jesus.</span>
           </div>
         </div>
       </section>
@@ -594,8 +602,8 @@ export default function FirstLoveNight() {
       <section className="fln-experience">
         <div className="fln-section-head">
           <span>WHAT TO EXPECT</span>
-          <h2>Five hours. One unforgettable night.</h2>
-          <p>Every part of the evening is designed to move from arrival to celebration, encounter and community.</p>
+          <h2>A night designed to move you.</h2>
+          <p>From the first step through the last song, every part of First Love Night is designed for celebration, encounter and real connection.</p>
         </div>
 
         <div className="fln-experience-grid">
@@ -637,9 +645,9 @@ export default function FirstLoveNight() {
 
       <section id="details" className="fln-timeline">
         <div className="fln-section-head">
-          <span>THE EVENING</span>
-          <h2>From first step to final song.</h2>
-          <p>The run-of-show will be updated as final timings are confirmed.</p>
+          <span>THE FLOW OF THE NIGHT</span>
+          <h2>Come for the moment. Stay for the encounter.</h2>
+          <p>Timings will be published here as soon as the final programme is confirmed.</p>
         </div>
 
         <div className="fln-timeline-track">
@@ -657,10 +665,11 @@ export default function FirstLoveNight() {
 
       <section className="fln-event-details">
         <div className="fln-detail-visual">
-          <div className="fln-detail-glow" />
+          <FirstLoveMark />
           <span>FIRST LOVE NIGHT</span>
-          <strong>THE FORMAL</strong>
-          <small>14 NOVEMBER 2026</small>
+          <strong>THE NIGHT</strong>
+          <small>{content.date_label} · {content.weekday}</small>
+          <em>THE FORMAL</em>
         </div>
 
         <div className="fln-detail-content">
@@ -717,19 +726,27 @@ export default function FirstLoveNight() {
         </div>
       </section>
 
-      <section className="fln-gallery-strip">
-        <div><div className="fln-gallery-image image-a" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ARRIVE IN STYLE</span></div>
-        <div><div className="fln-gallery-image image-b" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>CELEBRATE TOGETHER</span></div>
-        <div><div className="fln-gallery-image image-c" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ENCOUNTER JESUS</span></div>
+      <section className="fln-story-strip">
+        <div className="fln-story-image" style={{ backgroundImage: `url("${content.hero_image_url}")` }}>
+          <span>THE FIRST IMPRESSION</span>
+        </div>
+        <div className="fln-story-copy">
+          <span>THE NIGHT IN THREE WORDS</span>
+          <strong>CELEBRATE.</strong>
+          <strong>ENCOUNTER.</strong>
+          <strong>CONNECT.</strong>
+          <p>Dress up. Bring your friends. Make memories. Then make space for the thing that matters most.</p>
+        </div>
       </section>
 
       <section className="fln-final-cta">
         <div className="fln-final-glow" />
-        <span>BE PART OF</span>
-        <h2>A NIGHT THAT MATTERS.</h2>
-        <p>Dress up. Bring your friends. Make memories. Encounter Jesus.</p>
+        <FirstLoveMark />
+        <span>FIRST LOVE NIGHT · 14 NOVEMBER 2026</span>
+        <h2>THIS IS YOUR NIGHT.</h2>
+        <p>Come dressed. Come expectant. Come ready for an encounter.</p>
         <button className="fln-gold-btn" type="button" onClick={() => openRegistration("final_cta")}>
-          RESERVE YOUR PLACE <ArrowRight size={17} />
+          SAVE MY PLACE <ArrowRight size={17} />
         </button>
         <button className="fln-share-link" type="button" onClick={() => void share()}>
           <Share2 size={15} /> SHARE THIS NIGHT
@@ -783,7 +800,7 @@ export default function FirstLoveNight() {
       {rsvpOpen && (
         <div className="fln-rsvp-backdrop" role="presentation" onMouseDown={(event) => event.currentTarget === event.target && closeRegistration()}>
           <section className="fln-rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="fln-rsvp-title">
-            <button className="fln-rsvp-close" type="button" onClick={closeRegistration} aria-label="Close RSVP">
+            <button ref={rsvpCloseRef} className="fln-rsvp-close" type="button" onClick={closeRegistration} aria-label="Close RSVP">
               <X size={20} />
             </button>
 
@@ -791,8 +808,8 @@ export default function FirstLoveNight() {
               <>
                 <div className="fln-rsvp-head">
                   <span>YOUR PLACE AT THE TABLE</span>
-                  <h2 id="fln-rsvp-title">Reserve your<br /><em>place at the Formal.</em></h2>
-                  <p>Three quick steps. No complicated registration. Your details help the team prepare the best possible night.</p>
+                  <h2 id="fln-rsvp-title">Reserve your<br /><em>place at First Love Night.</em></h2>
+                  <p>Three quick steps. Your details help the team prepare the welcome, food, seating and experience for the night.</p>
                 </div>
 
                 <div className="fln-rsvp-progress" aria-label="Registration progress">

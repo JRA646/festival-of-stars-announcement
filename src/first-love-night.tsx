@@ -817,13 +817,16 @@ export default function FirstLoveNight() {
       </section>
 
       <footer className="fln-footer">
-        <div>
-          <strong>FIRST LOVE NIGHT</strong>
-          <span>THE FORMAL</span>
+        <div className="fln-footer-brand">
+          <FirstLoveMark compact />
+          <div>
+            <strong>FIRST LOVE NIGHT</strong>
+            <span>THE FORMAL · CHRIST-CENTRED NIGHT FOR THE NEXT GENERATION</span>
+          </div>
         </div>
         <div>
-          <span>14 NOVEMBER 2026</span>
-          <span>MANILA, PHILIPPINES</span>
+          <span>{content.date_label}</span>
+          <span>{content.city_label}</span>
         </div>
       </footer>
 
@@ -834,7 +837,7 @@ export default function FirstLoveNight() {
             <strong>SAVE YOUR PLACE</strong>
           </div>
           <button type="button" onClick={() => openRegistration("mobile_sticky")}>
-            RSVP NOW <ArrowRight size={15} />
+            SAVE MY PLACE <ArrowRight size={15} />
           </button>
         </div>
       )}

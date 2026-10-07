@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+
+/* FIRST LOVE NIGHT DESIGN SYSTEM
+   Applied to the existing event pages so the entire microsite feels like one premium event brand. */
+:root{
+  --fl-theme-black:#050505;
+  --fl-theme-deep:#0b0806;
+  --fl-theme-gold:#e9b85f;
+  --fl-theme-gold-soft:#f5d99b;
+  --fl-theme-cream:#f7efe1;
+  --fl-theme-paper:#fffaf2;
+  --fl-theme-muted:#8f8578;
+  --fl-theme-line:rgba(233,184,95,.22);
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site){
+  --brand-black:var(--fl-theme-black);
+  --brand-deep:var(--fl-theme-deep);
+  --brand-gold:var(--fl-theme-gold);
+  --brand-cream:var(--fl-theme-cream);
+  --brand-paper:var(--fl-theme-paper);
+  font-family:"Montserrat",sans-serif;
+  color:var(--fl-theme-black);
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) h1,
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) h2,
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) h3{
+  font-family:"Cormorant Garamond",serif;
+  letter-spacing:-.025em;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-nav,.fy-nav,.foa-nav,.foar-header,.register-header,.ya-nav
+){
+  background:rgba(5,5,5,.92) !important;
+  color:#fff !important;
+  border-color:rgba(233,184,95,.20) !important;
+  backdrop-filter:blur(18px);
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-logo,.fy-brand,.foa-brand,.foar-back,.foar-brand,.register-header a,.ya-brand
+){
+  color:#fff !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-links a,.fy-links a,.foa-site-nav a,.foar-brand span,.ya-links a
+){
+  color:rgba(255,255,255,.84) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-links a:hover,.fy-links a:hover,.foa-site-nav a:hover,.ya-links a:hover,
+  .fos-links a.active,.fy-links a.active,.ya-links a.active
+){
+  color:var(--fl-theme-gold) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .register-pill,.fy-register,.foa-nav-register,.for-register,.register-header .register-back,
+  .ya-nav-cta,.foar-header a
+){
+  background:linear-gradient(135deg,#f7d79a,#dba452) !important;
+  color:#111 !important;
+  border-color:transparent !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .icon-btn,.fy-icon,.ya-share-mini,.ya-menu,.foa-share-button,.foa-menu-button
+){
+  border-color:rgba(233,184,95,.30) !important;
+  background:rgba(255,255,255,.045) !important;
+  color:#fff !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-hero,.fy-hero,.foa-hero,.foar-hero,.register-hero,.ya-hero
+){
+  background:
+    radial-gradient(circle at 72% 30%,rgba(233,184,95,.20),transparent 23%),
+    radial-gradient(circle at 35% 72%,rgba(194,118,39,.13),transparent 24%),
+    linear-gradient(180deg,#17100b 0%,#090706 64%,#050505 100%) !important;
+  color:#fff !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-hero-bg,.fy-hero-bg,.ya-hero-image,.foa-hero-poster
+){
+  filter:saturate(.82) sepia(.10) contrast(1.03);
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-kicker,.fy-eyebrow,.foa-eyebrow,.foar-eyebrow,.ya-kicker,.ya-section-kicker
+){
+  color:var(--fl-theme-gold) !important;
+  letter-spacing:.24em;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-copy h1,.fy-hero-copy h1,.foa-hero h1,.foar-copy h1,.register-hero h1,.ya-hero h1
+){
+  color:var(--fl-theme-gold-soft) !important;
+  text-shadow:0 4px 28px rgba(0,0,0,.40) !important;
+  transform:none !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-copy h1 em,.fy-hero-copy h1 strong,.foa-hero h1 strong,.foar-copy h1 em,.register-hero h1 span,.ya-hero h1 strong
+){
+  color:var(--fl-theme-gold) !important;
+  -webkit-text-stroke:0 !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-register,.hero-ghost,.fy-register,.fy-outline,.foa-primary,.foa-secondary,
+  .foar-submit,.submit-button,.ya-brush-button,.ya-outline-button
+){
+  border-radius:7px !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-register,.fy-register,.foa-primary,.foar-submit,.submit-button,.ya-brush-button
+){
+  background:linear-gradient(135deg,#f7d79a,#dca64f) !important;
+  color:#111 !important;
+  box-shadow:0 7px 18px rgba(0,0,0,.28) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .hero-ghost,.fy-outline,.foa-secondary,.ya-outline-button
+){
+  color:#fff !important;
+  border-color:rgba(233,184,95,.50) !important;
+  background:rgba(255,255,255,.035) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .info-strip,.fy-event-chip,.foa-countdown,.foar-content,.register-shell,.ya-event-card,
+  .event-details,.location-card
+){
+  border-color:var(--fl-theme-line) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos section:not(.fos-hero),.fy-section,.foa-details,.foa-purpose,.foa-faq,.foar-form-shell,
+  .register-shell,.ya-section,.ya-faq,.ya-event,.ya-rsvp
+){
+  background-color:var(--fl-theme-cream);
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .section-heading>p:last-child,.section-copy,.fy-about p:not(.lead),.foa-section-heading p,
+  .foar-form-intro p,.form-grid label>span,.ya-muted,.ya-section-copy
+){
+  color:#675e53 !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .service-grid article,.fy-event,.foa-card,.foar-form-shell,.register-shell,.ya-card,.visit-card,
+  .experience-card,.talent-image-card,.foa-faq-item,.foar-success-screen,.ya-event-card
+){
+  border-color:rgba(95,69,35,.18) !important;
+  box-shadow:0 14px 34px rgba(35,20,5,.10) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .service>h2,.visit>h2,.location>h2,.share h2,.fy-about h2,.fy-experience h2,.fy-talent h2,
+  .fy-vibe h2,.fy-faq h2,.fy-event h2,.fy-visit h2,.foa-section-heading h2,.foa-purpose-copy h2,
+  .foa-more-event-head h2,.foa-timeline-head h2,.foa-performers-head h2,.foa-faq-heading h2,
+  .foar-form-intro h2,.ya-section h2,.ya-hero h1
+){
+  color:#1b130c !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .visit,.foa-more-event,.foa-highlight,.foa-final,.foar-state,.register-footer,.fy-experience,
+  .fy-final,.ya-dark-section,.ya-final
+){
+  background:
+    radial-gradient(circle at 78% 20%,rgba(233,184,95,.13),transparent 24%),
+    linear-gradient(180deg,#120c08,#050505) !important;
+  color:#fff !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .visit h2,.foa-more-event-head h2,.foa-highlight h2,.foa-final h2,.fy-experience h2,
+  .fy-final h2,.ya-dark-section h2,.ya-final h2
+){
+  color:var(--fl-theme-gold-soft) !important;
+  text-shadow:0 3px 20px rgba(0,0,0,.38) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .gold-banner,.fy-strip,.foa-share-cta
+){
+  background:linear-gradient(135deg,#f5d18d,#dca452) !important;
+  color:#17100a !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  input,select,textarea,.form-grid input,.form-grid select,.form-grid textarea,
+  .foar-grid input,.foar-grid select,.foar-grid textarea
+){
+  border-color:#d0b98f !important;
+  background:#fffdf9 !important;
+  color:#21170e !important;
+  border-radius:5px !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  input:focus,select:focus,textarea:focus,.form-grid input:focus,.form-grid select:focus,
+  .form-grid textarea:focus,.foar-grid input:focus,.foar-grid select:focus,.foar-grid textarea:focus
+){
+  border-color:var(--fl-theme-gold) !important;
+  box-shadow:0 0 0 3px rgba(233,184,95,.17) !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-state,.foar-state,.state
+){
+  background:#050505 !important;
+  color:#fff !important;
+}
+
+:is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+  .fos-state svg,.foar-state svg,.spin,.register-spin
+){
+  color:var(--fl-theme-gold) !important;
+}
+
+@media(max-width:720px){
+  :is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+    .fos-nav,.fy-nav,.foa-nav,.foar-header,.register-header,.ya-nav
+  ){
+    background:rgba(5,5,5,.96) !important;
+  }
+
+  :is(.fos,.fos-youth,.foa-page,.foar-page,.fos-register-page,.ya-site) :is(
+    .fos-hero,.fy-hero,.foa-hero,.foar-hero,.register-hero,.ya-hero
+  ){
+    background:
+      radial-gradient(circle at 72% 26%,rgba(233,184,95,.18),transparent 25%),
+      linear-gradient(180deg,#15100c 0%,#070605 70%,#050505 100%) !important;
+  }
+}

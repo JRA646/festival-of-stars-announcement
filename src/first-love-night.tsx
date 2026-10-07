@@ -233,10 +233,10 @@ export default function FirstLoveNight() {
       setProperty("og:title", typed.announcement.seo_title);
       setProperty("og:description", typed.announcement.seo_description);
       setProperty("og:image", heroImage);
-      setProperty("twitter:card", "summary_large_image");
-      setProperty("twitter:title", typed.announcement.seo_title);
-      setProperty("twitter:description", typed.announcement.seo_description);
-      setProperty("twitter:image", heroImage);
+      meta("twitter:card", "summary_large_image");
+      meta("twitter:title", typed.announcement.seo_title);
+      meta("twitter:description", typed.announcement.seo_description);
+      meta("twitter:image", heroImage);
 
       let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (!canonical) {
@@ -831,7 +831,7 @@ export default function FirstLoveNight() {
         <div className="fln-mobile-rsvp">
           <div>
             <span>FIRST LOVE NIGHT</span>
-            <strong>RSVP REQUIRED</strong>
+            <strong>SAVE YOUR PLACE</strong>
           </div>
           <button type="button" onClick={() => openRegistration("mobile_sticky")}>
             RSVP NOW <ArrowRight size={15} />
@@ -875,7 +875,7 @@ export default function FirstLoveNight() {
                         <input required type="email" autoComplete="email" value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="you@example.com" />
                       </label>
                       <label>
-                        <span>MOBILE NUMBER</span>
+                        <span>MOBILE NUMBER *</span>
                         <input required type="tel" autoComplete="tel" value={form.mobile} onChange={(event) => update("mobile", event.target.value)} placeholder="09XX XXX XXXX" />
                       </label>
                       <label>
@@ -1004,9 +1004,9 @@ export default function FirstLoveNight() {
             ) : (
               <div className="fln-confirmed">
                 <div className="fln-confirmed-mark"><CheckCircle2 size={37} /></div>
-                <span>YOU'RE ON THE LIST</span>
-                <h2>See you at<br /><em>The Formal.</em></h2>
-                <p>{confirmation.name}, your RSVP is confirmed. Save your confirmation code for check-in.</p>
+                <span>FIRST LOVE NIGHT · CONFIRMED</span>
+                <h2>You're going<br /><em>to First Love Night.</em></h2>
+                <p>{confirmation.name}, your place is secured. Keep this confirmation code for check-in on the night.</p>
 
                 <div className="fln-pass">
                   <div>
@@ -1025,7 +1025,7 @@ export default function FirstLoveNight() {
 
                 <div className="fln-confirm-actions">
                   <button type="button" className="fln-outline-dark" onClick={() => void navigator.clipboard?.writeText(confirmation.code)}>
-                    <Copy size={15} /> COPY CODE
+                    <Copy size={15} /> COPY CHECK-IN CODE
                   </button>
                   <a href={calendarUrl} target="_blank" rel="noreferrer" className="fln-outline-dark">
                     <CalendarDays size={15} /> CALENDAR

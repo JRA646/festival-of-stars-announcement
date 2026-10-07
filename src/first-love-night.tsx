@@ -97,7 +97,7 @@ const FALLBACK: RsvpForm = {
 function FirstLoveMark({ compact = false }: { compact?: boolean }) {
   return (
     <span className={compact ? "fln-brand-mark compact" : "fln-brand-mark"} aria-hidden="true">
-      <span>✦</span>
+      <span>✝</span>
     </span>
   );
 }
@@ -473,7 +473,7 @@ export default function FirstLoveNight() {
 
   const calendarUrl = data
     ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(data.event.name)}&dates=${calendarStart}/${calendarEnd}&details=${encodeURIComponent(content?.vision_copy || "")}&location=${encodeURIComponent(
-        `${venue}, Manila, Philippines`,
+        venue === "TBA" ? content?.city_label || "Manila, Philippines" : `${venue}, Manila, Philippines`,
       )}`
     : "#";
 
@@ -784,7 +784,7 @@ export default function FirstLoveNight() {
       <section className="fln-final-cta">
         <div className="fln-final-glow" />
         <FirstLoveMark />
-        <span>FIRST LOVE NIGHT · 14 NOVEMBER 2026</span>
+        <span>FIRST LOVE NIGHT · {content.date_label}</span>
         <h2>THIS IS YOUR NIGHT.</h2>
         <p>Come dressed. Come expectant. Come ready for an encounter.</p>
         <button className="fln-gold-btn" type="button" onClick={() => openRegistration("final_cta")}>
@@ -798,7 +798,7 @@ export default function FirstLoveNight() {
       <section id="faq" className="fln-faq">
         <div className="fln-section-head">
           <span>GOOD TO KNOW</span>
-          <h2>Before the formal.</h2>
+          <h2>Before First Love Night.</h2>
           <p>Everything you need to know before you say yes.</p>
         </div>
 

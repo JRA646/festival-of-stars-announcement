@@ -272,3 +272,292 @@ button{cursor:pointer}
   .fln-final h2{font-size:39px}.fln-final p{font-size:7px;letter-spacing:.18em}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* PREMIUM EVENT HERO — reference-inspired full-bleed composition */
+.fln-nav{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:76px;
+  padding:0 clamp(24px,8vw,132px);
+  z-index:90;
+  background:linear-gradient(180deg,rgba(7,5,3,.52),rgba(7,5,3,0));
+  border-bottom:1px solid rgba(255,223,164,.10);
+}
+.fln-wordmark strong{font-size:20px;letter-spacing:.02em}
+.fln-wordmark span{font-size:6px;letter-spacing:.48em}
+.fln-links{gap:34px}
+.fln-links button{font-size:10px;color:rgba(255,255,255,.82)}
+.fln-register-mini{padding:11px 27px;font-size:10px}
+
+.fln-hero{
+  min-height:100svh;
+  height:clamp(680px,100svh,980px);
+  display:block;
+  position:relative;
+  overflow:hidden;
+  background:#120b06;
+}
+.fln-hero-bg{
+  position:absolute;
+  inset:-3%;
+  background:
+    radial-gradient(ellipse at 50% 64%,rgba(244,192,111,.55) 0%,rgba(126,69,26,.40) 20%,transparent 48%),
+    radial-gradient(circle at 18% 18%,rgba(255,209,124,.48) 0 1.3%,transparent 3%),
+    radial-gradient(circle at 28% 28%,rgba(255,221,153,.34) 0 1.1%,transparent 3%),
+    radial-gradient(circle at 72% 16%,rgba(255,219,150,.40) 0 1%,transparent 3%),
+    radial-gradient(circle at 86% 30%,rgba(255,224,157,.40) 0 1.4%,transparent 3%),
+    radial-gradient(circle at 8% 48%,rgba(255,194,93,.30) 0 1%,transparent 3%),
+    linear-gradient(180deg,#4b2812 0%,#6d3d18 31%,#9a5c27 58%,#321a0b 100%);
+  filter:saturate(.92);
+  transform:scale(1.04);
+}
+.fln-hero-bg:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 50% 76%,rgba(255,235,194,.58),transparent 19%),
+    repeating-linear-gradient(90deg,transparent 0 7%,rgba(255,221,160,.07) 7.2% 7.4%,transparent 7.6% 15%);
+  mix-blend-mode:screen;
+  opacity:.7;
+}
+.fln-hero-bg:after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-5%;height:46%;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(255,213,134,.45),transparent 36%),
+    linear-gradient(180deg,transparent,#160b05 76%);
+  opacity:.9;
+}
+.fln-hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(10,5,2,.66),rgba(10,5,2,.08) 50%,rgba(10,5,2,.42)),
+    linear-gradient(180deg,rgba(0,0,0,.12),transparent 38%,rgba(0,0,0,.68));
+}
+.fln-hero-content{
+  position:absolute;
+  z-index:5;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:100px 22px 180px;
+}
+.fln-kicker{
+  margin:0 0 13px;
+  font-size:11px;
+  letter-spacing:.30em;
+  color:#f9e6c4;
+  text-shadow:0 1px 14px rgba(0,0,0,.35);
+}
+.fln-hero h1{
+  font-size:clamp(58px,8vw,112px);
+  line-height:.84;
+  letter-spacing:-.035em;
+  color:#fffaf0;
+  text-shadow:0 4px 28px rgba(0,0,0,.38);
+}
+.fln-subtitle{
+  margin:18px 0 27px;
+  max-width:620px;
+  font-size:clamp(16px,1.7vw,23px);
+  color:rgba(255,250,241,.92);
+  text-shadow:0 2px 13px rgba(0,0,0,.45);
+}
+.fln-audience{
+  padding:9px 17px;
+  border:1px solid rgba(255,226,173,.36);
+  border-radius:30px;
+  background:rgba(54,25,8,.25);
+  backdrop-filter:blur(5px);
+  font-size:9px;
+  letter-spacing:.34em;
+  color:#f8d99f;
+}
+.fln-meta{
+  margin:25px 0 21px;
+  gap:25px;
+}
+.fln-meta b{font-size:11px}
+.fln-meta small{font-size:8px;color:rgba(255,255,255,.76)}
+.fln-actions{justify-content:center}
+.fln-gold-btn{
+  min-height:47px;
+  padding:12px 29px;
+  border-radius:7px;
+  background:linear-gradient(135deg,#f8d48e,#dca64f);
+  box-shadow:0 10px 28px rgba(20,8,0,.30);
+}
+.fln-outline-btn{
+  min-height:47px;
+  padding:11px 22px;
+  border-radius:7px;
+  border-color:rgba(255,226,173,.58);
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(5px);
+}
+
+.fln-hero-figure{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  min-height:0;
+  background:
+    radial-gradient(ellipse at 50% 62%,rgba(255,226,169,.35),transparent 23%),
+    radial-gradient(circle at 50% 26%,rgba(255,221,156,.28),transparent 14%);
+}
+.fln-hero-figure:before{
+  content:"";
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:8%;
+  height:43%;
+  border-radius:50% 50% 0 0;
+  background:
+    radial-gradient(ellipse at 50% 45%,rgba(255,217,145,.34),transparent 38%),
+    linear-gradient(180deg,rgba(34,15,6,.03),rgba(16,7,3,.82));
+  filter:blur(1px);
+}
+.fln-glow{
+  right:20%;
+  top:15%;
+  width:60%;
+  height:60%;
+  background:radial-gradient(circle,rgba(255,223,157,.55),rgba(230,146,56,.18) 25%,transparent 64%);
+  filter:blur(18px);
+}
+.fln-table-light{
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#ffe1a1;
+  box-shadow:0 0 20px 7px rgba(255,202,108,.48);
+}
+.table-light-a{left:35%;top:31%}
+.table-light-b{right:31%;top:27%}
+.fln-arch{border-color:rgba(255,215,148,.26);opacity:.7}
+.arch-a{width:min(44vw,500px);height:min(55vh,500px);right:15%;bottom:9%}
+.arch-b{width:min(27vw,300px);height:min(43vh,390px);right:38%;bottom:7%;opacity:.28}
+.fln-couple{
+  left:39%;
+  right:18%;
+  bottom:8%;
+  height:53%;
+  opacity:.82;
+  filter:blur(.15px) drop-shadow(0 12px 22px rgba(0,0,0,.55));
+}
+.fln-man{height:91%;width:25%;background:linear-gradient(150deg,#18100b,#030201 68%)}
+.fln-woman{height:78%;width:30%;background:linear-gradient(155deg,#c17743,#32150b 75%)}
+.fln-bokeh{opacity:.86}
+.fln-hero-vignette{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,transparent 25%,rgba(4,2,1,.28) 74%,rgba(2,1,0,.7) 100%);
+}
+.fln-hero-stats{
+  position:absolute;
+  z-index:6;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%);
+  width:min(650px,calc(100% - 42px));
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  text-align:center;
+  color:#fff;
+}
+.fln-hero-stats>div{
+  position:relative;
+  display:grid;
+  gap:4px;
+  padding:0 22px;
+}
+.fln-hero-stats>div:not(:last-child):after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:6px;
+  height:42px;
+  width:1px;
+  background:rgba(255,231,191,.28);
+}
+.fln-hero-stats strong{
+  font:500 31px/1 "Cormorant Garamond",serif;
+  color:#ffe0a2;
+}
+.fln-hero-stats span{
+  font-size:7px;
+  letter-spacing:.17em;
+  color:rgba(255,248,232,.74);
+}
+
+/* Make the first content section feel like a premium event site rather than a generic landing page. */
+.fln-countdown{
+  padding:20px;
+  background:#0a0705;
+}
+.fln-countdown>p{font-size:8px}
+.fln-counter strong{font-size:34px}
+
+@media(max-width:720px){
+  .fln-nav{
+    position:absolute;
+    height:66px;
+    padding:0 18px;
+    background:linear-gradient(180deg,rgba(7,5,3,.62),transparent);
+  }
+  .fln-wordmark strong{font-size:17px}
+  .fln-links{
+    top:68px;
+    background:rgba(12,7,4,.94);
+    backdrop-filter:blur(14px);
+  }
+  .fln-hero{
+    min-height:760px;
+    height:100svh;
+  }
+  .fln-hero-content{
+    padding:105px 18px 155px;
+    justify-content:center;
+  }
+  .fln-kicker{font-size:8px;letter-spacing:.27em}
+  .fln-hero h1{font-size:clamp(53px,15vw,76px)}
+  .fln-subtitle{font-size:18px;max-width:340px;margin:15px 0 21px}
+  .fln-audience{font-size:7px;letter-spacing:.22em}
+  .fln-meta{
+    grid-template-columns:1fr;
+    gap:10px;
+    margin:19px 0;
+  }
+  .fln-meta i{display:none}
+  .fln-meta span{justify-content:center}
+  .fln-actions{width:min(330px,100%);display:grid;grid-template-columns:1fr}
+  .fln-hero-figure:before{left:-15%;right:-15%;bottom:5%;height:40%}
+  .fln-couple{left:25%;right:4%;height:44%;bottom:10%}
+  .fln-hero-stats{
+    bottom:21px;
+    width:calc(100% - 24px);
+  }
+  .fln-hero-stats>div{padding:0 8px}
+  .fln-hero-stats strong{font-size:24px}
+  .fln-hero-stats span{font-size:5.5px;letter-spacing:.10em}
+  .fln-hero-stats>div:not(:last-child):after{height:31px}
+}
+@media(max-width:420px){
+  .fln-hero{min-height:720px}
+  .fln-hero-content{padding-top:98px;padding-bottom:145px}
+  .fln-hero h1{font-size:52px}
+  .fln-meta{margin:15px 0}
+  .fln-hero-stats strong{font-size:21px}
+  .fln-hero-stats span{font-size:5px}
+}

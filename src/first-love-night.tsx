@@ -233,6 +233,10 @@ export default function FirstLoveNight() {
       setProperty("og:title", typed.announcement.seo_title);
       setProperty("og:description", typed.announcement.seo_description);
       setProperty("og:image", heroImage);
+      setProperty("twitter:card", "summary_large_image");
+      setProperty("twitter:title", typed.announcement.seo_title);
+      setProperty("twitter:description", typed.announcement.seo_description);
+      setProperty("twitter:image", heroImage);
 
       let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (!canonical) {
@@ -284,18 +288,53 @@ export default function FirstLoveNight() {
 
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && !submitting) {
-        setRsvpOpen(false);
+        closeRegistration();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const modal = document.querySelector<HTMLElement>(".fln-rsvp-modal");
+      if (!modal) return;
+
+      const focusable = Array.from(
+        modal.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href]',
+        ),
+      );
+
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKey);
+    requestAnimationFrame(() => rsvpCloseRef.current?.focus());
 
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", handleKey);
     };
   }, [rsvpOpen, submitting]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setRsvpOpen(window.location.pathname.endsWith("/rsvp"));
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const content = data?.announcement.content;
   const days = useMemo(() => (data ? getDaysUntil(data.event.start_at) : 0), [data]);

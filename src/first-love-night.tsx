@@ -1,49 +1,96 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import {
-  ArrowDown,
   ArrowRight,
   CalendarDays,
   Check,
+  CheckCircle2,
   ChevronDown,
   Clock3,
+  Copy,
   Heart,
   LoaderCircle,
   MapPin,
   Menu,
+  MessageCircle,
+  Share2,
+  ShieldCheck,
+  Sparkles,
   Users,
   X,
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./firstlovenight.css";
 
-type EventRow = {
-  id: string;
-  name: string;
-  description: string | null;
-  start_at: string;
-  end_at: string | null;
-  location: string | null;
+type Experience = { title: string; copy: string; icon: string };
+type TimelineItem = { time: string; title: string; copy: string };
+type DressItem = { title: string; copy: string };
+type FaqItem = { question: string; answer: string };
+
+type FirstLoveNightData = {
+  event: {
+    id: string;
+    name: string;
+    description: string | null;
+    start_at: string;
+    end_at: string | null;
+    location: string | null;
+  };
+  announcement: {
+    slug: string;
+    published_at: string;
+    registration_enabled: boolean;
+    seo_title: string;
+    seo_description: string;
+    content: {
+      title: string;
+      subtitle: string;
+      audience: string;
+      date_label: string;
+      weekday: string;
+      time_label: string;
+      venue_label: string;
+      city_label: string;
+      dress_code: string;
+      hero_image_url: string;
+      vision_title: string;
+      vision_copy: string;
+      experience: Experience[];
+      timeline: TimelineItem[];
+      dress_code_items: DressItem[];
+      faqs: FaqItem[];
+    };
+  };
+  registration_count: number;
 };
 
-type Rsvp = {
+type RsvpForm = {
   full_name: string;
   email: string;
   mobile: string;
-  guests: string;
+  age_group: "high_school" | "college" | "";
+  guardian_name: string;
+  guardian_mobile: string;
+  guardian_consent: boolean;
+  guest_count: string;
+  church_group: string;
+  dietary_requirements: string;
+  referral_source: string;
   message: string;
 };
 
-const EVENT = {
-  name: "First Love Night: The Formal",
-  date: "14 November 2026",
-  dateLabel: "14 NOVEMBER 2026",
-  weekday: "SATURDAY",
-  location: "TBA",
-  city: "MANILA, PHILIPPINES",
-  audience: "HIGH SCHOOL + COLLEGE STUDENTS",
-  dressCode: "Formal",
-  description:
-    "A special formal night where young people can dress beautifully, have fun, build friendships and experience the love of Jesus.",
+const FALLBACK: RsvpForm = {
+  full_name: "",
+  email: "",
+  mobile: "",
+  age_group: "",
+  guardian_name: "",
+  guardian_mobile: "",
+  guardian_consent: false,
+  guest_count: "0",
+  church_group: "",
+  dietary_requirements: "None",
+  referral_source: "",
+  message: "",
 };
 
 function formatDate(value: string) {
@@ -56,156 +103,292 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
-function formatTime(value: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Manila",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(new Date(value));
+function getDaysUntil(value: string) {
+  const target = new Date(value);
+  const now = new Date();
+  const targetDay = Date.UTC(
+    target.getUTCFullYear(),
+    target.getUTCMonth(),
+    target.getUTCDate(),
+  );
+  const nowDay = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.max(0, Math.ceil((targetDay - nowDay) / 86400000));
 }
 
-function getCountdown(target: string | null) {
-  if (!target) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  const diff = Math.max(0, new Date(target).getTime() - Date.now());
-  return {
-    days: Math.floor(diff / 86400000),
-    hours: Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000) % 60,
-    seconds: Math.floor(diff / 1000) % 60,
-  };
+function openRsvpAnalytics(eventId: string, eventType: string, metadata: Record<string, unknown> = {}) {
+  void supabase.from("festival_analytics_events").insert({
+    event_id: eventId,
+    event_type: eventType,
+    path: window.location.pathname,
+    metadata,
+  });
 }
 
 export default function FirstLoveNight() {
-  const [event, setEvent] = useState<EventRow | null>(null);
+  const [data, setData] = useState<FirstLoveNightData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [rsvpOpen, setRsvpOpen] = useState(false);
+  const [error, setError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [faqOpen, setFaqOpen] = useState<number | null>(0);
+  const [rsvpOpen, setRsvpOpen] = useState(window.location.pathname.endsWith("/rsvp"));
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [form, setForm] = useState<RsvpForm>(FALLBACK);
   const [submitting, setSubmitting] = useState(false);
-  const [rsvpDone, setRsvpDone] = useState(false);
   const [rsvpError, setRsvpError] = useState("");
-  const [consent, setConsent] = useState(false);
-  const [form, setForm] = useState<Rsvp>({
-    full_name: "",
-    email: "",
-    mobile: "",
-    guests: "0",
-    message: "",
-  });
+  const [confirmation, setConfirmation] = useState<{ code: string; name: string; guests: number } | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
+    let alive = true;
 
     const load = async () => {
-      const { data } = await supabase
-        .from("events")
-        .select("id,name,description,start_at,end_at,location")
-        .eq("is_active", true)
-        .ilike("name", "%First Love Night%")
-        .order("start_at", { ascending: true })
-        .limit(1)
-        .maybeSingle();
+      setLoading(true);
+      const { data: result, error: rpcError } = await supabase.rpc("get_public_first_love_night");
 
-      if (cancelled) return;
-      if (data) setEvent(data as EventRow);
+      if (!alive) return;
+
+      if (rpcError || !result) {
+        setError("This event page is temporarily unavailable. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      const typed = result as FirstLoveNightData;
+      setData(typed);
+      document.title = typed.announcement.seo_title;
+
+      const meta = (name: string, value: string) => {
+        let node = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+        if (!node) {
+          node = document.createElement("meta");
+          node.name = name;
+          document.head.appendChild(node);
+        }
+        node.content = value;
+      };
+
+      meta("description", typed.announcement.seo_description);
+
+      const setProperty = (property: string, value: string) => {
+        let node = document.head.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
+        if (!node) {
+          node = document.createElement("meta");
+          node.setAttribute("property", property);
+          document.head.appendChild(node);
+        }
+        node.content = value;
+      };
+
+      const heroImage = new URL(
+        typed.announcement.content.hero_image_url,
+        window.location.origin,
+      ).toString();
+
+      setProperty("og:title", typed.announcement.seo_title);
+      setProperty("og:description", typed.announcement.seo_description);
+      setProperty("og:image", heroImage);
+
+      let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = window.location.href.split("#")[0];
+
+      let schema = document.head.querySelector<HTMLScriptElement>('script[data-event-schema="first-love-night"]');
+      if (!schema) {
+        schema = document.createElement("script");
+        schema.type = "application/ld+json";
+        schema.dataset.eventSchema = "first-love-night";
+        document.head.appendChild(schema);
+      }
+      schema.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: typed.event.name,
+        description: typed.event.description || typed.announcement.seo_description,
+        startDate: typed.event.start_at,
+        image: [heroImage],
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        location: {
+          "@type": "Place",
+          name: typed.event.location || "TBA",
+          address: "Manila, Philippines",
+        },
+      });
+
+      openRsvpAnalytics(typed.event.id, "page_view", { page: "first_love_night" });
       setLoading(false);
+
+      if (window.location.pathname.endsWith("/rsvp")) {
+        openRsvpAnalytics(typed.event.id, "register_click", { source: "direct_rsvp_url" });
+      }
     };
 
     void load();
     return () => {
-      cancelled = true;
+      alive = false;
     };
   }, []);
 
   useEffect(() => {
-    const target = event?.start_at || "2026-11-14T00:00:00+08:00";
-    const tick = () => setCountdown(getCountdown(target));
-    tick();
-    const interval = window.setInterval(tick, 1000);
-    return () => window.clearInterval(interval);
-  }, [event]);
+    if (!rsvpOpen) return;
 
-  useEffect(() => {
-    document.title = "First Love Night · The Formal";
-  }, []);
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !submitting) {
+        setRsvpOpen(false);
+      }
+    };
 
-  const startAt = event?.start_at || "2026-11-14T00:00:00+08:00";
-  const venue = event?.location || EVENT.location;
-  const eventDate = event ? formatDate(startAt) : EVENT.date;
-  const eventTime = event ? formatTime(startAt) : "TBA";
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${venue}, Manila, Philippines`,
-  )}`;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKey);
 
-  const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    EVENT.name,
-  )}&dates=${encodeURIComponent(
-    new Date(startAt).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z"),
-  )}/${encodeURIComponent(
-    new Date(event?.end_at || new Date(new Date(startAt).getTime() + 3 * 60 * 60 * 1000))
-      .toISOString()
-      .replace(/[-:]/g, "")
-      .replace(/\.\d{3}Z$/, "Z"),
-  )}&details=${encodeURIComponent(EVENT.description)}&location=${encodeURIComponent(
-    `${venue}, Manila, Philippines`,
-  )}`;
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [rsvpOpen, submitting]);
 
-  const scrollTo = (id: string) => {
-    setMobileMenu(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const content = data?.announcement.content;
+  const days = useMemo(() => (data ? getDaysUntil(data.event.start_at) : 0), [data]);
+  const eventDate = data ? formatDate(data.event.start_at) : "";
+  const venue = data?.event.location || content?.venue_label || "TBA";
+  const guestCount = Number(form.guest_count || 0);
 
-  const updateForm = (field: keyof Rsvp, value: string) => {
-    setForm((current) => ({ ...current, [field]: value }));
-  };
-
-  const submitRsvp = async (e: FormEvent) => {
-    e.preventDefault();
+  const openRegistration = (source: string) => {
+    if (!data?.announcement.registration_enabled) return;
+    setMenuOpen(false);
+    setStep(1);
     setRsvpError("");
+    setConfirmation(null);
+    setRsvpOpen(true);
+    history.replaceState({}, "", "/first-love-night/rsvp");
+    openRsvpAnalytics(data.event.id, "register_click", { source });
+  };
 
-    if (!event) {
-      setRsvpError("RSVP is temporarily unavailable. Please try again later.");
+  const closeRegistration = () => {
+    if (submitting) return;
+    setRsvpOpen(false);
+    history.replaceState({}, "", "/first-love-night");
+  };
+
+  const update = <K extends keyof RsvpForm>(field: K, value: RsvpForm[K]) => {
+    setForm((current) => ({ ...current, [field]: value }));
+    if (rsvpError) setRsvpError("");
+  };
+
+  const continueStepOne = (event: FormEvent) => {
+    event.preventDefault();
+
+    if (!form.age_group) {
+      setRsvpError("Please select your age group.");
       return;
     }
-    if (!consent) {
-      setRsvpError("Please confirm your information and consent to event follow-up.");
-      return;
+
+    if (form.age_group === "high_school") {
+      if (!form.guardian_name.trim() || !form.guardian_mobile.trim() || !form.guardian_consent) {
+        setRsvpError("Parent or guardian information and consent are required for high school attendees.");
+        return;
+      }
     }
+
+    setStep(2);
+    if (data) openRsvpAnalytics(data.event.id, "register_click", { step: 1, action: "step_1_complete" });
+  };
+
+  const continueStepTwo = (event: FormEvent) => {
+    event.preventDefault();
+    setStep(3);
+    if (data) openRsvpAnalytics(data.event.id, "register_click", { step: 2, action: "step_2_complete" });
+  };
+
+  const submitRsvp = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!data) return;
 
     setSubmitting(true);
+    setRsvpError("");
 
-    const { error } = await supabase.from("festival_registrations").insert({
-      event_id: event.id,
-      full_name: form.full_name.trim(),
-      email: form.email.trim().toLowerCase(),
-      mobile: form.mobile.trim() || null,
-      guests: Number(form.guests),
-      attending_service: eventTime,
-      message: form.message.trim() || null,
+    const { data: result, error: submitError } = await supabase.rpc("submit_first_love_night_rsvp", {
+      p_full_name: form.full_name.trim(),
+      p_email: form.email.trim().toLowerCase(),
+      p_mobile: form.mobile.trim() || null,
+      p_age_group: form.age_group,
+      p_guardian_name: form.guardian_name.trim() || null,
+      p_guardian_mobile: form.guardian_mobile.trim() || null,
+      p_guardian_consent: form.guardian_consent,
+      p_guest_count: guestCount,
+      p_church_group: form.church_group.trim() || null,
+      p_dietary_requirements: form.dietary_requirements.trim() || "None",
+      p_referral_source: form.referral_source || null,
+      p_message: form.message.trim() || null,
+      p_consent: true,
+      p_honeypot: "",
     });
 
-    if (error) {
+    if (submitError || !result) {
       setRsvpError(
-        error.code === "23505"
+        submitError?.code === "23505"
           ? "This email is already registered for First Love Night."
-          : "We could not complete your RSVP. Please check your details and try again.",
+          : submitError?.message || "We could not complete your RSVP. Please check your details and try again.",
       );
       setSubmitting(false);
       return;
     }
 
-    void supabase.from("festival_analytics_events").insert({
-      event_id: event.id,
-      event_type: "register_submit",
-      path: window.location.pathname,
-      metadata: { type: "first_love_night_rsvp", guests: Number(form.guests) },
-    });
+    const confirmationData = result as {
+      confirmation_code: string;
+      full_name: string;
+      guest_count: number;
+    };
 
-    setRsvpDone(true);
-    setConsent(false);
+    setConfirmation({
+      code: confirmationData.confirmation_code,
+      name: confirmationData.full_name,
+      guests: confirmationData.guest_count,
+    });
+    setStep(3);
     setSubmitting(false);
+    openRsvpAnalytics(data.event.id, "register_submit", {
+      guests: guestCount,
+      age_group: form.age_group,
+      referral_source: form.referral_source,
+    });
   };
+
+  const share = async () => {
+    if (!data) return;
+    openRsvpAnalytics(data.event.id, "share_click");
+
+    if (navigator.share) {
+      await navigator.share({
+        title: data.event.name,
+        text: "Join us for First Love Night: The Formal.",
+        url: window.location.origin + "/first-love-night",
+      });
+      return;
+    }
+
+    await navigator.clipboard?.writeText(window.location.origin + "/first-love-night");
+  };
+
+  const calendarUrl = data
+    ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(data.event.name)}&dates=${encodeURIComponent(
+        new Date(data.event.start_at).toISOString().slice(0, 10).replace(/-/g, ""),
+      )}/${encodeURIComponent(
+        new Date(new Date(data.event.start_at).getTime() + 86400000)
+          .toISOString()
+          .slice(0, 10)
+          .replace(/-/g, ""),
+      )}&details=${encodeURIComponent(content?.vision_copy || "")}&location=${encodeURIComponent(
+        `${venue}, Manila, Philippines`,
+      )}`
+    : "#";
+
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${venue}, Manila, Philippines`,
+  )}`;
 
   if (loading) {
     return (
@@ -216,273 +399,494 @@ export default function FirstLoveNight() {
     );
   }
 
+  if (error || !data || !content) {
+    return (
+      <main className="fln-state">
+        <Sparkles />
+        <h1>First Love Night</h1>
+        <p>{error || "Event details are unavailable."}</p>
+        <button type="button" onClick={() => window.location.reload()}>
+          TRY AGAIN
+        </button>
+      </main>
+    );
+  }
+
   return (
     <main className="fln-page">
-      <header className="fln-nav">
-        <button className="fln-wordmark" type="button" onClick={() => scrollTo("home")}>
+      <nav className="fln-nav" aria-label="First Love Night">
+        <button className="fln-wordmark" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <strong>FIRST LOVE NIGHT</strong>
           <span>THE FORMAL</span>
         </button>
 
-        <nav className={mobileMenu ? "fln-links open" : "fln-links"} aria-label="First Love Night sections">
-          <button type="button" onClick={() => scrollTo("home")}>Home</button>
-          <button type="button" onClick={() => scrollTo("about")}>About</button>
-          <button type="button" onClick={() => scrollTo("details")}>Details</button>
-          <button type="button" onClick={() => scrollTo("experience")}>What to Expect</button>
-          <button type="button" onClick={() => scrollTo("faq")}>FAQ</button>
-        </nav>
+        <div className={menuOpen ? "fln-links open" : "fln-links"}>
+          {[
+            ["Home", "home"],
+            ["The Night", "about"],
+            ["Dress Code", "dress-code"],
+            ["Details", "details"],
+            ["FAQ", "faq"],
+          ].map(([label, id]) => (
+            <button key={id} type="button" onClick={() => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }}>
+              {label}
+            </button>
+          ))}
+        </div>
 
         <div className="fln-nav-actions">
-          <button className="fln-register-mini" type="button" onClick={() => { setRsvpDone(false); setRsvpError(""); setRsvpOpen(true); }}>
-            Register Now
+          <button className="fln-share-nav" type="button" onClick={() => void share()} aria-label="Share event">
+            <Share2 size={17} />
           </button>
-          <button
-            className="fln-menu"
-            type="button"
-            aria-label={mobileMenu ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenu}
-            onClick={() => setMobileMenu((v) => !v)}
-          >
-            {mobileMenu ? <X size={20} /> : <Menu size={20} />}
+          <button className="fln-register-mini" type="button" onClick={() => openRegistration("nav")}>
+            RSVP NOW <ArrowRight size={15} />
+          </button>
+          <button className="fln-menu" type="button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen}>
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </header>
+      </nav>
 
       <section id="home" className="fln-hero">
-        <div className="fln-hero-bg" />
+        <div className="fln-hero-image" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
         <div className="fln-hero-overlay" />
+        <div className="fln-hero-grain" />
+
         <div className="fln-hero-content">
-          <p className="fln-kicker">F I R S T   L O V E   N I G H T</p>
-          <h1>THE FORMAL</h1>
-          <p className="fln-subtitle">A Christ-Centred Formal Night</p>
-          <p className="fln-audience">{EVENT.audience}</p>
+          <p className="fln-kicker">{content.audience}</p>
+          <h1>{content.title}</h1>
+          <p className="fln-hero-subtitle">{content.subtitle}</p>
 
-          <div className="fln-meta">
-            <span><CalendarDays size={19} /><b>{eventDate}</b><small>{EVENT.weekday}</small></span>
-            <i />
-            <span><MapPin size={19} /><b>{venue}</b><small>{EVENT.city}</small></span>
+          <div className="fln-hero-facts">
+            <span><CalendarDays size={17} /> {content.date_label} · {content.weekday}</span>
+            <span><MapPin size={17} /> {venue} · {content.city_label}</span>
           </div>
 
-          <div className="fln-actions">
-            <button className="fln-gold-btn" type="button" onClick={() => { setRsvpDone(false); setRsvpError(""); setRsvpOpen(true); }}>
-              REGISTER NOW <ArrowRight size={17} />
+          <div className="fln-hero-actions">
+            <button className="fln-gold-btn" type="button" onClick={() => openRegistration("hero")}>
+              RESERVE YOUR PLACE <ArrowRight size={17} />
             </button>
-            <button className="fln-outline-btn" type="button" onClick={() => scrollTo("details")}>
-              <CalendarDays size={15} /> SAVE THE DATE
-            </button>
+            <a className="fln-outline-btn" href="#about">
+              DISCOVER THE NIGHT
+            </a>
+          </div>
+
+          <div className="fln-countdown-hero">
+            <span>THE NIGHT BEGINS IN</span>
+            <strong>{days}</strong>
+            <small>DAYS</small>
           </div>
         </div>
 
-        <div className="fln-hero-figure" aria-hidden="true">
-          <div className="fln-glow" />
-          <div className="fln-table-light table-light-a" />
-          <div className="fln-table-light table-light-b" />
-          <div className="fln-arch arch-a" />
-          <div className="fln-arch arch-b" />
-          <div className="fln-couple">
-            <div className="fln-person fln-man" />
-            <div className="fln-person fln-woman" />
-          </div>
-          <div className="fln-bokeh b1" /><div className="fln-bokeh b2" /><div className="fln-bokeh b3" />
-          <div className="fln-bokeh b4" /><div className="fln-bokeh b5" /><div className="fln-bokeh b6" />
-          <div className="fln-hero-vignette" />
-        </div>
-        <div className="fln-hero-stats">
-          <div><strong>14</strong><span>NOVEMBER 2026</span></div>
+        <div className="fln-hero-bottom">
+          <div><strong>{content.date_label.split(" ")[0]}</strong><span>DATE</span></div>
           <div><strong>1</strong><span>FORMAL NIGHT</span></div>
-          <div><strong>1</strong><span>PURPOSE</span></div>
+          <div><strong>∞</strong><span>ONE PURPOSE</span></div>
         </div>
       </section>
 
-      <section className="fln-countdown" aria-label="Countdown to First Love Night">
-        <p>THE COUNTDOWN BEGINS</p>
-        <div className="fln-counter">
-          <div><strong>{String(countdown.days).padStart(2, "0")}</strong><span>DAYS</span></div>
-          <i />
-          <div><strong>{String(countdown.hours).padStart(2, "0")}</strong><span>HOURS</span></div>
-          <i />
-          <div><strong>{String(countdown.minutes).padStart(2, "0")}</strong><span>MINUTES</span></div>
-          <i />
-          <div><strong>{String(countdown.seconds).padStart(2, "0")}</strong><span>SECONDS</span></div>
+      <section className="fln-intro-strip">
+        <div>
+          <span>RSVP REQUIRED</span>
+          <strong>Come dressed. Come expectant. Come ready to encounter Jesus.</strong>
         </div>
+        <button type="button" onClick={() => openRegistration("strip")}>
+          RSVP NOW <ArrowRight size={15} />
+        </button>
       </section>
 
       <section id="about" className="fln-vision">
-        <div className="fln-vision-photo">
-          <div className="fln-table-scene">
-            <div className="fln-table-line" />
-            <div className="fln-candle c1" /><div className="fln-candle c2" /><div className="fln-candle c3" />
-            <div className="fln-flower flower-a" /><div className="fln-flower flower-b" />
-            <div className="fln-glass g1" /><div className="fln-glass g2" /><div className="fln-glass g3" />
-          </div>
-        </div>
+        <div className="fln-vision-photo" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
         <div className="fln-vision-copy">
-          <span>THE VISION</span>
-          <h2>A Night to Celebrate,<br />Connect and Encounter Jesus.</h2>
+          <span>WHY THIS NIGHT EXISTS</span>
+          <h2>{content.vision_title}</h2>
           <div className="fln-rule" />
-          <p>{event?.description || EVENT.description}</p>
+          <p>{content.vision_copy}</p>
+          <div className="fln-vision-note">
+            <Heart size={17} />
+            <span>A formal night with a purpose bigger than the dress code.</span>
+          </div>
         </div>
       </section>
 
-      <section id="experience" className="fln-experience">
-        <span className="fln-section-kicker">THE EXPERIENCE</span>
-        <h2>A Night with Purpose</h2>
+      <section className="fln-experience">
+        <div className="fln-section-head">
+          <span>WHAT TO EXPECT</span>
+          <h2>Five hours. One unforgettable night.</h2>
+          <p>Every part of the evening is designed to move from arrival to celebration, encounter and community.</p>
+        </div>
+
         <div className="fln-experience-grid">
-          {[
-            ["ARRIVE", "A real formal from the first moment.", "door"],
-            ["CELEBRATE", "Food, friendship, music and memories.", "glasses"],
-            ["ENCOUNTER", "A meaningful moment with Jesus.", "cross"],
-            ["CONNECT", "A clear next step into community.", "people"],
-          ].map(([title, copy, icon]) => (
-            <article key={title} className="fln-experience-item">
-              <div className={"fln-circle-icon " + icon} aria-hidden="true">
-                {icon === "cross" ? "✝" : icon === "people" ? "◌◌" : icon === "glasses" ? "◡◡" : "▯"}
+          {content.experience.map((item, index) => (
+            <article className="fln-experience-card" key={item.title}>
+              <span className="fln-step-number">0{index + 1}</span>
+              <div className="fln-experience-icon">
+                {item.icon === "cross" ? "✝" : item.icon === "users" ? <Users size={23} /> : item.icon === "sparkles" ? <Sparkles size={23} /> : "◈"}
               </div>
-              <h3>{title}</h3>
-              <p>{copy}</p>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="details" className="fln-details">
-        <div className="fln-details-bg" />
-        <div className="fln-details-content">
-          <span>EVENT DETAILS</span>
-          <h2>Save the Date</h2>
-          <div className="fln-details-grid">
-            <article><CalendarDays /><small>DATE</small><strong>{eventDate}</strong><b>{EVENT.weekday}</b></article>
-            <article><MapPin /><small>VENUE</small><strong>{venue}</strong><b>{EVENT.city}</b></article>
-            <article><Users /><small>FOR</small><strong>High School +<br />College Students</strong><b>&nbsp;</b></article>
-            <article><Heart /><small>DRESS CODE</small><strong>{EVENT.dressCode}</strong><b>(More details soon)</b></article>
+      <section id="dress-code" className="fln-dress">
+        <div className="fln-dress-copy">
+          <span>DRESS CODE</span>
+          <h2>Make an entrance.</h2>
+          <p>Formal attire. Think elegant, polished and photo-ready. More style guidance will be announced closer to the night.</p>
+          <div className="fln-dress-badge">
+            <ShieldCheck size={18} />
+            <span>{content.dress_code.toUpperCase()} ATTIRE</span>
           </div>
-          <button className="fln-gold-btn fln-centered" type="button" onClick={() => { setRsvpDone(false); setRsvpError(""); setRsvpOpen(true); }}>
-            REGISTER NOW <ArrowRight size={17} />
-          </button>
+        </div>
+        <div className="fln-dress-list">
+          {content.dress_code_items.map((item, index) => (
+            <article key={item.title}>
+              <span>0{index + 1}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="fln-gallery" aria-label="Formal night atmosphere">
-        <div className="fln-gallery-panel panel-1"><span>ARRIVE IN STYLE</span></div>
-        <div className="fln-gallery-panel panel-2"><span>CELEBRATE TOGETHER</span></div>
-        <div className="fln-gallery-panel panel-3"><span>COME WITH YOUR PEOPLE</span></div>
+      <section id="details" className="fln-timeline">
+        <div className="fln-section-head">
+          <span>THE EVENING</span>
+          <h2>From first step to final song.</h2>
+          <p>The run-of-show will be updated as final timings are confirmed.</p>
+        </div>
+
+        <div className="fln-timeline-track">
+          {content.timeline.map((item, index) => (
+            <article key={item.title}>
+              <div className="fln-timeline-dot" />
+              <span>{item.time}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+              {index < content.timeline.length - 1 && <i />}
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="fln-final">
+      <section className="fln-event-details">
+        <div className="fln-detail-visual">
+          <div className="fln-detail-glow" />
+          <span>FIRST LOVE NIGHT</span>
+          <strong>THE FORMAL</strong>
+          <small>14 NOVEMBER 2026</small>
+        </div>
+
+        <div className="fln-detail-content">
+          <span>EVENT DETAILS</span>
+          <h2>Save the date.</h2>
+
+          <div className="fln-detail-grid">
+            <article>
+              <CalendarDays />
+              <small>DATE</small>
+              <strong>{eventDate}</strong>
+              <span>{content.weekday}</span>
+            </article>
+            <article>
+              <Clock3 />
+              <small>TIME</small>
+              <strong>{content.time_label}</strong>
+              <span>Details soon</span>
+            </article>
+            <article>
+              <MapPin />
+              <small>VENUE</small>
+              <strong>{venue}</strong>
+              <span>{content.city_label}</span>
+            </article>
+            <article>
+              <Users />
+              <small>FOR</small>
+              <strong>High School +<br />College Students</strong>
+              <span>RSVP required</span>
+            </article>
+          </div>
+
+          <div className="fln-detail-actions">
+            <a href={calendarUrl} target="_blank" rel="noreferrer" className="fln-outline-dark">
+              ADD TO CALENDAR
+            </a>
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="fln-outline-dark"
+              onClick={() => openRsvpAnalytics(data.event.id, "directions_click")}
+            >
+              DIRECTIONS
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="fln-gallery-strip">
+        <div><div className="fln-gallery-image image-a" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ARRIVE IN STYLE</span></div>
+        <div><div className="fln-gallery-image image-b" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>CELEBRATE TOGETHER</span></div>
+        <div><div className="fln-gallery-image image-c" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ENCOUNTER JESUS</span></div>
+      </section>
+
+      <section className="fln-final-cta">
+        <div className="fln-final-glow" />
         <span>BE PART OF</span>
-        <h2>A NIGHT THAT MATTERS</h2>
-        <p>DRESS UP · BRING YOUR FRIENDS · ENCOUNTER JESUS</p>
-        <button className="fln-gold-btn" type="button" onClick={() => { setRsvpDone(false); setRsvpError(""); setRsvpOpen(true); }}>
-          REGISTER NOW <ArrowRight size={17} />
+        <h2>A NIGHT THAT MATTERS.</h2>
+        <p>Dress up. Bring your friends. Make memories. Encounter Jesus.</p>
+        <button className="fln-gold-btn" type="button" onClick={() => openRegistration("final_cta")}>
+          RESERVE YOUR PLACE <ArrowRight size={17} />
+        </button>
+        <button className="fln-share-link" type="button" onClick={() => void share()}>
+          <Share2 size={15} /> SHARE THIS NIGHT
         </button>
       </section>
 
       <section id="faq" className="fln-faq">
-        <div>
+        <div className="fln-section-head">
           <span>GOOD TO KNOW</span>
-          <h2>Before the<br />Formal.</h2>
+          <h2>Before the formal.</h2>
+          <p>Everything you need to know before you say yes.</p>
         </div>
+
         <div className="fln-faq-list">
-          {[
-            ["Who can attend?", "First Love Night is for high school and college students within the First Love community."],
-            ["What should I wear?", "Formal attire. More detailed dress-code guidance will be announced soon."],
-            ["Where will it be held?", "The venue is currently TBA in Manila, Philippines. Final venue details will be announced when confirmed."],
-            ["Do I need to RSVP?", "Yes. RSVP helps the team prepare seating, food and the overall guest experience."],
-          ].map(([question, answer], i) => (
-            <article key={question} className={openFaq === i ? "open" : ""}>
-              <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i}>
-                <strong>0{i + 1}</strong><span>{question}</span><ChevronDown size={18} />
+          {content.faqs.map((item, index) => (
+            <article key={item.question} className={faqOpen === index ? "open" : ""}>
+              <button type="button" onClick={() => setFaqOpen(faqOpen === index ? null : index)} aria-expanded={faqOpen === index}>
+                <span>0{index + 1}</span>
+                <strong>{item.question}</strong>
+                <ChevronDown size={18} />
               </button>
-              {openFaq === i && <p>{answer}</p>}
+              {faqOpen === index && <p>{item.answer}</p>}
             </article>
           ))}
         </div>
       </section>
 
       <footer className="fln-footer">
-        <span>FIRST LOVE NIGHT · THE FORMAL</span>
-        <span>14 NOVEMBER 2026 · MANILA, PHILIPPINES</span>
+        <div>
+          <strong>FIRST LOVE NIGHT</strong>
+          <span>THE FORMAL</span>
+        </div>
+        <div>
+          <span>14 NOVEMBER 2026</span>
+          <span>MANILA, PHILIPPINES</span>
+        </div>
       </footer>
 
+      {data.announcement.registration_enabled && (
+        <div className="fln-mobile-rsvp">
+          <div>
+            <span>FIRST LOVE NIGHT</span>
+            <strong>RSVP REQUIRED</strong>
+          </div>
+          <button type="button" onClick={() => openRegistration("mobile_sticky")}>
+            RSVP NOW <ArrowRight size={15} />
+          </button>
+        </div>
+      )}
+
       {rsvpOpen && (
-        <div
-          className="fln-modal-backdrop"
-          role="presentation"
-          onMouseDown={(e) => e.currentTarget === e.target && setRsvpOpen(false)}
-        >
-          <section className="fln-modal" role="dialog" aria-modal="true" aria-labelledby="fln-rsvp-title">
-            <button className="fln-modal-close" type="button" onClick={() => setRsvpOpen(false)} aria-label="Close RSVP">
+        <div className="fln-rsvp-backdrop" role="presentation" onMouseDown={(event) => event.currentTarget === event.target && closeRegistration()}>
+          <section className="fln-rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="fln-rsvp-title">
+            <button className="fln-rsvp-close" type="button" onClick={closeRegistration} aria-label="Close RSVP">
               <X size={20} />
             </button>
 
-            {!rsvpDone ? (
+            {!confirmation ? (
               <>
-                <span>YOUR PLACE AT THE TABLE</span>
-                <h2 id="fln-rsvp-title">RSVP for<br /><em>THE FORMAL.</em></h2>
-                <p>
-                  Reserve your spot for a Christ-centred formal night built for connection,
-                  celebration and an unforgettable encounter with Jesus.
-                </p>
+                <div className="fln-rsvp-head">
+                  <span>YOUR PLACE AT THE TABLE</span>
+                  <h2 id="fln-rsvp-title">Reserve your<br /><em>place at the Formal.</em></h2>
+                  <p>Three quick steps. No complicated registration. Your details help the team prepare the best possible night.</p>
+                </div>
 
-                <form onSubmit={submitRsvp}>
-                  <div className="fln-form-grid">
-                    <label>
-                      <span>FULL NAME *</span>
-                      <input required minLength={2} autoComplete="name" value={form.full_name} onChange={(e) => updateForm("full_name", e.target.value)} placeholder="Juan Dela Cruz" />
-                    </label>
-                    <label>
-                      <span>EMAIL *</span>
-                      <input required type="email" autoComplete="email" value={form.email} onChange={(e) => updateForm("email", e.target.value)} placeholder="you@example.com" />
-                    </label>
-                    <label>
-                      <span>MOBILE</span>
-                      <input type="tel" autoComplete="tel" value={form.mobile} onChange={(e) => updateForm("mobile", e.target.value)} placeholder="09XX XXX XXXX" />
-                    </label>
-                    <label>
-                      <span>GUESTS</span>
-                      <select value={form.guests} onChange={(e) => updateForm("guests", e.target.value)}>
-                        {Array.from({ length: 6 }, (_, i) => (
-                          <option key={i} value={i}>{i === 0 ? "Just me" : `${i} guest${i > 1 ? "s" : ""}`}</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label className="full">
-                      <span>MESSAGE (OPTIONAL)</span>
-                      <textarea rows={4} value={form.message} onChange={(e) => updateForm("message", e.target.value)} placeholder="Anything the event team should know?" />
-                    </label>
-                  </div>
+                <div className="fln-rsvp-progress" aria-label="Registration progress">
+                  {[["01", "YOU"], ["02", "YOUR NIGHT"], ["03", "CONFIRM"]].map(([number, label], index) => (
+                    <div key={number} className={step >= index + 1 ? "active" : ""}>
+                      <span>{number}</span>
+                      <strong>{label}</strong>
+                    </div>
+                  ))}
+                </div>
 
-                  <label className="fln-consent">
-                    <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-                    <span>I confirm the information above is accurate and agree to be contacted about First Love Night.</span>
-                  </label>
+                {step === 1 && (
+                  <form className="fln-rsvp-form" onSubmit={continueStepOne}>
+                    <div className="fln-form-grid">
+                      <label>
+                        <span>FULL NAME *</span>
+                        <input required minLength={2} autoComplete="name" value={form.full_name} onChange={(event) => update("full_name", event.target.value)} placeholder="Juan Dela Cruz" />
+                      </label>
+                      <label>
+                        <span>EMAIL *</span>
+                        <input required type="email" autoComplete="email" value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="you@example.com" />
+                      </label>
+                      <label>
+                        <span>MOBILE NUMBER</span>
+                        <input required type="tel" autoComplete="tel" value={form.mobile} onChange={(event) => update("mobile", event.target.value)} placeholder="09XX XXX XXXX" />
+                      </label>
+                      <label>
+                        <span>AGE GROUP *</span>
+                        <select required value={form.age_group} onChange={(event) => update("age_group", event.target.value as RsvpForm["age_group"])}>
+                          <option value="">Select your age group</option>
+                          <option value="high_school">High School</option>
+                          <option value="college">College</option>
+                        </select>
+                      </label>
+                    </div>
 
-                  {rsvpError && <div className="fln-form-error" role="alert">{rsvpError}</div>}
+                    {form.age_group === "high_school" && (
+                      <div className="fln-guardian-box">
+                        <div>
+                          <ShieldCheck size={20} />
+                          <div>
+                            <strong>Parent / guardian details</strong>
+                            <p>Because you are registering as a high-school attendee, we need a parent or guardian contact.</p>
+                          </div>
+                        </div>
+                        <div className="fln-form-grid">
+                          <label>
+                            <span>GUARDIAN NAME *</span>
+                            <input required value={form.guardian_name} onChange={(event) => update("guardian_name", event.target.value)} placeholder="Parent / Guardian" />
+                          </label>
+                          <label>
+                            <span>GUARDIAN MOBILE *</span>
+                            <input required type="tel" value={form.guardian_mobile} onChange={(event) => update("guardian_mobile", event.target.value)} placeholder="09XX XXX XXXX" />
+                          </label>
+                        </div>
+                        <label className="fln-check-row">
+                          <input type="checkbox" checked={form.guardian_consent} onChange={(event) => update("guardian_consent", event.target.checked)} />
+                          <span>I confirm that a parent / guardian has given consent for this registration.</span>
+                        </label>
+                      </div>
+                    )}
 
-                  <button className="fln-gold-btn fln-wide" type="submit" disabled={submitting}>
-                    {submitting ? <><LoaderCircle className="fln-spin" size={17} /> SUBMITTING…</> : <>CONFIRM RSVP <Check size={18} /></>}
-                  </button>
-                </form>
+                    {rsvpError && <div className="fln-rsvp-error" role="alert">{rsvpError}</div>}
+
+                    <button className="fln-rsvp-submit" type="submit">
+                      CONTINUE <ArrowRight size={16} />
+                    </button>
+                  </form>
+                )}
+
+                {step === 2 && (
+                  <form className="fln-rsvp-form" onSubmit={continueStepTwo}>
+                    <div className="fln-form-grid">
+                      <label>
+                        <span>NUMBER OF GUESTS</span>
+                        <select value={form.guest_count} onChange={(event) => update("guest_count", event.target.value)}>
+                          {Array.from({ length: 6 }, (_, index) => <option key={index} value={index}>{index === 0 ? "Just me" : `${index} guest${index > 1 ? "s" : ""}`}</option>)}
+                        </select>
+                      </label>
+                      <label>
+                        <span>CHURCH / COMMUNITY</span>
+                        <input value={form.church_group} onChange={(event) => update("church_group", event.target.value)} placeholder="Vibe, community, school, etc." />
+                      </label>
+                      <label>
+                        <span>DIETARY REQUIREMENTS</span>
+                        <select value={form.dietary_requirements} onChange={(event) => update("dietary_requirements", event.target.value)}>
+                          <option>None</option>
+                          <option>Vegetarian</option>
+                          <option>Halal</option>
+                          <option>Allergy — please explain below</option>
+                        </select>
+                      </label>
+                      <label>
+                        <span>HOW DID YOU HEAR ABOUT US?</span>
+                        <select value={form.referral_source} onChange={(event) => update("referral_source", event.target.value)}>
+                          <option value="">Select one</option>
+                          <option>Friend</option>
+                          <option>Vibe / Bacenta</option>
+                          <option>Church</option>
+                          <option>Social Media</option>
+                          <option>School</option>
+                          <option>Other</option>
+                        </select>
+                      </label>
+                      <label className="fln-full-field">
+                        <span>ANYTHING WE SHOULD KNOW? OPTIONAL</span>
+                        <textarea rows={4} value={form.message} onChange={(event) => update("message", event.target.value)} placeholder="Dietary notes, accessibility needs, or anything else for the event team." />
+                      </label>
+                    </div>
+
+                    {rsvpError && <div className="fln-rsvp-error" role="alert">{rsvpError}</div>}
+
+                    <div className="fln-rsvp-form-actions">
+                      <button className="fln-rsvp-back" type="button" onClick={() => setStep(1)}>BACK</button>
+                      <button className="fln-rsvp-submit" type="submit">REVIEW RSVP <ArrowRight size={16} /></button>
+                    </div>
+                  </form>
+                )}
+
+                {step === 3 && (
+                  <form className="fln-rsvp-form" onSubmit={submitRsvp}>
+                    <div className="fln-confirm-card">
+                      <div className="fln-confirm-top">
+                        <span>YOUR RESERVATION</span>
+                        <strong>FIRST LOVE NIGHT · THE FORMAL</strong>
+                      </div>
+                      <div className="fln-confirm-grid">
+                        <div><small>GUEST</small><strong>{form.full_name}</strong></div>
+                        <div><small>AGE GROUP</small><strong>{form.age_group === "high_school" ? "High School" : "College"}</strong></div>
+                        <div><small>GUESTS</small><strong>{guestCount + 1}</strong></div>
+                        <div><small>DATE</small><strong>{content.date_label}</strong></div>
+                        <div><small>VENUE</small><strong>{venue}</strong></div>
+                        <div><small>DRESS CODE</small><strong>{content.dress_code}</strong></div>
+                      </div>
+                    </div>
+
+                    <label className="fln-check-row fln-final-consent">
+                      <input type="checkbox" checked={form.guardian_consent || form.age_group === "college"} onChange={(event) => update("guardian_consent", event.target.checked)} />
+                      <span>I confirm my information is accurate and agree to be contacted about First Love Night.</span>
+                    </label>
+
+                    {rsvpError && <div className="fln-rsvp-error" role="alert">{rsvpError}</div>}
+
+                    <button className="fln-rsvp-submit" type="submit" disabled={submitting}>
+                      {submitting ? <><LoaderCircle className="fln-spin" size={16} /> SECURING YOUR PLACE…</> : <>CONFIRM MY RSVP <Check size={16} /></>}
+                    </button>
+                  </form>
+                )}
               </>
             ) : (
-              <div className="fln-success">
-                <div className="fln-success-mark">✦</div>
-                <span>RSVP CONFIRMED</span>
-                <h2>See you<br /><em>at the Formal.</em></h2>
-                <p>Your place is reserved. We cannot wait to celebrate, connect and encounter Jesus together.</p>
-                <div className="fln-success-card">
-                  <div><CalendarDays /><span>14 November 2026<br /><small>Saturday</small></span></div>
-                  <div><MapPin /><span>{venue}<br /><small>{EVENT.city}</small></span></div>
-                  <div><Users /><span>{Number(form.guests) + 1} attendee{Number(form.guests) === 0 ? "" : "s"}<br /><small>{form.full_name}</small></span></div>
+              <div className="fln-confirmed">
+                <div className="fln-confirmed-mark"><CheckCircle2 size={37} /></div>
+                <span>YOU'RE ON THE LIST</span>
+                <h2>See you at<br /><em>The Formal.</em></h2>
+                <p>{confirmation.name}, your RSVP is confirmed. Save your confirmation code for check-in.</p>
+
+                <div className="fln-pass">
+                  <div>
+                    <small>CONFIRMATION CODE</small>
+                    <strong>{confirmation.code}</strong>
+                  </div>
+                  <div>
+                    <small>DATE</small>
+                    <strong>{content.date_label}</strong>
+                  </div>
+                  <div>
+                    <small>GUESTS</small>
+                    <strong>{confirmation.guests + 1}</strong>
+                  </div>
                 </div>
-                <a className="fln-outline-dark" href={calendarUrl} target="_blank" rel="noreferrer">
-                  ADD TO CALENDAR <ArrowRight size={15} />
-                </a>
-                <a className="fln-outline-dark" href={mapUrl} target="_blank" rel="noreferrer">
-                  GET DIRECTIONS <MapPin size={15} />
-                </a>
-                <button className="fln-outline-dark" type="button" onClick={() => setRsvpOpen(false)}>
-                  CLOSE <ArrowDown size={16} />
+
+                <div className="fln-confirm-actions">
+                  <button type="button" className="fln-outline-dark" onClick={() => void navigator.clipboard?.writeText(confirmation.code)}>
+                    <Copy size={15} /> COPY CODE
+                  </button>
+                  <a href={calendarUrl} target="_blank" rel="noreferrer" className="fln-outline-dark">
+                    <CalendarDays size={15} /> CALENDAR
+                  </a>
+                </div>
+
+                <button type="button" className="fln-confirm-close" onClick={closeRegistration}>
+                  BACK TO EVENT <ArrowRight size={15} />
                 </button>
               </div>
             )}

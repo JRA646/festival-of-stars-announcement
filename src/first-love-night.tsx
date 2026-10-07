@@ -470,8 +470,11 @@ export default function FirstLoveNight() {
     <main className="fln-page">
       <nav className="fln-nav" aria-label="First Love Night">
         <button className="fln-wordmark" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <strong>FIRST LOVE NIGHT</strong>
-          <span>THE FORMAL</span>
+          <FirstLoveMark compact />
+          <span>
+            <strong>FIRST LOVE NIGHT</strong>
+            <small>THE FORMAL</small>
+          </span>
         </button>
 
         <div className={menuOpen ? "fln-links open" : "fln-links"}>
@@ -561,9 +564,9 @@ export default function FirstLoveNight() {
         </div>
 
         <div className="fln-hero-bottom">
-          <div><strong>{content.date_label.split(" ")[0]}</strong><span>DATE</span></div>
-          <div><strong>1</strong><span>FORMAL NIGHT</span></div>
-          <div><strong>∞</strong><span>ONE PURPOSE</span></div>
+          <div><strong>{eventDateParts?.day}</strong><span>NOVEMBER 2026</span></div>
+          <div><strong>{eventDateParts?.weekday}</strong><span>THE FORMAL</span></div>
+          <div><strong>HS + COLLEGE</strong><span>THE NEXT GENERATION</span></div>
         </div>
       </section>
 

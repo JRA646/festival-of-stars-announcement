@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
   ArrowRight,
   CalendarDays,
@@ -94,6 +94,31 @@ const FALLBACK: RsvpForm = {
   consent: false,
 };
 
+function FirstLoveMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <span className={compact ? "fln-brand-mark compact" : "fln-brand-mark"} aria-hidden="true">
+      <span>✦</span>
+    </span>
+  );
+}
+
+function formatEventDateParts(value: string) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Manila",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    weekday: "long",
+  }).formatToParts(new Date(value));
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return {
+    day: map.day,
+    month: map.month.toUpperCase(),
+    year: map.year,
+    weekday: map.weekday.toUpperCase(),
+  };
+}
+
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Manila",
@@ -105,7 +130,14 @@ function formatDate(value: string) {
 }
 
 function getDateKey(value: string) {
-  return value.slice(0, 10);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date(value));
+  const map = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${map.year}-${map.month}-${map.day}`;
 }
 
 function getDaysUntil(value: string) {
@@ -149,6 +181,8 @@ export default function FirstLoveNight() {
   const [submitting, setSubmitting] = useState(false);
   const [rsvpError, setRsvpError] = useState("");
   const [confirmation, setConfirmation] = useState<{ code: string; name: string; guests: number } | null>(null);
+  const rsvpCloseRef = useRef<HTMLButtonElement | null>(null);
+  const rsvpTriggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -266,6 +300,7 @@ export default function FirstLoveNight() {
   const content = data?.announcement.content;
   const days = useMemo(() => (data ? getDaysUntil(data.event.start_at) : 0), [data]);
   const eventDate = data ? formatDate(data.event.start_at) : "";
+  const eventDateParts = data ? formatEventDateParts(data.event.start_at) : null;
   const venue = data?.event.location || content?.venue_label || "TBA";
   const guestCount = Number(form.guest_count || 0);
 

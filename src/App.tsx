@@ -3,10 +3,12 @@ import FestivalOfStarsRegister from "./festivalofstars-register";
 import FestivalOfStarsAnnouncement from "./festivalofstars-announcement";
 import FestivalOfStarsAnnouncementRegister from "./festivalofstars-announcement-register";
 import YoungAdultFellowship from "./young-adult-fellowship";
+import FirstLoveNight from "./first-love-night";
 
 const path = window.location.pathname;
 
 export default function App() {
+  if (path.startsWith("/first-love-night")) return <FirstLoveNight />;
   if (path.startsWith("/festivalofstars/register")) return <FestivalOfStarsRegister />;
   if (path.startsWith("/festivalofstars/announcement/register")) return <FestivalOfStarsAnnouncementRegister />;
   if (path.startsWith("/festivalofstars/announcement")) return <FestivalOfStarsAnnouncement />;

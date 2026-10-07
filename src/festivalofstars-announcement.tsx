@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./festivalofstars-announcement.css";
+import "./first-love-theme.css";
 
 type FaqItem = { question: string; answer: string };
 type TimelineItem = { title: string; copy: string; tag: string };

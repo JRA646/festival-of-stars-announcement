@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./festivalofstars-register.css";
+import "./first-love-theme.css";
 
 type PublicFestival = {
   event: {

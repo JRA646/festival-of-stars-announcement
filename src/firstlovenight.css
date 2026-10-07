@@ -637,3 +637,19 @@ a{color:inherit}
   .fln-brand-mark{width:39px;height:39px}
   .fln-brand-mark.compact{width:28px;height:28px}
 }
+
+
+/* Launch-quality accessibility + mobile input treatment */
+@media(max-width:720px){
+  .fln-form-grid input,
+  .fln-form-grid select,
+  .fln-form-grid textarea{
+    font-size:16px;
+  }
+  .fln-rsvp-close{
+    width:42px;height:42px;display:grid;place-items:center;
+  }
+}
+.fln-rsvp-error{
+  scroll-margin-top:20px;
+}

@@ -275,6 +275,8 @@ export default function FirstLoveNight() {
 
         <div className="fln-hero-figure" aria-hidden="true">
           <div className="fln-glow" />
+          <div className="fln-table-light table-light-a" />
+          <div className="fln-table-light table-light-b" />
           <div className="fln-arch arch-a" />
           <div className="fln-arch arch-b" />
           <div className="fln-couple">
@@ -283,6 +285,12 @@ export default function FirstLoveNight() {
           </div>
           <div className="fln-bokeh b1" /><div className="fln-bokeh b2" /><div className="fln-bokeh b3" />
           <div className="fln-bokeh b4" /><div className="fln-bokeh b5" /><div className="fln-bokeh b6" />
+          <div className="fln-hero-vignette" />
+        </div>
+        <div className="fln-hero-stats">
+          <div><strong>14</strong><span>NOVEMBER 2026</span></div>
+          <div><strong>1</strong><span>FORMAL NIGHT</span></div>
+          <div><strong>1</strong><span>PURPOSE</span></div>
         </div>
       </section>
 

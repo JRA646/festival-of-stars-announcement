@@ -470,9 +470,16 @@ export default function FirstLoveNight() {
         <div className="fln-hero-grain" />
 
         <div className="fln-hero-content">
-          <p className="fln-kicker">{content.audience}</p>
-          <h1>{content.title}</h1>
-          <p className="fln-hero-subtitle">{content.subtitle}</p>
+          <p className="fln-kicker">FIRST LOVE NIGHT · {content.audience}</p>
+          <h1 className="fln-hero-title" aria-label="First Love Night">
+            <span>FIRST LOVE</span>
+            <span>NIGHT</span>
+          </h1>
+          <div className="fln-formal-lockup">
+            <span>THE FORMAL</span>
+            <i aria-hidden="true" />
+            <p>{content.subtitle}</p>
+          </div>
 
           <div className="fln-hero-facts">
             <span><CalendarDays size={17} /> {content.date_label} · {content.weekday}</span>
@@ -504,7 +511,7 @@ export default function FirstLoveNight() {
 
       <section className="fln-intro-strip">
         <div>
-          <span>RSVP REQUIRED</span>
+          <span>FIRST LOVE NIGHT · RSVP REQUIRED</span>
           <strong>Come dressed. Come expectant. Come ready to encounter Jesus.</strong>
         </div>
         <button type="button" onClick={() => openRegistration("strip")}>

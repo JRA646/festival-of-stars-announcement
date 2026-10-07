@@ -59,9 +59,26 @@ a{color:inherit}
   position:relative;z-index:4;min-height:100svh;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:105px 20px 200px
 }
-.fln-kicker{margin:0 0 14px;color:#f6ddb0;font-size:9px;font-weight:600;letter-spacing:.30em}
-.fln-hero h1{margin:0;color:#fff8eb;font:500 clamp(76px,10vw,132px)/.82 "Cormorant Garamond",serif;letter-spacing:-.035em;text-shadow:0 5px 32px rgba(0,0,0,.4)}
-.fln-hero-subtitle{margin:18px 0 26px;color:rgba(255,251,243,.90);font:400 clamp(18px,2vw,24px) "Cormorant Garamond",serif}
+.fln-kicker{margin:0 0 15px;color:#f6ddb0;font-size:9px;font-weight:700;letter-spacing:.30em}
+.fln-hero h1{
+  margin:0;color:#fff8eb;font:500 clamp(68px,9vw,122px)/.68 "Cormorant Garamond",serif;
+  letter-spacing:-.035em;text-shadow:0 5px 32px rgba(0,0,0,.4);display:grid;justify-items:center
+}
+.fln-hero-title span:first-child{font-size:.72em;letter-spacing:.025em}
+.fln-hero-title span:last-child{
+  color:var(--fln-gold-soft);margin-top:-.03em;font-size:1.05em;letter-spacing:.015em;
+  text-shadow:0 6px 38px rgba(0,0,0,.45)
+}
+.fln-formal-lockup{
+  display:flex;align-items:center;justify-content:center;gap:13px;margin:19px 0 25px
+}
+.fln-formal-lockup>span{
+  color:#fff4de;font-size:11px;font-weight:800;letter-spacing:.30em;text-indent:.30em
+}
+.fln-formal-lockup i{width:30px;height:1px;background:rgba(231,180,91,.58)}
+.fln-formal-lockup p{
+  margin:0;color:rgba(255,251,243,.90);font:400 clamp(18px,2vw,24px) "Cormorant Garamond",serif
+}
 .fln-hero-facts{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
 .fln-hero-facts span{
   display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(255,226,177,.28);
@@ -79,7 +96,7 @@ a{color:inherit}
   display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 21px;border:1px solid rgba(255,226,177,.46);
   border-radius:6px;background:rgba(255,255,255,.03);color:#fff;text-decoration:none;font-size:9px;font-weight:700;letter-spacing:.08em;backdrop-filter:blur(5px)
 }
-.fln-countdown-hero{margin-top:28px;display:grid;grid-template-columns:auto auto auto;align-items:end;column-gap:10px}
+.fln-countdown-hero{margin-top:27px;display:grid;grid-template-columns:auto auto auto;align-items:end;column-gap:10px}
 .fln-countdown-hero span{grid-column:1/-1;margin-bottom:2px;color:#d8c8af;font-size:7px;letter-spacing:.32em}
 .fln-countdown-hero strong{font:500 54px/1 "Cormorant Garamond",serif;color:var(--fln-gold-soft)}
 .fln-countdown-hero small{padding-bottom:5px;color:#fff;font-size:7px;letter-spacing:.18em}
@@ -98,7 +115,7 @@ a{color:inherit}
   padding:21px max(20px,calc((100vw - var(--fln-max))/2));background:linear-gradient(135deg,#ead19f,#d6a55c);color:#171008
 }
 .fln-intro-strip div{display:grid;gap:4px}
-.fln-intro-strip span{font-size:7px;font-weight:800;letter-spacing:.24em}
+.fln-intro-strip span{font-size:7px;font-weight:800;letter-spacing:.18em}
 .fln-intro-strip strong{font:600 clamp(16px,2vw,21px) "Cormorant Garamond",serif}
 .fln-intro-strip button{display:inline-flex;align-items:center;gap:8px;flex:none;border:1px solid #2b1b0d;background:transparent;color:#171008;padding:10px 15px;font-size:8px;font-weight:800;letter-spacing:.10em}
 
@@ -297,7 +314,11 @@ a{color:inherit}
   .fln-hero{min-height:760px;height:100svh}
   .fln-hero-content{padding:97px 16px 150px}
   .fln-kicker{font-size:7px;letter-spacing:.25em}
-  .fln-hero h1{font-size:clamp(55px,16vw,78px)}
+  .fln-hero h1{font-size:clamp(55px,16vw,79px)}
+  .fln-formal-lockup{flex-wrap:wrap;gap:9px;margin:15px 0 20px}
+  .fln-formal-lockup>span{font-size:9px;letter-spacing:.23em;text-indent:.23em}
+  .fln-formal-lockup i{width:22px}
+  .fln-formal-lockup p{font-size:18px}
   .fln-hero-subtitle{font-size:18px;margin:14px 0 20px}
   .fln-hero-facts{display:grid;width:min(340px,100%);gap:7px}
   .fln-hero-facts span{justify-content:center;font-size:7px}
@@ -354,7 +375,10 @@ a{color:inherit}
   .fln-register-mini{padding:9px 11px}
   .fln-register-mini svg{display:none}
   .fln-hero{min-height:720px}
-  .fln-hero h1{font-size:53px}
+  .fln-hero h1{font-size:53px;line-height:.70}
+  .fln-formal-lockup{display:grid;grid-template-columns:auto;gap:8px}
+  .fln-formal-lockup i{width:32px;margin:0 auto}
+  .fln-formal-lockup p{font-size:17px}
   .fln-hero-subtitle{font-size:17px}
   .fln-hero-bottom strong{font-size:19px}
   .fln-experience-grid{grid-template-columns:1fr}

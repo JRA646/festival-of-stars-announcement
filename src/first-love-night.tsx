@@ -306,6 +306,7 @@ export default function FirstLoveNight() {
 
   const openRegistration = (source: string) => {
     if (!data?.announcement.registration_enabled) return;
+    rsvpTriggerRef.current = document.activeElement as HTMLElement | null;
     setMenuOpen(false);
     setStep(1);
     setRsvpError("");
@@ -319,6 +320,7 @@ export default function FirstLoveNight() {
     if (submitting) return;
     setRsvpOpen(false);
     history.replaceState({}, "", "/first-love-night");
+    requestAnimationFrame(() => rsvpTriggerRef.current?.focus?.());
   };
 
   const update = <K extends keyof RsvpForm>(field: K, value: RsvpForm[K]) => {
@@ -505,33 +507,54 @@ export default function FirstLoveNight() {
         <div className="fln-hero-grain" />
 
         <div className="fln-hero-content">
-          <p className="fln-kicker">FIRST LOVE NIGHT · {content.audience}</p>
+          <div className="fln-hero-brandline">
+            <FirstLoveMark />
+            <span>FIRST LOVE NIGHT</span>
+            <i aria-hidden="true" />
+            <small>{content.audience}</small>
+          </div>
+
+          <p className="fln-kicker">A NIGHT FOR THE NEXT GENERATION</p>
+
           <h1 className="fln-hero-title" aria-label="First Love Night">
             <span>FIRST LOVE</span>
             <span>NIGHT</span>
           </h1>
+
           <div className="fln-formal-lockup">
             <span>THE FORMAL</span>
             <i aria-hidden="true" />
-            <p>{content.subtitle}</p>
+            <p>A Christ-Centred Night</p>
           </div>
 
-          <div className="fln-hero-facts">
-            <span><CalendarDays size={17} /> {content.date_label} · {content.weekday}</span>
-            <span><MapPin size={17} /> {venue} · {content.city_label}</span>
+          <div className="fln-hero-date">
+            {eventDateParts && (
+              <>
+                <strong>{eventDateParts.day}</strong>
+                <div>
+                  <b>{eventDateParts.month}</b>
+                  <span>{eventDateParts.year} · {eventDateParts.weekday}</span>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="fln-hero-location">
+            <MapPin size={15} />
+            <span>{content.city_label} · {venue === "TBA" ? "VENUE TO BE ANNOUNCED" : venue}</span>
           </div>
 
           <div className="fln-hero-actions">
             <button className="fln-gold-btn" type="button" onClick={() => openRegistration("hero")}>
-              RESERVE YOUR PLACE <ArrowRight size={17} />
+              SAVE MY PLACE <ArrowRight size={17} />
             </button>
             <a className="fln-outline-btn" href="#about">
               DISCOVER THE NIGHT
             </a>
           </div>
 
-          <div className="fln-countdown-hero">
-            <span>THE NIGHT BEGINS IN</span>
+          <div className="fln-countdown-hero fln-countdown-compact">
+            <span>COUNTING DOWN TO FIRST LOVE NIGHT</span>
             <strong>{days}</strong>
             <small>DAYS</small>
           </div>

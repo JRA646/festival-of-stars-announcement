@@ -535,7 +535,7 @@ export default function FirstLoveNight() {
             <Share2 size={17} />
           </button>
           <button className="fln-register-mini" type="button" onClick={() => openRegistration("nav")}>
-            RSVP NOW <ArrowRight size={15} />
+            SAVE MY PLACE <ArrowRight size={15} />
           </button>
           <button className="fln-menu" type="button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}

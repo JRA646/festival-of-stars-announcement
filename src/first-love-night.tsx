@@ -76,6 +76,7 @@ type RsvpForm = {
   dietary_requirements: string;
   referral_source: string;
   message: string;
+  consent: boolean;
 };
 
 const FALLBACK: RsvpForm = {
@@ -91,6 +92,7 @@ const FALLBACK: RsvpForm = {
   dietary_requirements: "None",
   referral_source: "",
   message: "",
+  consent: false,
 };
 
 function formatDate(value: string) {
@@ -103,15 +105,27 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
+function getDateKey(value: string) {
+  return value.slice(0, 10);
+}
+
 function getDaysUntil(value: string) {
-  const target = new Date(value);
-  const now = new Date();
-  const targetDay = Date.UTC(
-    target.getUTCFullYear(),
-    target.getUTCMonth(),
-    target.getUTCDate(),
+  const [year, month, day] = getDateKey(value).split("-").map(Number);
+  const today = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+
+  const todayParts = Object.fromEntries(today.map((part) => [part.type, part.value]));
+  const targetDay = Date.UTC(year, month - 1, day);
+  const nowDay = Date.UTC(
+    Number(todayParts.year),
+    Number(todayParts.month) - 1,
+    Number(todayParts.day),
   );
-  const nowDay = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+
   return Math.max(0, Math.ceil((targetDay - nowDay) / 86400000));
 }
 
@@ -323,7 +337,7 @@ export default function FirstLoveNight() {
       p_dietary_requirements: form.dietary_requirements.trim() || "None",
       p_referral_source: form.referral_source || null,
       p_message: form.message.trim() || null,
-      p_consent: true,
+      p_consent: form.consent,
       p_honeypot: "",
     });
 
@@ -373,15 +387,17 @@ export default function FirstLoveNight() {
     await navigator.clipboard?.writeText(window.location.origin + "/first-love-night");
   };
 
+  const calendarStart = data ? getDateKey(data.event.start_at).replace(/-/g, "") : "";
+  const calendarEnd = data ? new Date(
+    Date.UTC(
+      Number(getDateKey(data.event.start_at).slice(0,4)),
+      Number(getDateKey(data.event.start_at).slice(5,7)) - 1,
+      Number(getDateKey(data.event.start_at).slice(8,10)) + 1,
+    ),
+  ).toISOString().slice(0,10).replace(/-/g,"") : "";
+
   const calendarUrl = data
-    ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(data.event.name)}&dates=${encodeURIComponent(
-        new Date(data.event.start_at).toISOString().slice(0, 10).replace(/-/g, ""),
-      )}/${encodeURIComponent(
-        new Date(new Date(data.event.start_at).getTime() + 86400000)
-          .toISOString()
-          .slice(0, 10)
-          .replace(/-/g, ""),
-      )}&details=${encodeURIComponent(content?.vision_copy || "")}&location=${encodeURIComponent(
+    ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(data.event.name)}&dates=${calendarStart}/${calendarEnd}&details=${encodeURIComponent(content?.vision_copy || "")}&location=${encodeURIComponent(
         `${venue}, Manila, Philippines`,
       )}`
     : "#";
@@ -842,7 +858,7 @@ export default function FirstLoveNight() {
                     </div>
 
                     <label className="fln-check-row fln-final-consent">
-                      <input type="checkbox" checked={form.guardian_consent || form.age_group === "college"} onChange={(event) => update("guardian_consent", event.target.checked)} />
+                      <input type="checkbox" required checked={form.consent} onChange={(event) => update("consent", event.target.checked)} />
                       <span>I confirm my information is accurate and agree to be contacted about First Love Night.</span>
                     </label>
 

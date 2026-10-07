@@ -402,9 +402,11 @@ export default function FirstLoveNight() {
       )}`
     : "#";
 
-  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${venue}, Manila, Philippines`,
-  )}`;
+  const directionsUrl = venue !== "TBA"
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        `${venue}, Manila, Philippines`,
+      )}`
+    : null;
 
   if (loading) {
     return (
@@ -632,15 +634,21 @@ export default function FirstLoveNight() {
             <a href={calendarUrl} target="_blank" rel="noreferrer" className="fln-outline-dark">
               ADD TO CALENDAR
             </a>
-            <a
-              href={directionsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="fln-outline-dark"
-              onClick={() => openRsvpAnalytics(data.event.id, "directions_click")}
-            >
-              DIRECTIONS
-            </a>
+            {directionsUrl ? (
+              <a
+                href={directionsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="fln-outline-dark"
+                onClick={() => openRsvpAnalytics(data.event.id, "directions_click")}
+              >
+                DIRECTIONS
+              </a>
+            ) : (
+              <span className="fln-outline-dark fln-disabled-action">
+                DIRECTIONS · VENUE TBA
+              </span>
+            )}
           </div>
         </div>
       </section>

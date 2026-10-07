@@ -80,7 +80,7 @@ export default function FirstLoveNight() {
   const [loading, setLoading] = useState(true);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [countdown, setCountdown] = useState({ days: 48, hours: 12, minutes: 30, seconds: 15 });
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [rsvpOpen, setRsvpOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [rsvpDone, setRsvpDone] = useState(false);
@@ -258,7 +258,7 @@ export default function FirstLoveNight() {
           <p className="fln-audience">{EVENT.audience}</p>
 
           <div className="fln-meta">
-            <span><CalendarDays size={19} /><b>{EVENT.date}</b><small>{EVENT.weekday}</small></span>
+            <span><CalendarDays size={19} /><b>{eventDate}</b><small>{EVENT.weekday}</small></span>
             <i />
             <span><MapPin size={19} /><b>{venue}</b><small>{EVENT.city}</small></span>
           </div>
@@ -343,7 +343,7 @@ export default function FirstLoveNight() {
           <span>EVENT DETAILS</span>
           <h2>Save the Date</h2>
           <div className="fln-details-grid">
-            <article><CalendarDays /><small>DATE</small><strong>{EVENT.date}</strong><b>{EVENT.weekday}</b></article>
+            <article><CalendarDays /><small>DATE</small><strong>{eventDate}</strong><b>{EVENT.weekday}</b></article>
             <article><MapPin /><small>VENUE</small><strong>{venue}</strong><b>{EVENT.city}</b></article>
             <article><Users /><small>FOR</small><strong>High School +<br />College Students</strong><b>&nbsp;</b></article>
             <article><Heart /><small>DRESS CODE</small><strong>{EVENT.dressCode}</strong><b>(More details soon)</b></article>

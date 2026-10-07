@@ -264,7 +264,9 @@ export default function FirstLoveNight() {
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         location: {
           "@type": "Place",
-          name: typed.event.location || "TBA",
+          name: typed.event.location && typed.event.location !== "TBA"
+            ? typed.event.location
+            : typed.announcement.content.venue_label,
           address: "Manila, Philippines",
         },
       });
@@ -341,6 +343,7 @@ export default function FirstLoveNight() {
   const eventDate = data ? formatDate(data.event.start_at) : "";
   const eventDateParts = data ? formatEventDateParts(data.event.start_at) : null;
   const venue = data?.event.location || content?.venue_label || "TBA";
+  const venueDisplay = venue === "TBA" ? content?.venue_label || "VENUE TO BE ANNOUNCED" : venue;
   const guestCount = Number(form.guest_count || 0);
 
   const openRegistration = (source: string) => {
@@ -583,7 +586,7 @@ export default function FirstLoveNight() {
 
           <div className="fln-hero-location">
             <MapPin size={15} />
-            <span>{content.city_label} · {venue === "TBA" ? "VENUE TO BE ANNOUNCED" : venue}</span>
+            <span>{content.city_label} · {venueDisplay}</span>
           </div>
 
           <div className="fln-hero-actions">
@@ -734,7 +737,7 @@ export default function FirstLoveNight() {
             <article>
               <MapPin />
               <small>VENUE</small>
-              <strong>{venue}</strong>
+              <strong>{venueDisplay}</strong>
               <span>{content.city_label}</span>
             </article>
             <article>

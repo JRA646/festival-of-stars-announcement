@@ -383,13 +383,13 @@ export default function FirstLoveNight() {
     }
 
     setStep(2);
-    if (data) openRsvpAnalytics(data.event.id, "register_click", { step: 1, action: "step_1_complete" });
+    if (data) openRsvpAnalytics(data.event.id, "rsvp_step", { step: 1, action: "step_1_complete" });
   };
 
   const continueStepTwo = (event: FormEvent) => {
     event.preventDefault();
     setStep(3);
-    if (data) openRsvpAnalytics(data.event.id, "register_click", { step: 2, action: "step_2_complete" });
+    if (data) openRsvpAnalytics(data.event.id, "rsvp_step", { step: 2, action: "step_2_complete" });
   };
 
   const submitRsvp = async (event: FormEvent) => {
@@ -746,7 +746,13 @@ export default function FirstLoveNight() {
           </div>
 
           <div className="fln-detail-actions">
-            <a href={calendarUrl} target="_blank" rel="noreferrer" className="fln-outline-dark">
+            <a
+              href={calendarUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="fln-outline-dark"
+              onClick={() => openRsvpAnalytics(data.event.id, "calendar_click")}
+            >
               ADD TO CALENDAR
             </a>
             {directionsUrl ? (
@@ -805,7 +811,15 @@ export default function FirstLoveNight() {
         <div className="fln-faq-list">
           {content.faqs.map((item, index) => (
             <article key={item.question} className={faqOpen === index ? "open" : ""}>
-              <button type="button" onClick={() => setFaqOpen(faqOpen === index ? null : index)} aria-expanded={faqOpen === index}>
+              <button
+                type="button"
+                onClick={() => {
+                  const nextOpen = faqOpen === index ? null : index;
+                  setFaqOpen(nextOpen);
+                  if (nextOpen !== null) openRsvpAnalytics(data.event.id, "faq_open", { index, question: item.question });
+                }}
+                aria-expanded={faqOpen === index}
+              >
                 <span>0{index + 1}</span>
                 <strong>{item.question}</strong>
                 <ChevronDown size={18} />

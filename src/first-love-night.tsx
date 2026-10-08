@@ -140,6 +140,7 @@ function openRsvpAnalytics(eventId: string, eventType: string, metadata: Record<
 export default function FirstLoveNight() {
   const [data, setData] = useState<FirstLoveNightData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [error, setError] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
@@ -244,6 +245,29 @@ export default function FirstLoveNight() {
       alive = false;
     };
   }, []);
+
+
+  useEffect(() => {
+    if (!data) return;
+
+    const updateCountdown = () => {
+      const target = new Date(data.event.start_at).getTime();
+      const remaining = Math.max(0, target - Date.now());
+      const totalSeconds = Math.floor(remaining / 1000);
+
+      setCountdown({
+        days: Math.floor(totalSeconds / 86400),
+        hours: Math.floor((totalSeconds % 86400) / 3600),
+        minutes: Math.floor((totalSeconds % 3600) / 60),
+        seconds: totalSeconds % 60,
+      });
+    };
+
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [data]);
 
   useEffect(() => {
     if (!rsvpOpen) return;
@@ -495,10 +519,14 @@ export default function FirstLoveNight() {
             </a>
           </div>
 
-          <div className="fln-countdown-hero">
+          <div className="fln-countdown-hero" aria-label="Countdown to First Love Night">
             <span>THE NIGHT BEGINS IN</span>
-            <strong>{days}</strong>
-            <small>DAYS</small>
+            <div className="fln-live-countdown">
+              <div><strong>{countdown.days}</strong><small>DAYS</small></div>
+              <div><strong>{String(countdown.hours).padStart(2, "0")}</strong><small>HOURS</small></div>
+              <div><strong>{String(countdown.minutes).padStart(2, "0")}</strong><small>MINUTES</small></div>
+              <div><strong>{String(countdown.seconds).padStart(2, "0")}</strong><small>SECONDS</small></div>
+            </div>
           </div>
         </div>
 
@@ -533,11 +561,19 @@ export default function FirstLoveNight() {
         </div>
       </section>
 
+      <section className="fln-signature" aria-label="First Love Night statement">
+        <div className="fln-signature-inner">
+          <span>FIRST LOVE NIGHT · THE FORMAL</span>
+          <h2>Come dressed.<br />Come expectant.<br /><em>Come ready.</em></h2>
+          <p>To encounter Jesus, celebrate together, and make the night count.</p>
+        </div>
+      </section>
+
       <section className="fln-experience">
         <div className="fln-section-head">
           <span>WHAT TO EXPECT</span>
-          <h2>Five hours. One unforgettable night.</h2>
-          <p>Every part of the evening is designed to move from arrival to celebration, encounter and community.</p>
+          <h2>Five moments. One unforgettable night.</h2>
+          <p>A carefully paced evening built around arrival, fellowship, celebration, encounter and community.</p>
         </div>
 
         <div className="fln-experience-grid">
@@ -602,12 +638,12 @@ export default function FirstLoveNight() {
           <div className="fln-detail-glow" />
           <span>FIRST LOVE NIGHT</span>
           <strong>THE FORMAL</strong>
-          <small>14 NOVEMBER 2026</small>
+          <small>{content.date_label.toUpperCase()}</small>
         </div>
 
         <div className="fln-detail-content">
           <span>EVENT DETAILS</span>
-          <h2>Save the date.</h2>
+          <h2>Make the date.</h2>
 
           <div className="fln-detail-grid">
             <article>
@@ -659,17 +695,28 @@ export default function FirstLoveNight() {
         </div>
       </section>
 
-      <section className="fln-gallery-strip">
-        <div><div className="fln-gallery-image image-a" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ARRIVE IN STYLE</span></div>
-        <div><div className="fln-gallery-image image-b" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>CELEBRATE TOGETHER</span></div>
-        <div><div className="fln-gallery-image image-c" style={{ backgroundImage: `url("${content.hero_image_url}")` }} /><span>ENCOUNTER JESUS</span></div>
+      <section className="fln-gallery" aria-label="First Love Night visual story">
+        <div className="fln-gallery-main">
+          <div className="fln-gallery-image image-a" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
+          <div className="fln-gallery-caption"><span>01</span><strong>ARRIVE IN STYLE</strong></div>
+        </div>
+        <div className="fln-gallery-side">
+          <div>
+            <div className="fln-gallery-image image-b" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
+            <div className="fln-gallery-caption"><span>02</span><strong>CELEBRATE TOGETHER</strong></div>
+          </div>
+          <div>
+            <div className="fln-gallery-image image-c" style={{ backgroundImage: `url("${content.hero_image_url}")` }} />
+            <div className="fln-gallery-caption"><span>03</span><strong>ENCOUNTER JESUS</strong></div>
+          </div>
+        </div>
       </section>
 
       <section className="fln-final-cta">
         <div className="fln-final-glow" />
-        <span>BE PART OF</span>
-        <h2>A NIGHT THAT MATTERS.</h2>
-        <p>Dress up. Bring your friends. Make memories. Encounter Jesus.</p>
+        <span>THE INVITATION</span>
+        <h2>Make room for<br />a night that matters.</h2>
+        <p>14 November 2026 · First Love Night · The Formal</p>
         <button className="fln-gold-btn" type="button" onClick={() => openRegistration("final_cta")}>
           RESERVE YOUR PLACE <ArrowRight size={17} />
         </button>
@@ -682,7 +729,7 @@ export default function FirstLoveNight() {
         <div className="fln-section-head">
           <span>GOOD TO KNOW</span>
           <h2>Before the formal.</h2>
-          <p>Everything you need to know before you say yes.</p>
+          <p>The essential details before you say yes.</p>
         </div>
 
         <div className="fln-faq-list">
@@ -732,8 +779,8 @@ export default function FirstLoveNight() {
             {!confirmation ? (
               <>
                 <div className="fln-rsvp-head">
-                  <span>YOUR PLACE AT THE TABLE</span>
-                  <h2 id="fln-rsvp-title">Reserve your<br /><em>place at the Formal.</em></h2>
+                  <span>FIRST LOVE NIGHT · RSVP</span>
+                  <h2 id="fln-rsvp-title">Reserve your<br /><em>place at the night.</em></h2>
                   <p>Three quick steps. No complicated registration. Your details help the team prepare the best possible night.</p>
                 </div>
 

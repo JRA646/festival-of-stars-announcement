@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   ArrowRight,
   CalendarDays,
@@ -106,26 +106,6 @@ function formatDate(value: string) {
 
 function getDateKey(value: string) {
   return value.slice(0, 10);
-}
-
-function getDaysUntil(value: string) {
-  const [year, month, day] = getDateKey(value).split("-").map(Number);
-  const today = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Manila",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(new Date());
-
-  const todayParts = Object.fromEntries(today.map((part) => [part.type, part.value]));
-  const targetDay = Date.UTC(year, month - 1, day);
-  const nowDay = Date.UTC(
-    Number(todayParts.year),
-    Number(todayParts.month) - 1,
-    Number(todayParts.day),
-  );
-
-  return Math.max(0, Math.ceil((targetDay - nowDay) / 86400000));
 }
 
 function openRsvpAnalytics(eventId: string, eventType: string, metadata: Record<string, unknown> = {}) {
@@ -288,7 +268,6 @@ export default function FirstLoveNight() {
   }, [rsvpOpen, submitting]);
 
   const content = data?.announcement.content;
-  const days = useMemo(() => (data ? getDaysUntil(data.event.start_at) : 0), [data]);
   const eventDate = data ? formatDate(data.event.start_at) : "";
   const venue = data?.event.location || content?.venue_label || "TBA";
   const guestCount = Number(form.guest_count || 0);

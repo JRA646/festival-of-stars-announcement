@@ -154,7 +154,7 @@ export default function FirstLoveNightOptionB() {
           <button type="button" className="fln-b-share" onClick={() => void share()} aria-label="Share First Love Night">
             <Share2 size={16} />
           </button>
-          <a className="fln-b-rsvp" href="/first-love-night/rsvp">
+          <a className="fln-b-rsvp" href="/first-love-night-option-b/rsvp">
             RSVP <ArrowRight size={15} />
           </a>
           <button
@@ -187,7 +187,7 @@ export default function FirstLoveNightOptionB() {
           </div>
 
           <div className="fln-b-hero-actions">
-            <a className="fln-b-primary" href="/first-love-night/rsvp">
+            <a className="fln-b-primary" href="/first-love-night-option-b/rsvp">
               Reserve your place <ArrowRight size={16} />
             </a>
             <a className="fln-b-text-link" href="#the-night">
@@ -284,7 +284,7 @@ export default function FirstLoveNightOptionB() {
               <small>Elegant · polished · photo-ready</small>
             </div>
           </div>
-          <a className="fln-b-primary" href="/first-love-night/rsvp">
+          <a className="fln-b-primary" href="/first-love-night-option-b/rsvp">
             RSVP now <ArrowRight size={16} />
           </a>
         </div>
@@ -311,7 +311,7 @@ export default function FirstLoveNightOptionB() {
           <strong>First Love Night</strong>
         </div>
         <p>{data.registration_count} registrations · {content.date_label}</p>
-        <a href="/first-love-night/rsvp">Reserve your place <ArrowRight size={15} /></a>
+        <a href="/first-love-night-option-b/rsvp">Reserve your place <ArrowRight size={15} /></a>
       </footer>
     </main>
   );

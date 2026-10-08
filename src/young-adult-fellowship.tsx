@@ -19,6 +19,7 @@ import {
   X,
 } from "lucide-react";
 import "./young-adult-fellowship.css";
+import "./first-love-theme.css";
 
 const TOPIC_FORM_URL = "https://forms.gle/kyPkB1fBYm7KFXCo7";
 const EVENT_MAP_URL = "https://www.google.com/maps/dir/?api=1&destination=14.47395,120.98124";

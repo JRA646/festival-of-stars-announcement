@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { supabase } from "./lib/supabase";
 import "./festivalofstars.css";
+import "./first-love-theme.css";
 
 type TalentType = "singing" | "rap" | "acting";
 type Talent = { id: string; slug: TalentType; name: string; tagline: string; description: string; accent: string };

@@ -5,10 +5,12 @@ import FestivalOfStarsAnnouncementRegister from "./festivalofstars-announcement-
 import YoungAdultFellowship from "./young-adult-fellowship";
 import FirstLoveNight from "./first-love-night";
 import FirstLoveNightOptionB from "./first-love-night-option-b";
+import FirstLoveNightOptionBRsvp from "./first-love-night-option-b-rsvp";
 
 const path = window.location.pathname;
 
 export default function App() {
+  if (path.startsWith("/first-love-night-option-b/rsvp")) return <FirstLoveNightOptionBRsvp />;
   if (path.startsWith("/first-love-night-option-b")) return <FirstLoveNightOptionB />;
   if (path.startsWith("/first-love-night")) return <FirstLoveNight />;
   if (path.startsWith("/festivalofstars/register")) return <FestivalOfStarsRegister />;
